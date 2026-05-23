@@ -75,7 +75,7 @@ export default function QuizApp() {
   };
 
   const entrarQuiz = (codigo) => {
-    const quiz = quices.find(q => q.id == codigo);
+    const quiz = quices.find(q => q.id === parseInt(codigo));
     if (!quiz) {
       alert('❌ Código de quiz no encontrado');
       return;
@@ -101,11 +101,6 @@ export default function QuizApp() {
       alert('❌ Debes responder todas las preguntas');
       return;
     }
-
-    let correctas = 0;
-    respuestasArray.forEach((resp, idx) => {
-      if (resp === quizActual.preguntas[idx].respuesta_correcta) correctas++;
-    });
 
     const nuevasRespuestas = { ...respuestas };
     if (!nuevasRespuestas[codigoEstudiante]) {
