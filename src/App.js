@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BarChart3, LogOut, Plus, Trash2, Eye, Download } from 'lucide-react';
+import { LogOut, Plus, Trash2, Download } from 'lucide-react';
 
 export default function QuizApp() {
   const [modo, setModo] = useState('inicio');
@@ -15,6 +15,7 @@ export default function QuizApp() {
   const [codigoEstudiante, setCodigoEstudiante] = useState('');
   const [respuestasEstudiante, setRespuestasEstudiante] = useState({});
   const [jsonInput, setJsonInput] = useState('');
+  const [nombreEstudiante, setNombreEstudiante] = useState('');
 
   useEffect(() => {
     localStorage.setItem('quices', JSON.stringify(quices));
@@ -82,11 +83,12 @@ export default function QuizApp() {
     setQuizActual(quiz);
     setRespuestasEstudiante({});
     setCodigoEstudiante(codigo);
+    setNombreEstudiante('');
     setModo('respondiendo');
   };
 
-  const enviarRespuestas = (nombre) => {
-    if (!nombre.trim()) {
+  const enviarRespuestas = () => {
+    if (!nombreEstudiante.trim()) {
       alert('Por favor ingresa tu nombre');
       return;
     }
@@ -104,18 +106,18 @@ export default function QuizApp() {
     respuestasArray.forEach((resp, idx) => {
       if (resp === quizActual.preguntas[idx].respuesta_correcta) correctas++;
     });
-    const porcentaje = Math.round((correctas / quizActual.preguntas.length) * 100);
 
     const nuevasRespuestas = { ...respuestas };
     if (!nuevasRespuestas[codigoEstudiante]) {
       nuevasRespuestas[codigoEstudiante] = {};
     }
-    nuevasRespuestas[codigoEstudiante][nombre] = respuestasArray;
+    nuevasRespuestas[codigoEstudiante][nombreEstudiante] = respuestasArray;
     setRespuestas(nuevasRespuestas);
 
     setModo('resultado');
   };
 
+  // PANTALLA: Inicio
   if (modo === 'inicio') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
@@ -150,6 +152,7 @@ export default function QuizApp() {
     );
   }
 
+  // PANTALLA: Panel Profesor
   if (modo === 'profesor') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
@@ -281,6 +284,7 @@ export default function QuizApp() {
     );
   }
 
+  // PANTALLA: Entrada Estudiante
   if (modo === 'estudiante') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-emerald-100 flex items-center justify-center p-4">
@@ -317,9 +321,8 @@ export default function QuizApp() {
     );
   }
 
+  // PANTALLA: Respondiendo Quiz
   if (modo === 'respondiendo' && quizActual) {
-    const [nombre, setNombre] = useState('');
-
     return (
       <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-blue-50 p-4">
         <div className="max-w-2xl mx-auto">
@@ -330,6 +333,8 @@ export default function QuizApp() {
                 onClick={() => {
                   setModo('estudiante');
                   setQuizActual(null);
+                  setRespuestasEstudiante({});
+                  setNombreEstudiante('');
                 }}
                 className="text-slate-500 hover:text-slate-700"
               >
@@ -339,8 +344,8 @@ export default function QuizApp() {
             <input
               type="text"
               placeholder="Tu nombre completo"
-              value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
+              value={nombreEstudiante}
+              onChange={(e) => setNombreEstudiante(e.target.value)}
               className="w-full px-4 py-2 border-2 border-slate-300 rounded-lg focus:border-emerald-600 focus:outline-none mb-4"
             />
           </div>
@@ -375,7 +380,7 @@ export default function QuizApp() {
           </div>
 
           <button
-            onClick={() => enviarRespuestas(nombre)}
+            onClick={() => enviarRespuestas()}
             className="w-full mt-6 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-lg text-lg transition"
           >
             📤 Enviar Quiz
@@ -385,7 +390,8 @@ export default function QuizApp() {
     );
   }
 
-  if (modo === 'resultado') {
+  // PANTALLA: Resultado
+  if (modo === 'resultado' && quizActual) {
     const respuestasArray = Object.values(respuestasEstudiante);
     let correctas = 0;
     respuestasArray.forEach((resp, idx) => {
@@ -411,6 +417,9 @@ export default function QuizApp() {
             onClick={() => {
               setModo('estudiante');
               setQuizActual(null);
+              setRespuestasEstudiante({});
+              setNombreEstudiante('');
+              setCodigoEstudiante('');
             }}
             className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg transition"
           >
@@ -420,4 +429,6 @@ export default function QuizApp() {
       </div>
     );
   }
+
+  return null;
 }
