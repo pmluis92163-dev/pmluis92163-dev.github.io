@@ -2,8 +2,8 @@
   "id": 1,
   "titulo": "Función Raíz Cuadrada y Derivadas",
   "habilitado": true,
-  "fecha_inicio": "2025-05-23",
-  "fecha_fin": "2025-12-31",
+  "fecha_inicio": "2026-05-23",
+  "fecha_fin": "2026-12-31",
   "preguntas": [
     {
       "template": "¿Cuál es el dominio de la función f(x) = √(x+{{a}})?",
