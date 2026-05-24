@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { LogOut, ChevronLeft } from 'lucide-react';
+import { LogOut, ChevronLeft, Download, Eye, EyeOff } from 'lucide-react';
 
 const GITHUB_RAW_URL = 'https://raw.githubusercontent.com/pmluis92163-dev/pmluis92163-dev.github.io/main';
+const CONTRASENA_PROFESOR = 'admin123'; // Cambiar esta contraseña
 
 export default function QuizApp() {
-  const [modo, setModo] = useState('login');
+  const [modo, setModo] = useState('seleccionar-rol');
+  const [rol, setRol] = useState(null); // 'estudiante' o 'profesor'
   const [email, setEmail] = useState('');
   const [clave, setClaveInput] = useState('');
+  const [contrasenaProfesor, setContrasenaProfesor] = useState('');
   const [estudianteAutenticado, setEstudianteAutenticado] = useState(null);
+  const [profesorAutenticado, setProfesorAutenticado] = useState(false);
   const [colegios, setColegios] = useState([]);
   const [colegioSeleccionado, setColegioSeleccionado] = useState(null);
   const [nivelSeleccionado, setNivelSeleccionado] = useState(null);
@@ -19,9 +23,10 @@ export default function QuizApp() {
     const saved = localStorage.getItem('respuestas');
     return saved ? JSON.parse(saved) : {};
   });
+  const [credenciales, setCredenciales] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [credenciales, setCredenciales] = useState([]);
+  const [mostrarContrasena, setMostrarContrasena] = useState(false);
 
   // Cargar credenciales de GitHub
   useEffect(() => {
@@ -33,7 +38,6 @@ export default function QuizApp() {
         setCredenciales(data.estudiantes || []);
       } catch (err) {
         console.error('Error cargando credenciales:', err);
-        setError('Error al cargar el sistema de autenticación');
       }
     };
 
@@ -56,18 +60,18 @@ export default function QuizApp() {
       }
     };
 
-    if (estudianteAutenticado) {
+    if (estudianteAutenticado || profesorAutenticado) {
       cargarColegios();
     }
-  }, [estudianteAutenticado]);
+  }, [estudianteAutenticado, profesorAutenticado]);
 
   // Guardar respuestas en localStorage
   useEffect(() => {
     localStorage.setItem('respuestas', JSON.stringify(respuestas));
   }, [respuestas]);
 
-  // Validar login
-  const validarLogin = () => {
+  // Validar login estudiante
+  const validarLoginEstudiante = () => {
     if (!email.trim()) {
       setError('Por favor ingresa tu email');
       return;
@@ -91,6 +95,24 @@ export default function QuizApp() {
     setModo('inicio');
     setEmail('');
     setClaveInput('');
+  };
+
+  // Validar login profesor
+  const validarLoginProfesor = () => {
+    if (!contrasenaProfesor.trim()) {
+      setError('Por favor ingresa la contraseña');
+      return;
+    }
+
+    if (contrasenaProfesor !== CONTRASENA_PROFESOR) {
+      setError('Contraseña incorrecta');
+      return;
+    }
+
+    setProfesorAutenticado(true);
+    setError(null);
+    setModo('dashboard-profesor');
+    setContrasenaProfesor('');
   };
 
   // Función para evaluar expresiones matemáticas
@@ -159,15 +181,77 @@ export default function QuizApp() {
     }
   };
 
-  // PANTALLA: Login
-  if (modo === 'login') {
+  // Descargar CSV
+  const descargarCSV = () => {
+    let csv = 'Colegio,Nivel,Área,Quiz,Email,Nombre,Correctas,Total,Porcentaje,Fecha\n';
+
+    Object.entries(respuestas).forEach(([quizInfo, estudiantes]) => {
+      Object.entries(estudiantes).forEach(([email, datos]) => {
+        csv += `"${quizInfo}","${email}","${datos.nombre}",${datos.correctas},${datos.total},"${datos.porcentaje}%","${datos.fecha}"\n`;
+      });
+    });
+
+    const element = document.createElement('a');
+    element.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv));
+    element.setAttribute('download', `resultados_quices_${new Date().toISOString().split('T')[0]}.csv`);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  };
+
+  // ============ PANTALLA: Seleccionar Rol ============
+  if (modo === 'seleccionar-rol') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
         <div className="flex items-center justify-center min-h-screen">
           <div className="text-center space-y-8 px-4">
             <div className="space-y-3">
-              <h1 className="text-6xl font-bold">Quices y Pruebas de Profe Luis</h1>
-              <p className="text-slate-400 text-lg">Ingresa tus credenciales para acceder</p>
+              <h1 className="text-6xl font-bold">QuizMaster</h1>
+              <p className="text-slate-400 text-lg">¿Cuál es tu rol?</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+              <button
+                onClick={() => {
+                  setRol('estudiante');
+                  setModo('login-estudiante');
+                  setError(null);
+                }}
+                className="bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-lg font-semibold text-lg transition transform hover:scale-105"
+              >
+                👨‍🎓 Soy Estudiante
+              </button>
+              <button
+                onClick={() => {
+                  setRol('profesor');
+                  setModo('login-profesor');
+                  setError(null);
+                }}
+                className="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-lg font-semibold text-lg transition transform hover:scale-105"
+              >
+                👨‍🏫 Soy Profesor
+              </button>
+            </div>
+
+            <div className="text-slate-500 text-sm">
+              <p>✅ Sin instalación • ✅ Resultados automáticos • ✅ Ilimitado</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ============ PANTALLA: Login Estudiante ============
+  if (modo === 'login-estudiante') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-center space-y-8 px-4">
+            <div className="space-y-3">
+              <h1 className="text-6xl font-bold">QuizMaster</h1>
+              <p className="text-slate-400 text-lg">Ingresa tus credenciales</p>
             </div>
 
             <div className="bg-slate-800 rounded-lg shadow-xl p-8 max-w-md w-full space-y-6">
@@ -187,7 +271,7 @@ export default function QuizApp() {
                     setEmail(e.target.value);
                     setError(null);
                   }}
-                  onKeyPress={(e) => e.key === 'Enter' && validarLogin()}
+                  onKeyPress={(e) => e.key === 'Enter' && validarLoginEstudiante()}
                   className="w-full px-4 py-3 border-2 border-slate-600 rounded-lg focus:border-emerald-600 focus:outline-none text-slate-900"
                 />
               </div>
@@ -202,25 +286,29 @@ export default function QuizApp() {
                     setClaveInput(e.target.value);
                     setError(null);
                   }}
-                  onKeyPress={(e) => e.key === 'Enter' && validarLogin()}
+                  onKeyPress={(e) => e.key === 'Enter' && validarLoginEstudiante()}
                   className="w-full px-4 py-3 border-2 border-slate-600 rounded-lg focus:border-emerald-600 focus:outline-none text-slate-900"
                 />
               </div>
 
               <button
-                onClick={validarLogin}
+                onClick={validarLoginEstudiante}
                 className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg transition"
               >
                 Ingresar
               </button>
 
-              <p className="text-slate-400 text-sm">
-                Si no tienes credenciales, contacta con tu profesor
-              </p>
-            </div>
-
-            <div className="text-slate-500 text-sm">
-              <p>✅ Acceso seguro • ✅ Quices dinámicos • ✅ Reportes en tiempo real</p>
+              <button
+                onClick={() => {
+                  setModo('seleccionar-rol');
+                  setEmail('');
+                  setClaveInput('');
+                  setError(null);
+                }}
+                className="w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-3 rounded-lg transition"
+              >
+                ← Atrás
+              </button>
             </div>
           </div>
         </div>
@@ -228,19 +316,209 @@ export default function QuizApp() {
     );
   }
 
-  // PANTALLA: Inicio (después de autenticarse)
+  // ============ PANTALLA: Login Profesor ============
+  if (modo === 'login-profesor') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-center space-y-8 px-4">
+            <div className="space-y-3">
+              <h1 className="text-6xl font-bold">QuizMaster</h1>
+              <p className="text-slate-400 text-lg">Panel de Profesor</p>
+            </div>
+
+            <div className="bg-slate-800 rounded-lg shadow-xl p-8 max-w-md w-full space-y-6">
+              {error && (
+                <div className="bg-red-500 text-white p-4 rounded-lg text-sm">
+                  {error}
+                </div>
+              )}
+
+              <div className="space-y-2">
+                <label className="block text-left text-slate-300 font-semibold">Contraseña</label>
+                <div className="relative">
+                  <input
+                    type={mostrarContrasena ? 'text' : 'password'}
+                    placeholder="Contraseña del profesor"
+                    value={contrasenaProfesor}
+                    onChange={(e) => {
+                      setContrasenaProfesor(e.target.value);
+                      setError(null);
+                    }}
+                    onKeyPress={(e) => e.key === 'Enter' && validarLoginProfesor()}
+                    className="w-full px-4 py-3 border-2 border-slate-600 rounded-lg focus:border-blue-600 focus:outline-none text-slate-900"
+                  />
+                  <button
+                    onClick={() => setMostrarContrasena(!mostrarContrasena)}
+                    className="absolute right-3 top-3 text-slate-400 hover:text-slate-200"
+                  >
+                    {mostrarContrasena ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </button>
+                </div>
+              </div>
+
+              <button
+                onClick={validarLoginProfesor}
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition"
+              >
+                Ingresar
+              </button>
+
+              <button
+                onClick={() => {
+                  setModo('seleccionar-rol');
+                  setContrasenaProfesor('');
+                  setError(null);
+                }}
+                className="w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-3 rounded-lg transition"
+              >
+                ← Atrás
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ============ PANTALLA: Dashboard Profesor ============
+  if (modo === 'dashboard-profesor' && profesorAutenticado) {
+    const quicesUnicos = Object.keys(respuestas);
+    const totalRespuestas = Object.values(respuestas).reduce((sum, quiz) => sum + Object.keys(quiz).length, 0);
+    const promedio = totalRespuestas > 0 
+      ? Math.round(
+          Object.values(respuestas)
+            .flatMap(quiz => Object.values(quiz))
+            .reduce((sum, est) => sum + est.porcentaje, 0) / totalRespuestas
+        )
+      : 0;
+
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
+        <nav className="bg-blue-600 text-white p-4 shadow-lg flex justify-between items-center">
+          <h1 className="text-2xl font-bold">📊 Panel de Profesor</h1>
+          <button
+            onClick={() => {
+              setProfesorAutenticado(false);
+              setModo('seleccionar-rol');
+              setRespuestas({});
+            }}
+            className="flex items-center gap-2 bg-blue-700 hover:bg-blue-800 px-4 py-2 rounded"
+          >
+            <LogOut size={20} /> Salir
+          </button>
+        </nav>
+
+        <div className="max-w-6xl mx-auto p-6 space-y-8">
+          {/* Estadísticas */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-white rounded-lg shadow p-6">
+              <p className="text-slate-600 text-sm">Quices Realizados</p>
+              <p className="text-4xl font-bold text-blue-600">{quicesUnicos.length}</p>
+            </div>
+            <div className="bg-white rounded-lg shadow p-6">
+              <p className="text-slate-600 text-sm">Total Respuestas</p>
+              <p className="text-4xl font-bold text-emerald-600">{totalRespuestas}</p>
+            </div>
+            <div className="bg-white rounded-lg shadow p-6">
+              <p className="text-slate-600 text-sm">Promedio General</p>
+              <p className="text-4xl font-bold text-purple-600">{promedio}%</p>
+            </div>
+          </div>
+
+          {/* Botón Descargar CSV */}
+          <button
+            onClick={descargarCSV}
+            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-lg text-lg transition flex items-center justify-center gap-3"
+          >
+            <Download size={24} /> Descargar Todos los Resultados (CSV)
+          </button>
+
+          {/* Reportes por Quiz */}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold text-slate-800">Reportes Detallados</h2>
+
+            {quicesUnicos.length === 0 ? (
+              <div className="bg-white rounded-lg shadow p-8 text-center text-slate-500">
+                <p>No hay datos aún. Los estudiantes comenzarán a responder quices.</p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {quicesUnicos.map((quizInfo, idx) => {
+                  const resultadosQuiz = respuestas[quizInfo];
+                  const estudiantes = Object.entries(resultadosQuiz);
+                  const promedioQuiz = Math.round(
+                    estudiantes.reduce((sum, [_, datos]) => sum + datos.porcentaje, 0) / estudiantes.length
+                  );
+
+                  return (
+                    <div key={idx} className="bg-white rounded-lg shadow-md p-6 space-y-4">
+                      <div className="border-b pb-4">
+                        <h3 className="text-xl font-bold text-slate-800">{quizInfo}</h3>
+                        <div className="flex gap-4 mt-2">
+                          <span className="text-sm text-slate-600">
+                            Respuestas: <span className="font-bold">{estudiantes.length}</span>
+                          </span>
+                          <span className="text-sm text-slate-600">
+                            Promedio: <span className="font-bold text-emerald-600">{promedioQuiz}%</span>
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2 max-h-64 overflow-y-auto">
+                        <table className="w-full text-sm">
+                          <thead>
+                            <tr className="bg-slate-100">
+                              <th className="text-left p-2">Email</th>
+                              <th className="text-left p-2">Nombre</th>
+                              <th className="text-center p-2">Respuestas</th>
+                              <th className="text-center p-2">Porcentaje</th>
+                              <th className="text-left p-2">Fecha</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {estudiantes.map(([email, datos], eidx) => (
+                              <tr key={eidx} className="border-b hover:bg-slate-50">
+                                <td className="p-2 text-slate-700">{email}</td>
+                                <td className="p-2 text-slate-700">{datos.nombre}</td>
+                                <td className="p-2 text-center text-slate-700">
+                                  {datos.correctas}/{datos.total}
+                                </td>
+                                <td className={`p-2 text-center font-bold ${
+                                  datos.porcentaje >= 70 ? 'text-emerald-600' : 'text-orange-600'
+                                }`}>
+                                  {datos.porcentaje}%
+                                </td>
+                                <td className="p-2 text-slate-500 text-xs">{datos.fecha}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ============ PANTALLA: Inicio Estudiante ============
   if (modo === 'inicio' && estudianteAutenticado) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
         <nav className="bg-slate-800 p-4 shadow-lg flex justify-between items-center">
           <div>
-            <h1 className="text-2xl font-bold">Quices y Pruebas de Profe Luis</h1>
+            <h1 className="text-2xl font-bold">QuizMaster</h1>
             <p className="text-sm text-slate-400">Bienvenido, {estudianteAutenticado.nombre}</p>
           </div>
           <button
             onClick={() => {
               setEstudianteAutenticado(null);
-              setModo('login');
+              setModo('seleccionar-rol');
               setColegioSeleccionado(null);
               setNivelSeleccionado(null);
               setAreaSeleccionada(null);
@@ -275,7 +553,7 @@ export default function QuizApp() {
     );
   }
 
-  // PANTALLA: Seleccionar Nivel
+  // ============ PANTALLA: Seleccionar Nivel ============
   if (modo === 'seleccionar-nivel' && colegioSeleccionado && estudianteAutenticado) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-emerald-100 flex items-center justify-center p-4">
@@ -318,7 +596,7 @@ export default function QuizApp() {
     );
   }
 
-  // PANTALLA: Seleccionar Área
+  // ============ PANTALLA: Seleccionar Área ============
   if (modo === 'seleccionar-area' && areaSeleccionada && nivelSeleccionado && estudianteAutenticado) {
     const areas = areaSeleccionada.areas;
 
@@ -382,7 +660,7 @@ export default function QuizApp() {
     );
   }
 
-  // PANTALLA: Seleccionar Quiz
+  // ============ PANTALLA: Seleccionar Quiz ============
   if (modo === 'seleccionar-quiz' && areaSeleccionada && typeof areaSeleccionada === 'object' && areaSeleccionada.quices && estudianteAutenticado) {
     const quices = areaSeleccionada.quices;
 
@@ -427,7 +705,7 @@ export default function QuizApp() {
     );
   }
 
-  // PANTALLA: Respondiendo Quiz
+  // ============ PANTALLA: Respondiendo Quiz ============
   if (modo === 'respondiendo' && quizSeleccionado && preguntasGeneradas.length > 0 && estudianteAutenticado) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-blue-50 p-4">
@@ -523,7 +801,7 @@ export default function QuizApp() {
     );
   }
 
-  // PANTALLA: Resultado
+  // ============ PANTALLA: Resultado ============
   if (modo === 'resultado' && estudianteAutenticado) {
     const respuestasArray = Object.values(respuestasEstudiante);
     let correctas = 0;
