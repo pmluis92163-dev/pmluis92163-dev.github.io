@@ -61,8 +61,9 @@ export default function QuizApp() {
         if (!/^[0-9+\-*/.() ]*$/.test(expr)) {
           return match;
         }
-        const resultado = new Function('return ' + expr)();
-        return Math.round(resultado * 100) / 100;
+        // eslint-disable-next-line no-new-func
+        const resul = new Function('return ' + expr)();
+        return Math.round(resul * 100) / 100;
       } catch (e) {
         return match;
       }
