@@ -1,1 +1,24 @@
-
+{
+  "estudiantes": [
+    {
+      "email": "juana.perez@gmail.com",
+      "clave": "12345",
+      "nombre": "Juana Pérez"
+    },
+    {
+      "email": "fulano.rodriguez@gmail.com",
+      "clave": "21345",
+      "nombre": "Fulano Rodríguez"
+    },
+    {
+      "email": "maria.garcia@gmail.com",
+      "clave": "54321",
+      "nombre": "María García"
+    },
+    {
+      "email": "carlos.lopez@gmail.com",
+      "clave": "11111",
+      "nombre": "Carlos López"
+    }
+  ]
+}
