@@ -12,7 +12,7 @@
           "preguntas": [
             {
               "template": "¿Cuánto es {{a}} + {{b}}?",
-              "opciones": ["{{a+b}}", "{{a+b+0.1}}", "{{a-b}}", "{{a*b}}"],
+              "opciones": ["{{a}}+{{b}}", "{{a}}+{{b}}+0.1", "{{a}}-{{b}}", "{{a}}*{{b}}"],
               "respuesta_correcta": 0,
               "variables": {
                 "a": {"min": 10, "max": 50},
@@ -33,7 +33,7 @@
           "preguntas": [
             {
               "template": "¿Cuál es el volumen de un cubo con lado {{lado}}?",
-              "opciones": ["{{lado*lado*lado}}", "{{lado*lado}}", "{{lado*6}}", "{{lado*4}}"],
+              "opciones": ["{{lado}}*{{lado}}*{{lado}}", "{{lado}}*{{lado}}", "{{lado}}*6", "{{lado}}*4"],
               "respuesta_correcta": 0,
               "variables": {
                 "lado": {"min": 2, "max": 5}
@@ -41,7 +41,7 @@
             },
             {
               "template": "¿Cuál es el volumen de un prisma rectangular con largo {{l}}, ancho {{a}} y alto {{h}}?",
-              "opciones": ["{{l*a*h}}", "{{l*a}}", "{{l+a+h}}", "{{l*a*h/2}}"],
+              "opciones": ["{{l}}*{{a}}*{{h}}", "{{l}}*{{a}}", "{{l}}+{{a}}+{{h}}", "{{l}}*{{a}}*{{h}}/2"],
               "respuesta_correcta": 0,
               "variables": {
                 "l": {"min": 3, "max": 8},
@@ -62,8 +62,8 @@
           "titulo": "Factorización",
           "preguntas": [
             {
-              "template": "Si tienes la expresión {{a}}x + {{b}}, y sacas factor común, ¿cuál es el factor común?",
-              "opciones": ["{{a}}", "x", "{{b}}", "{{a+b}}"],
+              "template": "Si tienes la expresión {{a}}x + {{b}}, ¿cuál es el máximo común divisor?",
+              "opciones": ["{{a}}", "x", "{{b}}", "{{a}}+{{b}}"],
               "respuesta_correcta": 0,
               "variables": {
                 "a": {"min": 2, "max": 10},
@@ -84,7 +84,7 @@
           "preguntas": [
             {
               "template": "En un conjunto de datos: {{n1}}, {{n2}}, {{n3}}, {{n4}}, ¿cuál es la mediana?",
-              "opciones": ["{{(n2+n3)/2}}", "{{n2}}", "{{(n1+n4)/2}}", "{{n1+n2+n3+n4}}"],
+              "opciones": ["({{n2}}+{{n3}})/2", "{{n2}}", "({{n1}}+{{n4}})/2", "{{n1}}+{{n2}}+{{n3}}+{{n4}}"],
               "respuesta_correcta": 0,
               "variables": {
                 "n1": {"min": 5, "max": 15},
@@ -107,7 +107,7 @@
           "preguntas": [
             {
               "template": "Si lanzas un dado, ¿cuál es la probabilidad de obtener un número mayor a {{num}}?",
-              "opciones": ["{{(6-num)/6}}", "{{num/6}}", "{{1/2}}", "{{1}}"],
+              "opciones": ["(6-{{num}})/6", "{{num}}/6", "1/2", "1"],
               "respuesta_correcta": 0,
               "variables": {
                 "num": {"min": 1, "max": 4}
