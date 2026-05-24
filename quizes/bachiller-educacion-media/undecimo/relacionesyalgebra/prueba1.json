@@ -1,0 +1,35 @@
+{
+  "id": 1,
+  "titulo": "Función Raíz Cuadrada y Derivadas",
+  "habilitado": true,
+  "fecha_inicio": "2025-05-23",
+  "fecha_fin": "2025-12-31",
+  "preguntas": [
+    {
+      "template": "¿Cuál es el dominio de la función f(x) = √(x+{{a}})?",
+      "opciones": [
+        "x ≥ {{-a}}",
+        "x ≤ {{-a}}",
+        "x > {{a}}",
+        "ℝ (todos los reales)"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": -10, "max": 10}
+      }
+    },
+    {
+      "template": "Si f(x) = x² - {{a}}, ¿cuál es su función inversa f⁻¹(x)?",
+      "opciones": [
+        "f⁻¹(x) = √(x+{{a}})",
+        "f⁻¹(x) = √(x-{{a}})",
+        "f⁻¹(x) = x - {{a}}",
+        "f⁻¹(x) = (x+{{a}})²"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 1, "max": 10}
+      }
+    }
+  ]
+}
