@@ -6,12 +6,12 @@
   "fecha_fin": "2026-12-31",
   "preguntas": [
     {
-      "template": "¿Cuál es el dominio de la función f(x) = \\sqrt{x+{{a}}}?",
+      "template": "¿Cuál es el dominio de la función $f(x) = \\sqrt{x+{{a}}}$?",
       "opciones": [
-        "[-{{a}}, ∞[",
-        "[{{a}}, ∞[",
-        "]-{{a}}, ∞[",
-        "ℝ (todos los reales)"
+        "$\\left[-{{a}}, \\infty\\right[$",
+        "$\\left[{{a}}, \\infty\\right[$",
+        "$\\left]-{{a}}, \\infty\\right[$",
+        "$\\mathbb{R}$ (todos los reales)"
       ],
       "respuesta_correcta": 0,
       "variables": {
@@ -19,12 +19,12 @@
       }
     },
     {
-      "template": "¿Cuál es el dominio de la función f(x) = \\sqrt{x-{{a}}}?",
+      "template": "¿Cuál es el dominio de la función $f(x) = \\sqrt{x-{{a}}}$?",
       "opciones": [
-        "[{{a}}, ∞[",
-        "[-{{a}}, ∞[",
-        "]{{a}}, ∞[",
-        "ℝ (todos los reales)"
+        "$\\left[{{a}}, \\infty\\right[$",
+        "$\\left[-{{a}}, \\infty\\right[$",
+        "$\\left]{{a}}, \\infty\\right[$",
+        "$\\mathbb{R}$ (todos los reales)"
       ],
       "respuesta_correcta": 0,
       "variables": {
@@ -32,12 +32,12 @@
       }
     },
     {
-      "template": "¿Cuál es el dominio de la función f(x) = \\sqrt{{{a}}-x}?",
+      "template": "¿Cuál es el dominio de la función $f(x) = \\sqrt{{{a}}-x}$?",
       "opciones": [
-        "]-∞, {{a}}]",
-        "[{{a}}, ∞[",
-        "]-∞, -{{a}}]",
-        "ℝ (todos los reales)"
+        "$\\left]-\\infty, {{a}}\\right]$",
+        "$\\left[{{a}}, \\infty\\right[$",
+        "$\\left]-\\infty, -{{a}}\\right]$",
+        "$\\mathbb{R}$ (todos los reales)"
       ],
       "respuesta_correcta": 0,
       "variables": {
@@ -45,12 +45,12 @@
       }
     },
     {
-      "template": "¿Cuál es el dominio de la función f(x) = \\sqrt{{{a}}+x}?",
+      "template": "¿Cuál es el dominio de la función $f(x) = \\sqrt{{{a}}+x}$?",
       "opciones": [
-        "[-{{a}}, ∞[",
-        "[{{a}}, ∞[",
-        "]-{{a}}, ∞[",
-        "ℝ (todos los reales)"
+        "$\\left[-{{a}}, \\infty\\right[$",
+        "$\\left[{{a}}, \\infty\\right[$",
+        "$\\left]-{{a}}, \\infty\\right[$",
+        "$\\mathbb{R}$ (todos los reales)"
       ],
       "respuesta_correcta": 0,
       "variables": {
@@ -58,12 +58,12 @@
       }
     },
     {
-      "template": "¿Cuál es el dominio de la función f(x) = \\sqrt{2x-{{a}}}?",
+      "template": "¿Cuál es el dominio de la función $f(x) = \\sqrt{2x-{{a}}}$?",
       "opciones": [
-        "[{{a}}/2, ∞[",
-        "[{{a}}, ∞[",
-        "]-{{a}}/2, ∞[",
-        "ℝ (todos los reales)"
+        "$\\left[\\frac{{{a}}}{2}, \\infty\\right[$",
+        "$\\left[{{a}}, \\infty\\right[$",
+        "$\\left]-\\frac{{{a}}}{2}, \\infty\\right[$",
+        "$\\mathbb{R}$ (todos los reales)"
       ],
       "respuesta_correcta": 0,
       "variables": {
@@ -71,12 +71,12 @@
       }
     },
     {
-      "template": "¿Cuál es el ámbito (rango) de la función f(x) = \\sqrt{x+{{a}}}?",
+      "template": "¿Cuál es el ámbito (rango) de la función $f(x) = \\sqrt{x+{{a}}}$?",
       "opciones": [
-        "[0, ∞[",
-        "[-{{a}}, ∞[",
-        "[{{a}}, ∞[",
-        "ℝ (todos los reales)"
+        "$\\left[0, \\infty\\right[$",
+        "$\\left[-{{a}}, \\infty\\right[$",
+        "$\\left[{{a}}, \\infty\\right[$",
+        "$\\mathbb{R}$ (todos los reales)"
       ],
       "respuesta_correcta": 0,
       "variables": {
@@ -84,12 +84,12 @@
       }
     },
     {
-      "template": "¿Cuál es el ámbito de la función f(x) = \\sqrt{x-{{a}}}?",
+      "template": "¿Cuál es el ámbito de la función $f(x) = \\sqrt{x-{{a}}}$?",
       "opciones": [
-        "[0, ∞[",
-        "[{{a}}, ∞[",
-        "]-{{a}}, ∞[",
-        "ℝ (todos los reales)"
+        "$\\left[0, \\infty\\right[$",
+        "$\\left[{{a}}, \\infty\\right[$",
+        "$\\left]-{{a}}, \\infty\\right[$",
+        "$\\mathbb{R}$ (todos los reales)"
       ],
       "respuesta_correcta": 0,
       "variables": {
@@ -97,12 +97,12 @@
       }
     },
     {
-      "template": "¿Cuál es el ámbito de la función f(x) = \\sqrt{{{a}}-x}?",
+      "template": "¿Cuál es el ámbito de la función $f(x) = \\sqrt{{{a}}-x}$?",
       "opciones": [
-        "[0, ∞[",
-        "]-∞, {{a}}]",
-        "[{{a}}, ∞[",
-        "ℝ (todos los reales)"
+        "$\\left[0, \\infty\\right[$",
+        "$\\left]-\\infty, {{a}}\\right]$",
+        "$\\left[{{a}}, \\infty\\right[$",
+        "$\\mathbb{R}$ (todos los reales)"
       ],
       "respuesta_correcta": 0,
       "variables": {
@@ -110,12 +110,12 @@
       }
     },
     {
-      "template": "¿Cuál es el ámbito de la función f(x) = \\sqrt{3x+{{a}}}?",
+      "template": "¿Cuál es el ámbito de la función $f(x) = \\sqrt{3x+{{a}}}$?",
       "opciones": [
-        "[0, ∞[",
-        "[{{a}}/3, ∞[",
-        "[-{{a}}, ∞[",
-        "ℝ (todos los reales)"
+        "$\\left[0, \\infty\\right[$",
+        "$\\left[\\frac{{{a}}}{3}, \\infty\\right[$",
+        "$\\left[-{{a}}, \\infty\\right[$",
+        "$\\mathbb{R}$ (todos los reales)"
       ],
       "respuesta_correcta": 0,
       "variables": {
@@ -123,12 +123,12 @@
       }
     },
     {
-      "template": "¿Cuál es el ámbito de la función f(x) = \\sqrt{x+{{a}}-{{a}}}?",
+      "template": "¿Cuál es el ámbito de la función $f(x) = \\sqrt{x+{{a}}-{{a}}}$?",
       "opciones": [
-        "[0, ∞[",
-        "[{{a}}, ∞[",
-        "ℝ (todos los reales)",
-        "]-∞, 0]"
+        "$\\left[0, \\infty\\right[$",
+        "$\\left[{{a}}, \\infty\\right[$",
+        "$\\mathbb{R}$ (todos los reales)",
+        "$\\left]-\\infty, 0\\right]$"
       ],
       "respuesta_correcta": 0,
       "variables": {
@@ -136,12 +136,12 @@
       }
     },
     {
-      "template": "Si f(x) = x² - {{a}}, ¿cuál es su función inversa f⁻¹(x)?",
+      "template": "Si $f(x) = x^2 - {{a}}$, ¿cuál es su función inversa $f^{-1}(x)$?",
       "opciones": [
-        "f⁻¹(x) = \\sqrt{x+{{a}}}",
-        "f⁻¹(x) = \\sqrt{x-{{a}}}",
-        "f⁻¹(x) = x - {{a}}",
-        "f⁻¹(x) = (x+{{a}})²"
+        "$f^{-1}(x) = \\sqrt{x+{{a}}}$",
+        "$f^{-1}(x) = \\sqrt{x-{{a}}}$",
+        "$f^{-1}(x) = x - {{a}}$",
+        "$f^{-1}(x) = (x+{{a}})^2$"
       ],
       "respuesta_correcta": 0,
       "variables": {
@@ -149,12 +149,12 @@
       }
     },
     {
-      "template": "Si f(x) = (x+{{a}})², ¿cuál es su función inversa f⁻¹(x)?",
+      "template": "Si $f(x) = (x+{{a}})^2$, ¿cuál es su función inversa $f^{-1}(x)$?",
       "opciones": [
-        "f⁻¹(x) = \\sqrt{x}-{{a}}",
-        "f⁻¹(x) = \\sqrt{x}+{{a}}",
-        "f⁻¹(x) = \\sqrt{x+{{a}}}",
-        "f⁻¹(x) = x - {{a}}"
+        "$f^{-1}(x) = \\sqrt{x}-{{a}}$",
+        "$f^{-1}(x) = \\sqrt{x}+{{a}}$",
+        "$f^{-1}(x) = \\sqrt{x+{{a}}}$",
+        "$f^{-1}(x) = x - {{a}}$"
       ],
       "respuesta_correcta": 0,
       "variables": {
@@ -162,12 +162,12 @@
       }
     },
     {
-      "template": "Si f(x) = x² + {{a}}, ¿cuál es su función inversa f⁻¹(x)?",
+      "template": "Si $f(x) = x^2 + {{a}}$, ¿cuál es su función inversa $f^{-1}(x)$?",
       "opciones": [
-        "f⁻¹(x) = \\sqrt{x-{{a}}}",
-        "f⁻¹(x) = \\sqrt{x+{{a}}}",
-        "f⁻¹(x) = x - {{a}}",
-        "f⁻¹(x) = (x-{{a}})²"
+        "$f^{-1}(x) = \\sqrt{x-{{a}}}$",
+        "$f^{-1}(x) = \\sqrt{x+{{a}}}$",
+        "$f^{-1}(x) = x - {{a}}$",
+        "$f^{-1}(x) = (x-{{a}})^2$"
       ],
       "respuesta_correcta": 0,
       "variables": {
@@ -175,12 +175,12 @@
       }
     },
     {
-      "template": "Si f(x) = \\sqrt{x} + {{a}}, ¿cuál es su función inversa f⁻¹(x)?",
+      "template": "Si $f(x) = \\sqrt{x} + {{a}}$, ¿cuál es su función inversa $f^{-1}(x)$?",
       "opciones": [
-        "f⁻¹(x) = (x-{{a}})²",
-        "f⁻¹(x) = (x+{{a}})²",
-        "f⁻¹(x) = x² - {{a}}",
-        "f⁻¹(x) = \\sqrt{x-{{a}}}"
+        "$f^{-1}(x) = (x-{{a}})^2$",
+        "$f^{-1}(x) = (x+{{a}})^2$",
+        "$f^{-1}(x) = x^2 - {{a}}$",
+        "$f^{-1}(x) = \\sqrt{x-{{a}}}$"
       ],
       "respuesta_correcta": 0,
       "variables": {
@@ -188,12 +188,12 @@
       }
     },
     {
-      "template": "Si f(x) = \\sqrt{x-{{a}}}, ¿cuál es su función inversa f⁻¹(x)?",
+      "template": "Si $f(x) = \\sqrt{x-{{a}}}$, ¿cuál es su función inversa $f^{-1}(x)$?",
       "opciones": [
-        "f⁻¹(x) = x² + {{a}}",
-        "f⁻¹(x) = x² - {{a}}",
-        "f⁻¹(x) = \\sqrt{x+{{a}}}",
-        "f⁻¹(x) = (x+{{a}})²"
+        "$f^{-1}(x) = x^2 + {{a}}$",
+        "$f^{-1}(x) = x^2 - {{a}}$",
+        "$f^{-1}(x) = \\sqrt{x+{{a}}}$",
+        "$f^{-1}(x) = (x+{{a}})^2$"
       ],
       "respuesta_correcta": 0,
       "variables": {
@@ -201,12 +201,12 @@
       }
     },
     {
-      "template": "Si f(x) = 2x² - {{a}}, ¿cuál es su función inversa f⁻¹(x)?",
+      "template": "Si $f(x) = 2x^2 - {{a}}$, ¿cuál es su función inversa $f^{-1}(x)$?",
       "opciones": [
-        "f⁻¹(x) = \\sqrt{(x+{{a}})/2}",
-        "f⁻¹(x) = \\sqrt{x-{{a}}}",
-        "f⁻¹(x) = (x+{{a}})²",
-        "f⁻¹(x) = x - {{a}}"
+        "$f^{-1}(x) = \\sqrt{\\frac{x+{{a}}}{2}}$",
+        "$f^{-1}(x) = \\sqrt{x-{{a}}}$",
+        "$f^{-1}(x) = (x+{{a}})^2$",
+        "$f^{-1}(x) = x - {{a}}$"
       ],
       "respuesta_correcta": 0,
       "variables": {
@@ -214,12 +214,12 @@
       }
     },
     {
-      "template": "Si f(x) = \\sqrt{2x+{{a}}}, ¿cuál es su función inversa f⁻¹(x)?",
+      "template": "Si $f(x) = \\sqrt{2x+{{a}}}$, ¿cuál es su función inversa $f^{-1}(x)$?",
       "opciones": [
-        "f⁻¹(x) = (x²-{{a}})/2",
-        "f⁻¹(x) = x² - {{a}}",
-        "f⁻¹(x) = (x² + {{a}})/2",
-        "f⁻¹(x) = \\sqrt{x-{{a}}}"
+        "$f^{-1}(x) = \\frac{x^2-{{a}}}{2}$",
+        "$f^{-1}(x) = x^2 - {{a}}$",
+        "$f^{-1}(x) = \\frac{x^2 + {{a}}}{2}$",
+        "$f^{-1}(x) = \\sqrt{x-{{a}}}$"
       ],
       "respuesta_correcta": 0,
       "variables": {
@@ -227,12 +227,12 @@
       }
     },
     {
-      "template": "Si f(x) = (2x-{{a}})², ¿cuál es su función inversa f⁻¹(x)?",
+      "template": "Si $f(x) = (2x-{{a}})^2$, ¿cuál es su función inversa $f^{-1}(x)$?",
       "opciones": [
-        "f⁻¹(x) = (\\sqrt{x}+{{a}})/2",
-        "f⁻¹(x) = \\sqrt{x} - {{a}}",
-        "f⁻¹(x) = (x+{{a}})²",
-        "f⁻¹(x) = x - {{a}}"
+        "$f^{-1}(x) = \\frac{\\sqrt{x}+{{a}}}{2}$",
+        "$f^{-1}(x) = \\sqrt{x} - {{a}}$",
+        "$f^{-1}(x) = (x+{{a}})^2$",
+        "$f^{-1}(x) = x - {{a}}$"
       ],
       "respuesta_correcta": 0,
       "variables": {
@@ -240,12 +240,12 @@
       }
     },
     {
-      "template": "Si f(x) = \\sqrt{x+{{a}}} + {{b}}, ¿cuál es su función inversa f⁻¹(x)?",
+      "template": "Si $f(x) = \\sqrt{x+{{a}}} + {{b}}$, ¿cuál es su función inversa $f^{-1}(x)$?",
       "opciones": [
-        "f⁻¹(x) = (x-{{b}})² - {{a}}",
-        "f⁻¹(x) = (x+{{a}})² - {{b}}",
-        "f⁻¹(x) = \\sqrt{x-{{b}}} + {{a}}",
-        "f⁻¹(x) = x - {{a}} - {{b}}"
+        "$f^{-1}(x) = (x-{{b}})^2 - {{a}}$",
+        "$f^{-1}(x) = (x+{{a}})^2 - {{b}}$",
+        "$f^{-1}(x) = \\sqrt{x-{{b}}} + {{a}}$",
+        "$f^{-1}(x) = x - {{a}} - {{b}}$"
       ],
       "respuesta_correcta": 0,
       "variables": {
