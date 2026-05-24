@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { LogOut, ChevronLeft, Download, Eye, EyeOff } from 'lucide-react';
 
 const GITHUB_RAW_URL = 'https://raw.githubusercontent.com/pmluis92163-dev/pmluis92163-dev.github.io/main';
-const CONTRASENA_PROFESOR = 'admin123'; // Cambiar esta contraseña
+const GITHUB_API_URL = 'https://api.github.com/repos/pmluis92163-dev/pmluis92163-dev.github.io/contents';
+const CONTRASENA_PROFESOR = 'admin123';
 
 export default function QuizApp() {
   const [modo, setModo] = useState('seleccionar-rol');
@@ -14,7 +15,9 @@ export default function QuizApp() {
   const [colegios, setColegios] = useState([]);
   const [colegioSeleccionado, setColegioSeleccionado] = useState(null);
   const [nivelSeleccionado, setNivelSeleccionado] = useState(null);
+  const [areas, setAreas] = useState([]);
   const [areaSeleccionada, setAreaSeleccionada] = useState(null);
+  const [quices, setQuices] = useState([]);
   const [quizSeleccionado, setQuizSeleccionado] = useState(null);
   const [preguntasGeneradas, setPreguntasGeneradas] = useState([]);
   const [respuestasEstudiante, setRespuestasEstudiante] = useState({});
@@ -26,8 +29,11 @@ export default function QuizApp() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [mostrarContrasena, setMostrarContrasena] = useState(false);
+  const [configColegio, setConfigColegio] = useState(null);
+  const [intentosRestantes, setIntentosRestantes] = useState(null);
+  const [yaRespondio, setYaRespondio] = useState(false);
 
-  // Cargar credenciales de GitHub
+  // Cargar credenciales
   useEffect(() => {
     const cargarCredenciales = async () => {
       try {
@@ -39,11 +45,10 @@ export default function QuizApp() {
         console.error('Error cargando credenciales:', err);
       }
     };
-
     cargarCredenciales();
   }, []);
 
-  // Cargar estructura de colegios
+  // Cargar colegios
   useEffect(() => {
     const cargarColegios = async () => {
       try {
@@ -54,29 +59,95 @@ export default function QuizApp() {
         setColegios(data.colegios || []);
       } catch (err) {
         console.error('Error cargando colegios:', err);
+        setError('Error al cargar colegios');
       } finally {
         setLoading(false);
       }
     };
+    cargarColegios();
+  }, []);
 
-    if (estudianteAutenticado || profesorAutenticado) {
-      cargarColegios();
-    }
-  }, [estudianteAutenticado, profesorAutenticado]);
-
-  // Guardar respuestas en localStorage
+  // Guardar respuestas
   useEffect(() => {
     localStorage.setItem('respuestas', JSON.stringify(respuestas));
   }, [respuestas]);
 
-  // Validar login estudiante
-  const validarLoginEstudiante = () => {
-    if (!email.trim()) {
-      setError('Por favor ingresa tu email');
-      return;
+  // Cargar config del colegio
+  const cargarConfigColegio = async (colegio) => {
+    try {
+      const response = await fetch(`${GITHUB_RAW_URL}/quizes/${colegio.carpeta}/config.json`);
+      if (!response.ok) throw new Error('No se pudo cargar config');
+      const data = await response.json();
+      setConfigColegio(data);
+    } catch (err) {
+      setConfigColegio({ max_intentos: 1 });
     }
-    if (!clave.trim()) {
-      setError('Por favor ingresa tu clave');
+  };
+
+  // Leer carpetas de áreas dinámicamente
+  const cargarAreas = async (colegio, nivel) => {
+    try {
+      setLoading(true);
+      const rutaAreas = `${GITHUB_API_URL}/quizes/${colegio.carpeta}/${nivel.carpeta}`;
+      const response = await fetch(rutaAreas);
+      if (!response.ok) throw new Error('No se pudieron cargar áreas');
+      const items = await response.json();
+      
+      const areasArray = items
+        .filter(item => item.type === 'dir')
+        .map(item => ({ nombre: item.name, carpeta: item.name }));
+      
+      setAreas(areasArray);
+      return areasArray;
+    } catch (err) {
+      console.error('Error cargando áreas:', err);
+      setAreas([]);
+      return [];
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Leer quices dinámicamente
+  const cargarQuices = async (colegio, nivel, area) => {
+    try {
+      setLoading(true);
+      const rutaQuices = `${GITHUB_API_URL}/quizes/${colegio.carpeta}/${nivel.carpeta}/${area.carpeta}`;
+      const response = await fetch(rutaQuices);
+      if (!response.ok) throw new Error('No se pudieron cargar quices');
+      const items = await response.json();
+      
+      const quicesArray = [];
+      for (const item of items) {
+        if (item.type === 'file' && item.name.endsWith('.json')) {
+          try {
+            const quizResponse = await fetch(item.download_url);
+            const quizData = await quizResponse.json();
+            quicesArray.push({
+              ...quizData,
+              archivo: item.name
+            });
+          } catch (e) {
+            console.error('Error cargando quiz:', item.name, e);
+          }
+        }
+      }
+      
+      setQuices(quicesArray);
+      return quicesArray;
+    } catch (err) {
+      console.error('Error cargando quices:', err);
+      setQuices([]);
+      return [];
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Validar login
+  const validarLoginEstudiante = () => {
+    if (!email.trim() || !clave.trim()) {
+      setError('Por favor completa todos los campos');
       return;
     }
 
@@ -96,7 +167,6 @@ export default function QuizApp() {
     setClaveInput('');
   };
 
-  // Validar login profesor
   const validarLoginProfesor = () => {
     if (!contrasenaProfesor.trim()) {
       setError('Por favor ingresa la contraseña');
@@ -114,7 +184,7 @@ export default function QuizApp() {
     setContrasenaProfesor('');
   };
 
-  // Función para evaluar expresiones matemáticas
+  // Evaluar template
   const evaluarTemplate = (template, variables) => {
     let resultado = template;
     Object.keys(variables).forEach(key => {
@@ -138,7 +208,6 @@ export default function QuizApp() {
     return resultado;
   };
 
-  // Generar variables aleatorias
   const generarVariables = (variables) => {
     const generadas = {};
     Object.keys(variables).forEach(key => {
@@ -148,7 +217,6 @@ export default function QuizApp() {
     return generadas;
   };
 
-  // Generar preguntas del quiz
   const generarPreguntasQuiz = (quiz) => {
     return quiz.preguntas.map((pregunta, idx) => {
       const variables = generarVariables(pregunta.variables || {});
@@ -162,22 +230,26 @@ export default function QuizApp() {
     });
   };
 
-  // Cargar quices de un nivel
-  const cargarQuicesNivel = async (colegio, nivel) => {
-    try {
-      setLoading(true);
-      const archivo = nivel.archivo;
-      const rutaArchivo = `${GITHUB_RAW_URL}/quizes/${colegio.carpeta}/${archivo}`;
-      const response = await fetch(rutaArchivo);
-      if (!response.ok) throw new Error('No se pudo cargar el nivel');
-      const data = await response.json();
-      return data.areas || [];
-    } catch (err) {
-      setError('Error al cargar quices: ' + err.message);
-      return [];
-    } finally {
-      setLoading(false);
+  // Validar si quiz está habilitado
+  const estaHabilitado = (quiz) => {
+    if (quiz.habilitado === false) return false;
+    
+    const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
+    
+    if (quiz.fecha_inicio) {
+      const inicio = new Date(quiz.fecha_inicio);
+      inicio.setHours(0, 0, 0, 0);
+      if (hoy < inicio) return false;
     }
+    
+    if (quiz.fecha_fin) {
+      const fin = new Date(quiz.fecha_fin);
+      fin.setHours(23, 59, 59, 999);
+      if (hoy > fin) return false;
+    }
+    
+    return true;
   };
 
   // Descargar CSV
@@ -185,8 +257,8 @@ export default function QuizApp() {
     let csv = 'Colegio,Nivel,Área,Quiz,Email,Nombre,Correctas,Total,Porcentaje,Fecha\n';
 
     Object.entries(respuestas).forEach(([quizInfo, estudiantes]) => {
-      Object.entries(estudiantes).forEach(([email, datos]) => {
-        csv += `"${quizInfo}","${email}","${datos.nombre}",${datos.correctas},${datos.total},"${datos.porcentaje}%","${datos.fecha}"\n`;
+      Object.entries(estudiantes).forEach(([, datos]) => {
+        csv += `"${quizInfo}","${datos.email}","${datos.nombre}",${datos.correctas},${datos.total},"${datos.porcentaje}%","${datos.fecha}"\n`;
       });
     });
 
@@ -398,7 +470,6 @@ export default function QuizApp() {
             onClick={() => {
               setProfesorAutenticado(false);
               setModo('seleccionar-rol');
-              setRespuestas({});
             }}
             className="flex items-center gap-2 bg-blue-700 hover:bg-blue-800 px-4 py-2 rounded"
           >
@@ -407,7 +478,6 @@ export default function QuizApp() {
         </nav>
 
         <div className="max-w-6xl mx-auto p-6 space-y-8">
-          {/* Estadísticas */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="bg-white rounded-lg shadow p-6">
               <p className="text-slate-600 text-sm">Quices Realizados</p>
@@ -423,7 +493,6 @@ export default function QuizApp() {
             </div>
           </div>
 
-          {/* Botón Descargar CSV */}
           <button
             onClick={descargarCSV}
             className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-lg text-lg transition flex items-center justify-center gap-3"
@@ -431,7 +500,6 @@ export default function QuizApp() {
             <Download size={24} /> Descargar Todos los Resultados (CSV)
           </button>
 
-          {/* Reportes por Quiz */}
           <div className="space-y-4">
             <h2 className="text-2xl font-bold text-slate-800">Reportes Detallados</h2>
 
@@ -474,9 +542,9 @@ export default function QuizApp() {
                             </tr>
                           </thead>
                           <tbody>
-                            {estudiantes.map(([email, datos], eidx) => (
+                            {estudiantes.map(([, datos], eidx) => (
                               <tr key={eidx} className="border-b hover:bg-slate-50">
-                                <td className="p-2 text-slate-700">{email}</td>
+                                <td className="p-2 text-slate-700">{datos.email}</td>
                                 <td className="p-2 text-slate-700">{datos.nombre}</td>
                                 <td className="p-2 text-center text-slate-700">
                                   {datos.correctas}/{datos.total}
@@ -520,6 +588,8 @@ export default function QuizApp() {
               setNivelSeleccionado(null);
               setAreaSeleccionada(null);
               setQuizSeleccionado(null);
+              setAreas([]);
+              setQuices([]);
             }}
             className="flex items-center gap-2 bg-red-600 hover:bg-red-700 px-4 py-2 rounded"
           >
@@ -534,8 +604,9 @@ export default function QuizApp() {
               {colegios.map((colegio) => (
                 <button
                   key={colegio.id}
-                  onClick={() => {
+                  onClick={async () => {
                     setColegioSeleccionado(colegio);
+                    await cargarConfigColegio(colegio);
                     setModo('seleccionar-nivel');
                   }}
                   className="bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-lg font-semibold text-lg transition transform hover:scale-105"
@@ -568,8 +639,7 @@ export default function QuizApp() {
                 key={nivel.id}
                 onClick={async () => {
                   setNivelSeleccionado(nivel);
-                  const areas = await cargarQuicesNivel(colegioSeleccionado, nivel);
-                  setAreaSeleccionada({ areas });
+                  await cargarAreas(colegioSeleccionado, nivel);
                   setModo('seleccionar-area');
                 }}
                 className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 rounded-lg transition text-left px-6"
@@ -594,17 +664,16 @@ export default function QuizApp() {
   }
 
   // ============ PANTALLA: Seleccionar Área ============
-  if (modo === 'seleccionar-area' && areaSeleccionada && nivelSeleccionado && estudianteAutenticado) {
-    const areas = areaSeleccionada.areas;
-
+  if (modo === 'seleccionar-area' && nivelSeleccionado && estudianteAutenticado) {
     if (areas.length === 0) {
       return (
         <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-emerald-100 flex items-center justify-center p-4">
           <div className="bg-white rounded-lg shadow-xl p-8 max-w-2xl w-full text-center space-y-6">
-            <h1 className="text-2xl font-bold text-slate-800">No hay quices disponibles</h1>
-            <p className="text-slate-600">Vuelve más tarde, el profesor está agregando quices.</p>
+            <h1 className="text-2xl font-bold text-slate-800">No hay áreas disponibles</h1>
+            <p className="text-slate-600">El profesor está preparando los contenidos.</p>
             <button
               onClick={() => {
+                setNivelSeleccionado(null);
                 setAreaSeleccionada(null);
                 setModo('seleccionar-nivel');
               }}
@@ -626,14 +695,13 @@ export default function QuizApp() {
           </div>
 
           <div className="grid grid-cols-1 gap-3">
-            {areas.map((area) => (
+            {areas.map((area, idx) => (
               <button
-                key={area.id}
-                onClick={() => {
+                key={idx}
+                onClick={async () => {
                   setAreaSeleccionada(area);
-                  if (area.quices && area.quices.length > 0) {
-                    setModo('seleccionar-quiz');
-                  }
+                  await cargarQuices(colegioSeleccionado, nivelSeleccionado, area);
+                  setModo('seleccionar-quiz');
                 }}
                 className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 rounded-lg transition text-left px-6"
               >
@@ -658,8 +726,26 @@ export default function QuizApp() {
   }
 
   // ============ PANTALLA: Seleccionar Quiz ============
-  if (modo === 'seleccionar-quiz' && areaSeleccionada && typeof areaSeleccionada === 'object' && areaSeleccionada.quices && estudianteAutenticado) {
-    const quices = areaSeleccionada.quices;
+  if (modo === 'seleccionar-quiz' && areaSeleccionada && estudianteAutenticado) {
+    if (quices.length === 0) {
+      return (
+        <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-emerald-100 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg shadow-xl p-8 max-w-2xl w-full text-center space-y-6">
+            <h1 className="text-2xl font-bold text-slate-800">No hay quices en esta área</h1>
+            <p className="text-slate-600">El profesor está agregando contenidos.</p>
+            <button
+              onClick={() => {
+                setAreaSeleccionada(null);
+                setModo('seleccionar-area');
+              }}
+              className="w-full bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-3 rounded-lg transition"
+            >
+              Volver
+            </button>
+          </div>
+        </div>
+      );
+    }
 
     return (
       <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-emerald-100 flex items-center justify-center p-4">
@@ -670,28 +756,62 @@ export default function QuizApp() {
           </div>
 
           <div className="grid grid-cols-1 gap-3">
-            {quices.map((quiz) => (
-              <button
-                key={quiz.id}
-                onClick={() => {
-                  setQuizSeleccionado(quiz);
-                  const preguntasGen = generarPreguntasQuiz(quiz);
-                  setPreguntasGeneradas(preguntasGen);
-                  setRespuestasEstudiante({});
-                  setModo('respondiendo');
-                }}
-                className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 rounded-lg transition text-left px-6"
-              >
-                {quiz.titulo}
-              </button>
-            ))}
+            {quices.map((quiz, idx) => {
+              const habilitado = estaHabilitado(quiz);
+              const clave = `${colegioSeleccionado.nombre} • ${nivelSeleccionado.nombre} • ${areaSeleccionada.nombre} • ${quiz.titulo}`;
+              const yaRespondioQuiz = respuestas[clave] && respuestas[clave][estudianteAutenticado.email];
+              const debeBloquear = configColegio && configColegio.max_intentos === 1 && yaRespondioQuiz;
+
+              return (
+                <div key={idx} className="relative">
+                  <button
+                    disabled={!habilitado || debeBloquear}
+                    onClick={() => {
+                      if (!habilitado) {
+                        setError('Este quiz no está disponible');
+                        return;
+                      }
+                      if (debeBloquear) {
+                        setError('Ya respondiste este quiz');
+                        return;
+                      }
+                      setQuizSeleccionado(quiz);
+                      const preguntasGen = generarPreguntasQuiz(quiz);
+                      setPreguntasGeneradas(preguntasGen);
+                      setRespuestasEstudiante({});
+                      setModo('respondiendo');
+                    }}
+                    className={`w-full font-bold py-4 rounded-lg transition text-left px-6 ${
+                      debeBloquear
+                        ? 'bg-slate-400 cursor-not-allowed text-slate-600'
+                        : !habilitado
+                        ? 'bg-slate-400 cursor-not-allowed text-slate-600'
+                        : 'bg-emerald-500 hover:bg-emerald-600 text-white'
+                    }`}
+                  >
+                    {quiz.titulo}
+                  </button>
+                  {debeBloquear && (
+                    <p className="text-xs text-slate-600 mt-1">✓ Ya respondiste (1/1 intento)</p>
+                  )}
+                  {!habilitado && !debeBloquear && (
+                    <p className="text-xs text-slate-600 mt-1">❌ Quiz no disponible</p>
+                  )}
+                </div>
+              );
+            })}
           </div>
+
+          {error && (
+            <div className="bg-red-100 text-red-700 p-4 rounded-lg text-sm">
+              {error}
+            </div>
+          )}
 
           <button
             onClick={() => {
               setAreaSeleccionada(null);
-              setNivelSeleccionado(null);
-              setModo('seleccionar-nivel');
+              setModo('seleccionar-area');
             }}
             className="w-full bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-3 rounded-lg transition flex items-center justify-center gap-2"
           >
@@ -830,6 +950,8 @@ export default function QuizApp() {
               setQuizSeleccionado(null);
               setPreguntasGeneradas([]);
               setRespuestasEstudiante({});
+              setAreas([]);
+              setQuices([]);
             }}
             className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg transition"
           >
