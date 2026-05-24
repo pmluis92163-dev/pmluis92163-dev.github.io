@@ -1,6 +1,3 @@
 {
   "max_intentos": 1,
-  "habilitado": true,
-  "mostrar_respuestas_correctas": false,
-  "permitir_guardar_respuestas": true
 }
