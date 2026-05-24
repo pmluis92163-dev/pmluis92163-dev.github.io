@@ -12,7 +12,7 @@
           "preguntas": [
             {
               "template": "¿Cuánto es {{a}} + {{b}}?",
-              "opciones": ["{{a+b}}", "{{a+b+1}}", "{{a+b-1}}", "{{a*b}}"],
+              "opciones": ["{{a}}+{{b}}", "{{a}}+{{b}}+1", "{{a}}+{{b}}-1", "{{a}}*{{b}}"],
               "respuesta_correcta": 0,
               "variables": {
                 "a": {"min": 10, "max": 50},
@@ -21,7 +21,7 @@
             },
             {
               "template": "¿Cuánto es {{x}} - {{y}}?",
-              "opciones": ["{{x-y}}", "{{x-y+1}}", "{{x+y}}", "{{y-x}}"],
+              "opciones": ["{{x}}-{{y}}", "{{x}}-{{y}}+1", "{{x}}+{{y}}", "{{y}}-{{x}}"],
               "respuesta_correcta": 0,
               "variables": {
                 "x": {"min": 50, "max": 100},
@@ -30,7 +30,7 @@
             },
             {
               "template": "¿Cuánto es {{m}} × {{n}}?",
-              "opciones": ["{{m*n}}", "{{m*n+1}}", "{{m+n}}", "{{m*n-1}}"],
+              "opciones": ["{{m}}*{{n}}", "{{m}}*{{n}}+1", "{{m}}+{{n}}", "{{m}}*{{n}}-1"],
               "respuesta_correcta": 0,
               "variables": {
                 "m": {"min": 5, "max": 12},
@@ -45,7 +45,7 @@
           "preguntas": [
             {
               "template": "¿Cuánto es {{a}} ÷ {{b}}?",
-              "opciones": ["{{a/b}}", "{{a/b+1}}", "{{a*b}}", "{{a-b}}"],
+              "opciones": ["{{a}}/{{b}}", "{{a}}/{{b}}+1", "{{a}}*{{b}}", "{{a}}-{{b}}"],
               "respuesta_correcta": 0,
               "variables": {
                 "a": {"min": 20, "max": 100},
@@ -54,7 +54,7 @@
             },
             {
               "template": "Si tienes {{cantidad}} manzanas y las divides entre {{personas}} personas, ¿cuántas manzanas le toca a cada uno?",
-              "opciones": ["{{cantidad/personas}}", "{{cantidad-personas}}", "{{cantidad*personas}}", "{{cantidad+personas}}"],
+              "opciones": ["{{cantidad}}/{{personas}}", "{{cantidad}}-{{personas}}", "{{cantidad}}*{{personas}}", "{{cantidad}}+{{personas}}"],
               "respuesta_correcta": 0,
               "variables": {
                 "cantidad": {"min": 20, "max": 50},
@@ -75,7 +75,7 @@
           "preguntas": [
             {
               "template": "¿Cuál es el área de un rectángulo con base {{b}} y altura {{h}}?",
-              "opciones": ["{{b*h}}", "{{b*h/2}}", "{{b+h}}", "{{2*b+2*h}}"],
+              "opciones": ["{{b}}*{{h}}", "{{b}}*{{h}}/2", "{{b}}+{{h}}", "2*{{b}}+2*{{h}}"],
               "respuesta_correcta": 0,
               "variables": {
                 "b": {"min": 3, "max": 10},
@@ -84,7 +84,7 @@
             },
             {
               "template": "¿Cuál es el área de un triángulo con base {{base}} y altura {{altura}}?",
-              "opciones": ["{{base*altura/2}}", "{{base*altura}}", "{{base+altura}}", "{{base*altura/4}}"],
+              "opciones": ["{{base}}*{{altura}}/2", "{{base}}*{{altura}}", "{{base}}+{{altura}}", "{{base}}*{{altura}}/4"],
               "respuesta_correcta": 0,
               "variables": {
                 "base": {"min": 4, "max": 12},
@@ -99,7 +99,7 @@
           "preguntas": [
             {
               "template": "¿Cuál es el perímetro de un cuadrado con lado {{lado}}?",
-              "opciones": ["{{4*lado}}", "{{lado*lado}}", "{{2*lado}}", "{{lado+lado}}"],
+              "opciones": ["4*{{lado}}", "{{lado}}*{{lado}}", "2*{{lado}}", "{{lado}}+{{lado}}"],
               "respuesta_correcta": 0,
               "variables": {
                 "lado": {"min": 2, "max": 10}
@@ -107,7 +107,7 @@
             },
             {
               "template": "¿Cuál es el perímetro de un rectángulo con largo {{largo}} y ancho {{ancho}}?",
-              "opciones": ["{{2*largo+2*ancho}}", "{{largo*ancho}}", "{{largo+ancho}}", "{{largo*ancho/2}}"],
+              "opciones": ["2*{{largo}}+2*{{ancho}}", "{{largo}}*{{ancho}}", "{{largo}}+{{ancho}}", "{{largo}}*{{ancho}}/2"],
               "respuesta_correcta": 0,
               "variables": {
                 "largo": {"min": 4, "max": 10},
@@ -128,7 +128,7 @@
           "preguntas": [
             {
               "template": "Si x + {{a}} = {{suma}}, ¿cuál es el valor de x?",
-              "opciones": ["{{suma-a}}", "{{suma+a}}", "{{suma*a}}", "{{suma/a}}"],
+              "opciones": ["{{suma}}-{{a}}", "{{suma}}+{{a}}", "{{suma}}*{{a}}", "{{suma}}/{{a}}"],
               "respuesta_correcta": 0,
               "variables": {
                 "a": {"min": 5, "max": 20},
@@ -149,7 +149,7 @@
           "preguntas": [
             {
               "template": "¿Cuál es el promedio de {{n1}}, {{n2}} y {{n3}}?",
-              "opciones": ["{{(n1+n2+n3)/3}}", "{{n1+n2+n3}}", "{{(n1+n2)/2}}", "{{n1*n2*n3}}"],
+              "opciones": ["({{n1}}+{{n2}}+{{n3}})/3", "{{n1}}+{{n2}}+{{n3}}", "({{n1}}+{{n2}})/2", "{{n1}}*{{n2}}*{{n3}}"],
               "respuesta_correcta": 0,
               "variables": {
                 "n1": {"min": 10, "max": 30},
