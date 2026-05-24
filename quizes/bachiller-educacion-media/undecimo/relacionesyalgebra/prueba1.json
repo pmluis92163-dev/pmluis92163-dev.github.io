@@ -1,6 +1,6 @@
 {
   "id": 1,
-  "titulo": "Función Raíz Cuadrada y Derivadas",
+  "titulo": "Función Raíz Cuadrada",
   "habilitado": true,
   "fecha_inicio": "2026-01-01",
   "fecha_fin": "2026-12-31",
@@ -8,10 +8,127 @@
     {
       "template": "¿Cuál es el dominio de la función f(x) = \\sqrt{x+{{a}}}?",
       "opciones": [
-        "x ≥ -{{a}}",
-        "x ≤ -{{a}}",
-        "x > {{a}}",
+        "[-{{a}}, ∞[",
+        "[{{a}}, ∞[",
+        "]-{{a}}, ∞[",
         "ℝ (todos los reales)"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 1, "max": 10}
+      }
+    },
+    {
+      "template": "¿Cuál es el dominio de la función f(x) = \\sqrt{x-{{a}}}?",
+      "opciones": [
+        "[{{a}}, ∞[",
+        "[-{{a}}, ∞[",
+        "]{{a}}, ∞[",
+        "ℝ (todos los reales)"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 1, "max": 10}
+      }
+    },
+    {
+      "template": "¿Cuál es el dominio de la función f(x) = \\sqrt{{{a}}-x}?",
+      "opciones": [
+        "]-∞, {{a}}]",
+        "[{{a}}, ∞[",
+        "]-∞, -{{a}}]",
+        "ℝ (todos los reales)"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 5, "max": 15}
+      }
+    },
+    {
+      "template": "¿Cuál es el dominio de la función f(x) = \\sqrt{{{a}}+x}?",
+      "opciones": [
+        "[-{{a}}, ∞[",
+        "[{{a}}, ∞[",
+        "]-{{a}}, ∞[",
+        "ℝ (todos los reales)"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 2, "max": 12}
+      }
+    },
+    {
+      "template": "¿Cuál es el dominio de la función f(x) = \\sqrt{2x-{{a}}}?",
+      "opciones": [
+        "[{{a}}/2, ∞[",
+        "[{{a}}, ∞[",
+        "]-{{a}}/2, ∞[",
+        "ℝ (todos los reales)"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 2, "max": 10}
+      }
+    },
+    {
+      "template": "¿Cuál es el ámbito (rango) de la función f(x) = \\sqrt{x+{{a}}}?",
+      "opciones": [
+        "[0, ∞[",
+        "[-{{a}}, ∞[",
+        "[{{a}}, ∞[",
+        "ℝ (todos los reales)"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 1, "max": 10}
+      }
+    },
+    {
+      "template": "¿Cuál es el ámbito de la función f(x) = \\sqrt{x-{{a}}}?",
+      "opciones": [
+        "[0, ∞[",
+        "[{{a}}, ∞[",
+        "]-{{a}}, ∞[",
+        "ℝ (todos los reales)"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 1, "max": 10}
+      }
+    },
+    {
+      "template": "¿Cuál es el ámbito de la función f(x) = \\sqrt{{{a}}-x}?",
+      "opciones": [
+        "[0, ∞[",
+        "]-∞, {{a}}]",
+        "[{{a}}, ∞[",
+        "ℝ (todos los reales)"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 5, "max": 15}
+      }
+    },
+    {
+      "template": "¿Cuál es el ámbito de la función f(x) = \\sqrt{3x+{{a}}}?",
+      "opciones": [
+        "[0, ∞[",
+        "[{{a}}/3, ∞[",
+        "[-{{a}}, ∞[",
+        "ℝ (todos los reales)"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 3, "max": 12}
+      }
+    },
+    {
+      "template": "¿Cuál es el ámbito de la función f(x) = \\sqrt{x+{{a}}-{{a}}}?",
+      "opciones": [
+        "[0, ∞[",
+        "[{{a}}, ∞[",
+        "ℝ (todos los reales)",
+        "]-∞, 0]"
       ],
       "respuesta_correcta": 0,
       "variables": {
@@ -29,6 +146,111 @@
       "respuesta_correcta": 0,
       "variables": {
         "a": {"min": 1, "max": 10}
+      }
+    },
+    {
+      "template": "Si f(x) = (x+{{a}})², ¿cuál es su función inversa f⁻¹(x)?",
+      "opciones": [
+        "f⁻¹(x) = \\sqrt{x}-{{a}}",
+        "f⁻¹(x) = \\sqrt{x}+{{a}}",
+        "f⁻¹(x) = \\sqrt{x+{{a}}}",
+        "f⁻¹(x) = x - {{a}}"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 1, "max": 10}
+      }
+    },
+    {
+      "template": "Si f(x) = x² + {{a}}, ¿cuál es su función inversa f⁻¹(x)?",
+      "opciones": [
+        "f⁻¹(x) = \\sqrt{x-{{a}}}",
+        "f⁻¹(x) = \\sqrt{x+{{a}}}",
+        "f⁻¹(x) = x - {{a}}",
+        "f⁻¹(x) = (x-{{a}})²"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 1, "max": 10}
+      }
+    },
+    {
+      "template": "Si f(x) = \\sqrt{x} + {{a}}, ¿cuál es su función inversa f⁻¹(x)?",
+      "opciones": [
+        "f⁻¹(x) = (x-{{a}})²",
+        "f⁻¹(x) = (x+{{a}})²",
+        "f⁻¹(x) = x² - {{a}}",
+        "f⁻¹(x) = \\sqrt{x-{{a}}}"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 1, "max": 10}
+      }
+    },
+    {
+      "template": "Si f(x) = \\sqrt{x-{{a}}}, ¿cuál es su función inversa f⁻¹(x)?",
+      "opciones": [
+        "f⁻¹(x) = x² + {{a}}",
+        "f⁻¹(x) = x² - {{a}}",
+        "f⁻¹(x) = \\sqrt{x+{{a}}}",
+        "f⁻¹(x) = (x+{{a}})²"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 1, "max": 10}
+      }
+    },
+    {
+      "template": "Si f(x) = 2x² - {{a}}, ¿cuál es su función inversa f⁻¹(x)?",
+      "opciones": [
+        "f⁻¹(x) = \\sqrt{(x+{{a}})/2}",
+        "f⁻¹(x) = \\sqrt{x-{{a}}}",
+        "f⁻¹(x) = (x+{{a}})²",
+        "f⁻¹(x) = x - {{a}}"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 2, "max": 10}
+      }
+    },
+    {
+      "template": "Si f(x) = \\sqrt{2x+{{a}}}, ¿cuál es su función inversa f⁻¹(x)?",
+      "opciones": [
+        "f⁻¹(x) = (x²-{{a}})/2",
+        "f⁻¹(x) = x² - {{a}}",
+        "f⁻¹(x) = (x² + {{a}})/2",
+        "f⁻¹(x) = \\sqrt{x-{{a}}}"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 2, "max": 10}
+      }
+    },
+    {
+      "template": "Si f(x) = (2x-{{a}})², ¿cuál es su función inversa f⁻¹(x)?",
+      "opciones": [
+        "f⁻¹(x) = (\\sqrt{x}+{{a}})/2",
+        "f⁻¹(x) = \\sqrt{x} - {{a}}",
+        "f⁻¹(x) = (x+{{a}})²",
+        "f⁻¹(x) = x - {{a}}"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 1, "max": 10}
+      }
+    },
+    {
+      "template": "Si f(x) = \\sqrt{x+{{a}}} + {{b}}, ¿cuál es su función inversa f⁻¹(x)?",
+      "opciones": [
+        "f⁻¹(x) = (x-{{b}})² - {{a}}",
+        "f⁻¹(x) = (x+{{a}})² - {{b}}",
+        "f⁻¹(x) = \\sqrt{x-{{b}}} + {{a}}",
+        "f⁻¹(x) = x - {{a}} - {{b}}"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 1, "max": 8},
+        "b": {"min": 1, "max": 5}
       }
     }
   ]
