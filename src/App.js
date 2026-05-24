@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { LogOut, Plus, Trash2, Download, ChevronLeft } from 'lucide-react';
+import { LogOut, ChevronLeft } from 'lucide-react';
 
 const GITHUB_RAW_URL = 'https://raw.githubusercontent.com/pmluis92163-dev/pmluis92163-dev.github.io/main';
 
@@ -10,7 +10,6 @@ export default function QuizApp() {
   const [nivelSeleccionado, setNivelSeleccionado] = useState(null);
   const [areaSeleccionada, setAreaSeleccionada] = useState(null);
   const [quizSeleccionado, setQuizSeleccionado] = useState(null);
-  const [quizActual, setQuizActual] = useState(null);
   const [preguntasGeneradas, setPreguntasGeneradas] = useState([]);
   const [respuestasEstudiante, setRespuestasEstudiante] = useState({});
   const [nombreEstudiante, setNombreEstudiante] = useState('');
@@ -59,7 +58,11 @@ export default function QuizApp() {
     // Evaluar expresiones matemáticas (ej: {{a+b}} → {{5+3}})
     resultado = resultado.replace(/{{(.+?)}}/g, (match, expr) => {
       try {
-        return eval(expr);
+        if (!/^[0-9+\-*/.() ]*$/.test(expr)) {
+          return match;
+        }
+        const resultado = new Function('return ' + expr)();
+        return Math.round(resultado * 100) / 100;
       } catch (e) {
         return match;
       }
