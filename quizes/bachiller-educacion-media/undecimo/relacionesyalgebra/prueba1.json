@@ -6,7 +6,7 @@
   "fecha_fin": "2026-12-31",
   "preguntas": [
     {
-      "template": "¿Cuál es el dominio de la función f(x) = \sqrt{x+{{a}}}?",
+      "template": "¿Cuál es el dominio de la función f(x) = \\sqrt{x+{{a}}}?",
       "opciones": [
         "x ≥ -{{a}}",
         "x ≤ -{{a}}",
@@ -21,8 +21,8 @@
     {
       "template": "Si f(x) = x² - {{a}}, ¿cuál es su función inversa f⁻¹(x)?",
       "opciones": [
-        "f⁻¹(x) = \sqrt{(x+{{a}})}",
-        "f⁻¹(x) = \sqrt{(x-{{a}})}",
+        "f⁻¹(x) = \\sqrt{x+{{a}}}",
+        "f⁻¹(x) = \\sqrt{x-{{a}}}",
         "f⁻¹(x) = x - {{a}}",
         "f⁻¹(x) = (x+{{a}})²"
       ],
