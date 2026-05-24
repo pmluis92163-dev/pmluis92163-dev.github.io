@@ -8,27 +8,27 @@
         {
           "id": 1,
           "nombre": "Séptimo",
-          "archivo": "septimo.json"
+          "carpeta": "septimo"
         },
         {
           "id": 2,
           "nombre": "Octavo",
-          "archivo": "octavo.json"
+          "carpeta": "octavo"
         },
         {
           "id": 3,
           "nombre": "Noveno",
-          "archivo": "noveno.json"
+          "carpeta": "noveno"
         },
         {
           "id": 4,
           "nombre": "Décimo",
-          "archivo": "decimo.json"
+          "carpeta": "decimo"
         },
         {
           "id": 5,
           "nombre": "Undécimo",
-          "archivo": "undecimo.json"
+          "carpeta": "undecimo"
         }
       ]
     },
@@ -40,22 +40,22 @@
         {
           "id": 1,
           "nombre": "Séptimo",
-          "archivo": "septimo.json"
+          "carpeta": "septimo"
         },
         {
           "id": 2,
           "nombre": "Octavo",
-          "archivo": "octavo.json"
+          "carpeta": "octavo"
         },
         {
           "id": 3,
           "nombre": "Noveno",
-          "archivo": "noveno.json"
+          "carpeta": "noveno"
         },
         {
           "id": 4,
           "nombre": "Bachillerato",
-          "archivo": "bachillerato.json"
+          "carpeta": "bachillerato"
         }
       ]
     }
