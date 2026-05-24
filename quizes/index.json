@@ -1,1 +1,63 @@
-
+{
+  "colegios": [
+    {
+      "id": 1,
+      "nombre": "Bachiller en Educación Media",
+      "carpeta": "bachiller-educacion-media",
+      "niveles": [
+        {
+          "id": 1,
+          "nombre": "Séptimo",
+          "archivo": "septimo.json"
+        },
+        {
+          "id": 2,
+          "nombre": "Octavo",
+          "archivo": "octavo.json"
+        },
+        {
+          "id": 3,
+          "nombre": "Noveno",
+          "archivo": "noveno.json"
+        },
+        {
+          "id": 4,
+          "nombre": "Décimo",
+          "archivo": "decimo.json"
+        },
+        {
+          "id": 5,
+          "nombre": "Undécimo",
+          "archivo": "undecimo.json"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "nombre": "Bachillerato por Madurez",
+      "carpeta": "bachillerato-madurez",
+      "niveles": [
+        {
+          "id": 1,
+          "nombre": "Séptimo",
+          "archivo": "septimo.json"
+        },
+        {
+          "id": 2,
+          "nombre": "Octavo",
+          "archivo": "octavo.json"
+        },
+        {
+          "id": 3,
+          "nombre": "Noveno",
+          "archivo": "noveno.json"
+        },
+        {
+          "id": 4,
+          "nombre": "Bachillerato",
+          "archivo": "bachillerato.json"
+        }
+      ]
+    }
+  ]
+}
