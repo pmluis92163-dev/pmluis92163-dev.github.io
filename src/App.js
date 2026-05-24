@@ -30,8 +30,6 @@ export default function QuizApp() {
   const [error, setError] = useState(null);
   const [mostrarContrasena, setMostrarContrasena] = useState(false);
   const [configColegio, setConfigColegio] = useState(null);
-  const [intentosRestantes, setIntentosRestantes] = useState(null);
-  const [yaRespondio, setYaRespondio] = useState(false);
 
   // Cargar credenciales
   useEffect(() => {
