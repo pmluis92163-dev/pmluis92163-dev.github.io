@@ -1,0 +1,339 @@
+{
+  "id": 1,
+  "titulo": "Suma y Resta de Polinomios",
+  "habilitado": true,
+  "fecha_inicio": "2026-01-01",
+  "fecha_fin": "2026-12-31",
+  "preguntas": [
+    {
+      "template": "({{a}}x + {{b}}) + ({{c}}x + {{d}}) = ?",
+      "opciones": [
+        "{{a+c}}x + {{b+d}}",
+        "{{a+c}}x + {{b-d}}",
+        "{{a-c}}x + {{b+d}}",
+        "{{a}}x + {{c}}x + {{b}} + {{d}}"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 1, "max": 8},
+        "b": {"min": 1, "max": 10},
+        "c": {"min": 1, "max": 8},
+        "d": {"min": 1, "max": 10}
+      }
+    },
+    {
+      "template": "({{a}}x + {{b}}) - ({{c}}x + {{d}}) = ?",
+      "opciones": [
+        "{{a-c}}x + {{b-d}}",
+        "{{a+c}}x + {{b-d}}",
+        "{{a-c}}x + {{b+d}}",
+        "{{c-a}}x + {{d-b}}"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 5, "max": 12},
+        "b": {"min": 5, "max": 15},
+        "c": {"min": 1, "max": 8},
+        "d": {"min": 1, "max": 10}
+      }
+    },
+    {
+      "template": "({{a}}x² + {{b}}x) + ({{c}}x² + {{d}}x) = ?",
+      "opciones": [
+        "{{a+c}}x² + {{b+d}}x",
+        "{{a+c}}x² + {{b-d}}x",
+        "{{a-c}}x² + {{b+d}}x",
+        "{{a}}x² + {{c}}x² + {{b+d}}x"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 1, "max": 7},
+        "b": {"min": 2, "max": 9},
+        "c": {"min": 1, "max": 7},
+        "d": {"min": 2, "max": 9}
+      }
+    },
+    {
+      "template": "({{a}}x² + {{b}}x) - ({{c}}x² + {{d}}x) = ?",
+      "opciones": [
+        "{{a-c}}x² + {{b-d}}x",
+        "{{a+c}}x² + {{b-d}}x",
+        "{{a-c}}x² + {{b+d}}x",
+        "{{c-a}}x² + {{d-b}}x"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 5, "max": 12},
+        "b": {"min": 5, "max": 12},
+        "c": {"min": 1, "max": 8},
+        "d": {"min": 1, "max": 8}
+      }
+    },
+    {
+      "template": "({{a}}x² + {{b}}x + {{c}}) + ({{d}}x² + {{e}}x + {{f}}) = ?",
+      "opciones": [
+        "{{a+d}}x² + {{b+e}}x + {{c+f}}",
+        "{{a+d}}x² + {{b+e}}x + {{c-f}}",
+        "{{a-d}}x² + {{b+e}}x + {{c+f}}",
+        "{{a+d}}x² + {{b-e}}x + {{c+f}}"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 1, "max": 6},
+        "b": {"min": 1, "max": 8},
+        "c": {"min": 1, "max": 8},
+        "d": {"min": 1, "max": 6},
+        "e": {"min": 1, "max": 8},
+        "f": {"min": 1, "max": 8}
+      }
+    },
+    {
+      "template": "({{a}}x² + {{b}}x + {{c}}) - ({{d}}x² + {{e}}x + {{f}}) = ?",
+      "opciones": [
+        "{{a-d}}x² + {{b-e}}x + {{c-f}}",
+        "{{a+d}}x² + {{b-e}}x + {{c-f}}",
+        "{{a-d}}x² + {{b+e}}x + {{c-f}}",
+        "{{d-a}}x² + {{e-b}}x + {{f-c}}"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 5, "max": 12},
+        "b": {"min": 5, "max": 12},
+        "c": {"min": 5, "max": 12},
+        "d": {"min": 1, "max": 8},
+        "e": {"min": 1, "max": 8},
+        "f": {"min": 1, "max": 8}
+      }
+    },
+    {
+      "template": "({{a}}x + {{b}}) + ({{c}}x + {{d}}) + ({{e}}x + {{f}}) = ?",
+      "opciones": [
+        "{{a+c+e}}x + {{b+d+f}}",
+        "{{a+c+e}}x + {{b+d-f}}",
+        "{{a+c-e}}x + {{b+d+f}}",
+        "{{a-c+e}}x + {{b-d+f}}"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 1, "max": 5},
+        "b": {"min": 1, "max": 8},
+        "c": {"min": 1, "max": 5},
+        "d": {"min": 1, "max": 8},
+        "e": {"min": 1, "max": 5},
+        "f": {"min": 1, "max": 8}
+      }
+    },
+    {
+      "template": "({{a}}x + {{b}}) - ({{c}}x + {{d}}) + ({{e}}x + {{f}}) = ?",
+      "opciones": [
+        "{{a-c+e}}x + {{b-d+f}}",
+        "{{a+c+e}}x + {{b+d+f}}",
+        "{{a-c-e}}x + {{b-d-f}}",
+        "{{a+c-e}}x + {{b+d-f}}"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 3, "max": 10},
+        "b": {"min": 2, "max": 10},
+        "c": {"min": 1, "max": 5},
+        "d": {"min": 1, "max": 8},
+        "e": {"min": 1, "max": 5},
+        "f": {"min": 1, "max": 8}
+      }
+    },
+    {
+      "template": "({{a}}x² - {{b}}x) + ({{c}}x² + {{d}}x) = ?",
+      "opciones": [
+        "{{a+c}}x² + {{d-b}}x",
+        "{{a+c}}x² + {{b+d}}x",
+        "{{a-c}}x² + {{b-d}}x",
+        "{{a+c}}x² - {{b+d}}x"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 2, "max": 8},
+        "b": {"min": 1, "max": 6},
+        "c": {"min": 1, "max": 7},
+        "d": {"min": 1, "max": 6}
+      }
+    },
+    {
+      "template": "({{a}}x² - {{b}}x - {{c}}) + ({{d}}x² + {{e}}x + {{f}}) = ?",
+      "opciones": [
+        "{{a+d}}x² + {{e-b}}x + {{f-c}}",
+        "{{a+d}}x² - {{b+e}}x - {{c+f}}",
+        "{{a-d}}x² + {{b-e}}x - {{c+f}}",
+        "{{a+d}}x² + {{b+e}}x + {{c+f}}"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 2, "max": 7},
+        "b": {"min": 1, "max": 6},
+        "c": {"min": 1, "max": 6},
+        "d": {"min": 1, "max": 6},
+        "e": {"min": 1, "max": 6},
+        "f": {"min": 1, "max": 6}
+      }
+    },
+    {
+      "template": "({{a}}x + {{b}}) + ({{c}}x - {{d}}) = ?",
+      "opciones": [
+        "{{a+c}}x + {{b-d}}",
+        "{{a+c}}x + {{b+d}}",
+        "{{a-c}}x + {{b-d}}",
+        "{{a-c}}x + {{b+d}}"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 1, "max": 8},
+        "b": {"min": 2, "max": 10},
+        "c": {"min": 1, "max": 8},
+        "d": {"min": 1, "max": 8}
+      }
+    },
+    {
+      "template": "({{a}}x - {{b}}) - ({{c}}x - {{d}}) = ?",
+      "opciones": [
+        "{{a-c}}x + {{d-b}}",
+        "{{a+c}}x + {{d+b}}",
+        "{{a-c}}x - {{b+d}}",
+        "{{c-a}}x + {{b-d}}"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 3, "max": 10},
+        "b": {"min": 1, "max": 8},
+        "c": {"min": 1, "max": 7},
+        "d": {"min": 1, "max": 7}
+      }
+    },
+    {
+      "template": "({{a}}x² + {{b}}x - {{c}}) + ({{d}}x² - {{e}}x + {{f}}) = ?",
+      "opciones": [
+        "{{a+d}}x² + {{b-e}}x + {{f-c}}",
+        "{{a+d}}x² - {{b-e}}x - {{c+f}}",
+        "{{a-d}}x² + {{b+e}}x + {{f-c}}",
+        "{{a+d}}x² + {{b+e}}x - {{c+f}}"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 2, "max": 7},
+        "b": {"min": 1, "max": 6},
+        "c": {"min": 1, "max": 6},
+        "d": {"min": 1, "max": 6},
+        "e": {"min": 1, "max": 6},
+        "f": {"min": 1, "max": 6}
+      }
+    },
+    {
+      "template": "({{a}}x² - {{b}}x - {{c}}) - ({{d}}x² + {{e}}x - {{f}}) = ?",
+      "opciones": [
+        "{{a-d}}x² - {{b+e}}x + {{f-c}}",
+        "{{a+d}}x² - {{b-e}}x - {{c+f}}",
+        "{{a-d}}x² + {{b-e}}x - {{c-f}}",
+        "{{a-d}}x² - {{b+e}}x - {{c+f}}"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 5, "max": 12},
+        "b": {"min": 2, "max": 8},
+        "c": {"min": 2, "max": 8},
+        "d": {"min": 1, "max": 7},
+        "e": {"min": 1, "max": 6},
+        "f": {"min": 1, "max": 6}
+      }
+    },
+    {
+      "template": "({{a}}x² + {{b}}x + {{c}}) + ({{d}}x² + {{e}}x - {{f}}) = ?",
+      "opciones": [
+        "{{a+d}}x² + {{b+e}}x + {{c-f}}",
+        "{{a+d}}x² + {{b-e}}x + {{c+f}}",
+        "{{a-d}}x² + {{b+e}}x - {{c+f}}",
+        "{{a+d}}x² - {{b+e}}x + {{c-f}}"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 1, "max": 6},
+        "b": {"min": 1, "max": 7},
+        "c": {"min": 2, "max": 9},
+        "d": {"min": 1, "max": 6},
+        "e": {"min": 1, "max": 7},
+        "f": {"min": 1, "max": 7}
+      }
+    },
+    {
+      "template": "({{a}}x² + {{b}}x + {{c}}) - ({{d}}x² - {{e}}x - {{f}}) = ?",
+      "opciones": [
+        "{{a-d}}x² + {{b+e}}x + {{c+f}}",
+        "{{a+d}}x² + {{b-e}}x - {{c+f}}",
+        "{{a-d}}x² - {{b+e}}x + {{c-f}}",
+        "{{a-d}}x² + {{b+e}}x - {{c+f}}"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 5, "max": 12},
+        "b": {"min": 3, "max": 10},
+        "c": {"min": 3, "max": 10},
+        "d": {"min": 1, "max": 7},
+        "e": {"min": 1, "max": 6},
+        "f": {"min": 1, "max": 6}
+      }
+    },
+    {
+      "template": "({{a}}x) + ({{b}}x) = ?",
+      "opciones": [
+        "{{a+b}}x",
+        "{{a-b}}x",
+        "{{a*b}}x",
+        "{{a}}x + {{b}}x"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 2, "max": 10},
+        "b": {"min": 2, "max": 10}
+      }
+    },
+    {
+      "template": "({{a}}x) - ({{b}}x) = ?",
+      "opciones": [
+        "{{a-b}}x",
+        "{{a+b}}x",
+        "{{b-a}}x",
+        "{{a*b}}x"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 5, "max": 15},
+        "b": {"min": 2, "max": 10}
+      }
+    },
+    {
+      "template": "({{a}}) + ({{b}}) = ?",
+      "opciones": [
+        "{{a+b}}",
+        "{{a-b}}",
+        "{{b-a}}",
+        "{{a*b}}"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 5, "max": 20},
+        "b": {"min": 5, "max": 20}
+      }
+    },
+    {
+      "template": "({{a}}) - ({{b}}) = ?",
+      "opciones": [
+        "{{a-b}}",
+        "{{a+b}}",
+        "{{b-a}}",
+        "0"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 10, "max": 25},
+        "b": {"min": 5, "max": 20}
+      }
+    }
+  ]
+}
