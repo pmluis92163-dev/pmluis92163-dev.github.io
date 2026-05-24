@@ -276,7 +276,7 @@ export default function QuizApp() {
         <div className="flex items-center justify-center min-h-screen">
           <div className="text-center space-y-8 px-4">
             <div className="space-y-3">
-              <h1 className="text-6xl font-bold">QuizMaster</h1>
+              <h1 className="text-6xl font-bold">Quices de Prof Luis</h1>
               <p className="text-slate-400 text-lg">¿Cuál es tu rol?</p>
             </div>
 
@@ -317,7 +317,7 @@ export default function QuizApp() {
         <div className="flex items-center justify-center min-h-screen">
           <div className="text-center space-y-8 px-4">
             <div className="space-y-3">
-              <h1 className="text-6xl font-bold">QuizMaster</h1>
+              <h1 className="text-6xl font-bold">Quices Prof Luis</h1>
               <p className="text-slate-400 text-lg">Ingresa tus credenciales</p>
             </div>
 
@@ -390,7 +390,7 @@ export default function QuizApp() {
         <div className="flex items-center justify-center min-h-screen">
           <div className="text-center space-y-8 px-4">
             <div className="space-y-3">
-              <h1 className="text-6xl font-bold">QuizMaster</h1>
+              <h1 className="text-6xl font-bold">Quices Prof Luis</h1>
               <p className="text-slate-400 text-lg">Panel de Profesor</p>
             </div>
 
@@ -575,7 +575,7 @@ export default function QuizApp() {
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
         <nav className="bg-slate-800 p-4 shadow-lg flex justify-between items-center">
           <div>
-            <h1 className="text-2xl font-bold">QuizMaster</h1>
+            <h1 className="text-2xl font-bold">Quices Prof Luis</h1>
             <p className="text-sm text-slate-400">Bienvenido, {estudianteAutenticado.nombre}</p>
           </div>
           <button
