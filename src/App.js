@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { LogOut, ChevronLeft, Download, Eye, EyeOff } from 'lucide-react';
 import { InlineMath } from 'react-katex';
-import 'katex/dist/katex.min.css';
+import 'katex/dist/katex.css'; // Cambio aquí: .css en lugar de .min.css
 
 const GITHUB_RAW_URL = 'https://raw.githubusercontent.com/pmluis92163-dev/pmluis92163-dev.github.io/main';
 const GITHUB_API_URL = 'https://api.github.com/repos/pmluis92163-dev/pmluis92163-dev.github.io/contents';
