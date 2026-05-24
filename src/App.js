@@ -218,11 +218,27 @@ export default function QuizApp() {
   const generarPreguntasQuiz = (quiz) => {
     return quiz.preguntas.map((pregunta, idx) => {
       const variables = generarVariables(pregunta.variables || {});
+      const opcionesEvaluadas = pregunta.opciones.map(opt => evaluarTemplate(opt, variables));
+      
+      // Crear array con índice original
+      const opcionesConIndice = opcionesEvaluadas.map((opcion, i) => ({
+        texto: opcion,
+        indiceOriginal: i
+      }));
+      
+      // Barajar opciones
+      const opcionesBarajadas = [...opcionesConIndice].sort(() => Math.random() - 0.5);
+      
+      // Encontrar nueva posición de la respuesta correcta
+      const nuevaRespuestaCorrecta = opcionesBarajadas.findIndex(
+        op => op.indiceOriginal === pregunta.respuesta_correcta
+      );
+      
       return {
         id: idx,
         pregunta: evaluarTemplate(pregunta.template, variables),
-        opciones: pregunta.opciones.map(opt => evaluarTemplate(opt, variables)),
-        respuesta_correcta: pregunta.respuesta_correcta,
+        opciones: opcionesBarajadas.map(op => op.texto),
+        respuesta_correcta: nuevaRespuestaCorrecta,
         template: pregunta
       };
     });
