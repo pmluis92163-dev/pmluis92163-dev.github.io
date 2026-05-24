@@ -1,9 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { LogOut, ChevronLeft, Download, Eye, EyeOff } from 'lucide-react';
+import { InlineMath } from 'react-katex';
+import 'katex/dist/katex.min.css';
 
 const GITHUB_RAW_URL = 'https://raw.githubusercontent.com/pmluis92163-dev/pmluis92163-dev.github.io/main';
 const GITHUB_API_URL = 'https://api.github.com/repos/pmluis92163-dev/pmluis92163-dev.github.io/contents';
 const CONTRASENA_PROFESOR = 'admin123';
+
+// Función para renderizar texto con LaTeX
+const renderLatexText = (texto) => {
+  if (!texto) return null;
+
+  const partes = texto.split(/(\$.*?\$)/g);
+
+  return partes.map((parte, idx) => {
+    if (parte.startsWith('$') && parte.endsWith('$')) {
+      return (
+        <InlineMath
+          key={idx}
+          math={parte.slice(1, -1)}
+        />
+      );
+    }
+
+    return <span key={idx}>{parte}</span>;
+  });
+};
 
 export default function QuizApp() {
   const [modo, setModo] = useState('seleccionar-rol');
@@ -863,8 +885,8 @@ export default function QuizApp() {
           <div className="space-y-4">
             {preguntasGeneradas.map((pregunta, idx) => (
               <div key={idx} className="bg-white rounded-lg shadow-md p-6 space-y-3">
-                <p className="font-bold text-lg text-slate-800">
-                  {idx + 1}. {pregunta.pregunta}
+                <p className="font-bold text-lg text-slate-800 leading-relaxed">
+                  {idx + 1}. {renderLatexText(pregunta.pregunta)}
                 </p>
 
                 <div className="space-y-2">
@@ -881,7 +903,9 @@ export default function QuizApp() {
                         })}
                         className="w-5 h-5 text-emerald-600"
                       />
-                      <span className="text-slate-700">{opcion}</span>
+                      <span className="text-slate-700 text-base leading-relaxed">
+                        {renderLatexText(opcion)}
+                      </span>
                     </label>
                   ))}
                 </div>
