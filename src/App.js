@@ -6,7 +6,6 @@ const CONTRASENA_PROFESOR = 'admin123'; // Cambiar esta contraseña
 
 export default function QuizApp() {
   const [modo, setModo] = useState('seleccionar-rol');
-  const [rol, setRol] = useState(null); // 'estudiante' o 'profesor'
   const [email, setEmail] = useState('');
   const [clave, setClaveInput] = useState('');
   const [contrasenaProfesor, setContrasenaProfesor] = useState('');
@@ -214,7 +213,6 @@ export default function QuizApp() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
               <button
                 onClick={() => {
-                  setRol('estudiante');
                   setModo('login-estudiante');
                   setError(null);
                 }}
@@ -224,7 +222,6 @@ export default function QuizApp() {
               </button>
               <button
                 onClick={() => {
-                  setRol('profesor');
                   setModo('login-profesor');
                   setError(null);
                 }}
