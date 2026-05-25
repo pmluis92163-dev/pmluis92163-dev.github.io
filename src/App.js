@@ -3,7 +3,7 @@ import { LogOut, ChevronLeft, Download, Eye, EyeOff, CheckCircle, XCircle } from
 import { InlineMath } from 'react-katex';
 import 'katex/dist/katex.css';
 import { db } from './firebase-config';
-import { collection, doc, setDoc, getDoc, getDocs, query } from 'firebase/firestore';
+import { collection, doc, setDoc, getDocs } from 'firebase/firestore';
 
 const GITHUB_RAW_URL = 'https://raw.githubusercontent.com/pmluis92163-dev/pmluis92163-dev.github.io/main';
 const GITHUB_API_URL = 'https://api.github.com/repos/pmluis92163-dev/pmluis92163-dev.github.io/contents';
@@ -52,7 +52,6 @@ export default function QuizApp() {
   const [mostrarContrasena, setMostrarContrasena] = useState(false);
   const [configColegio, setConfigColegio] = useState(null);
   const [resultadoDetallado, setResultadoDetallado] = useState(null);
-  const [estudianteSeleccionadoAdmin, setEstudianteSeleccionadoAdmin] = useState(null);
 
   // Cargar credenciales
   useEffect(() => {
@@ -241,6 +240,7 @@ export default function QuizApp() {
 
     resultado = resultado.replace(/{{(.+?)}}/g, (match, expr) => {
       try {
+        // eslint-disable-next-line no-eval
         return eval(expr);
       } catch {
         return match;
@@ -311,7 +311,6 @@ export default function QuizApp() {
     setAreas([]);
     setQuices([]);
     setResultadoDetallado(null);
-    setEstudianteSeleccionadoAdmin(null);
   };
 
   // Descargar CSV de resultados
