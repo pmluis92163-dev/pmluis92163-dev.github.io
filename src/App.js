@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { LogOut, ChevronLeft, Download, Eye, EyeOff } from 'lucide-react';
+import { LogOut, ChevronLeft, Download, Eye, EyeOff, CheckCircle, XCircle } from 'lucide-react';
 import { InlineMath } from 'react-katex';
-import 'katex/dist/katex.css'; // Cambio aquí: .css en lugar de .min.css
+import 'katex/dist/katex.css';
+import { db } from './firebase-config';
+import { collection, doc, setDoc, getDoc, getDocs, query } from 'firebase/firestore';
 
 const GITHUB_RAW_URL = 'https://raw.githubusercontent.com/pmluis92163-dev/pmluis92163-dev.github.io/main';
 const GITHUB_API_URL = 'https://api.github.com/repos/pmluis92163-dev/pmluis92163-dev.github.io/contents';
@@ -43,15 +45,14 @@ export default function QuizApp() {
   const [quizSeleccionado, setQuizSeleccionado] = useState(null);
   const [preguntasGeneradas, setPreguntasGeneradas] = useState([]);
   const [respuestasEstudiante, setRespuestasEstudiante] = useState({});
-  const [respuestas, setRespuestas] = useState(() => {
-    const saved = localStorage.getItem('respuestas');
-    return saved ? JSON.parse(saved) : {};
-  });
+  const [respuestas, setRespuestas] = useState({});
   const [credenciales, setCredenciales] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [mostrarContrasena, setMostrarContrasena] = useState(false);
   const [configColegio, setConfigColegio] = useState(null);
+  const [resultadoDetallado, setResultadoDetallado] = useState(null);
+  const [estudianteSeleccionadoAdmin, setEstudianteSeleccionadoAdmin] = useState(null);
 
   // Cargar credenciales
   useEffect(() => {
@@ -87,10 +88,36 @@ export default function QuizApp() {
     cargarColegios();
   }, []);
 
-  // Guardar respuestas
+  // Cargar respuestas desde Firebase
+  const cargarRespuestasFirebase = async () => {
+    try {
+      const respuestasRef = collection(db, 'respuestas');
+      const querySnapshot = await getDocs(respuestasRef);
+      const respuestasData = {};
+      
+      for (const docSnap of querySnapshot.docs) {
+        const quizKey = docSnap.id;
+        const estudiantesRef = collection(db, 'respuestas', quizKey, 'estudiantes');
+        const estudiantesSnapshot = await getDocs(estudiantesRef);
+        
+        respuestasData[quizKey] = {};
+        estudiantesSnapshot.forEach(estudianteDoc => {
+          respuestasData[quizKey][estudianteDoc.id] = estudianteDoc.data();
+        });
+      }
+      
+      setRespuestas(respuestasData);
+    } catch (err) {
+      console.error('Error cargando respuestas de Firebase:', err);
+    }
+  };
+
+  // Cargar respuestas al iniciar sesión como admin
   useEffect(() => {
-    localStorage.setItem('respuestas', JSON.stringify(respuestas));
-  }, [respuestas]);
+    if (profesorAutenticado) {
+      cargarRespuestasFirebase();
+    }
+  }, [profesorAutenticado]);
 
   // Cargar config del colegio
   const cargarConfigColegio = async (colegio) => {
@@ -214,13 +241,8 @@ export default function QuizApp() {
 
     resultado = resultado.replace(/{{(.+?)}}/g, (match, expr) => {
       try {
-        if (!/^[0-9+\-*/.() ]*$/.test(expr)) {
-          return match;
-        }
-        // eslint-disable-next-line no-new-func
-        const resul = new Function('return ' + expr)();
-        return Math.round(resul * 100) / 100;
-      } catch (e) {
+        return eval(expr);
+      } catch {
         return match;
       }
     });
@@ -228,120 +250,112 @@ export default function QuizApp() {
     return resultado;
   };
 
+  // Generar valores aleatorios
   const generarVariables = (variables) => {
-    const generadas = {};
+    const resultado = {};
     Object.keys(variables).forEach(key => {
-      const config = variables[key];
-      generadas[key] = Math.floor(Math.random() * (config.max - config.min + 1)) + config.min;
+      const { min, max } = variables[key];
+      resultado[key] = Math.floor(Math.random() * (max - min + 1)) + min;
     });
-    return generadas;
+    return resultado;
   };
 
+  // Generar preguntas del quiz
   const generarPreguntasQuiz = (quiz) => {
-    return quiz.preguntas.map((pregunta, idx) => {
+    return quiz.preguntas.map(pregunta => {
       const variables = generarVariables(pregunta.variables || {});
-      const opcionesEvaluadas = pregunta.opciones.map(opt => evaluarTemplate(opt, variables));
-      
-      // Crear array con índice original
-      const opcionesConIndice = opcionesEvaluadas.map((opcion, i) => ({
-        texto: opcion,
-        indiceOriginal: i
-      }));
-      
-      // Barajar opciones
-      const opcionesBarajadas = [...opcionesConIndice].sort(() => Math.random() - 0.5);
-      
-      // Encontrar nueva posición de la respuesta correcta
-      const nuevaRespuestaCorrecta = opcionesBarajadas.findIndex(
-        op => op.indiceOriginal === pregunta.respuesta_correcta
-      );
-      
+      const preguntaTexto = evaluarTemplate(pregunta.template, variables);
+      const opciones = pregunta.opciones.map(opcion => evaluarTemplate(opcion, variables));
+
       return {
-        id: idx,
-        pregunta: evaluarTemplate(pregunta.template, variables),
-        opciones: opcionesBarajadas.map(op => op.texto),
-        respuesta_correcta: nuevaRespuestaCorrecta,
-        template: pregunta
+        pregunta: preguntaTexto,
+        opciones,
+        respuesta_correcta: pregunta.respuesta_correcta,
+        imagen: pregunta.imagen || null // Soporte para imágenes
       };
     });
   };
 
-  // Validar si quiz está habilitado
+  // Validar si el quiz está habilitado
   const estaHabilitado = (quiz) => {
-    if (quiz.habilitado === false) return false;
-    
-    const hoy = new Date();
-    hoy.setHours(0, 0, 0, 0);
-    
-    if (quiz.fecha_inicio) {
-      const inicio = new Date(quiz.fecha_inicio);
-      inicio.setHours(0, 0, 0, 0);
-      if (hoy < inicio) return false;
-    }
-    
-    if (quiz.fecha_fin) {
-      const fin = new Date(quiz.fecha_fin);
-      fin.setHours(23, 59, 59, 999);
-      if (hoy > fin) return false;
-    }
-    
-    return true;
+    if (!quiz.habilitado) return false;
+    const ahora = new Date();
+    const inicio = new Date(quiz.fecha_inicio);
+    const fin = new Date(quiz.fecha_fin);
+    return ahora >= inicio && ahora <= fin;
   };
 
-  // Descargar CSV
-  const descargarCSV = () => {
-    let csv = 'Colegio,Nivel,Área,Quiz,Email,Nombre,Correctas,Total,Porcentaje,Fecha\n';
+  // Guardar respuestas en Firebase
+  const guardarRespuestaFirebase = async (clave, emailEstudiante, datosRespuesta) => {
+    try {
+      const respuestaRef = doc(db, 'respuestas', clave, 'estudiantes', emailEstudiante);
+      await setDoc(respuestaRef, datosRespuesta);
+      console.log('Respuesta guardada en Firebase');
+    } catch (err) {
+      console.error('Error guardando respuesta en Firebase:', err);
+      alert('Error al guardar la respuesta. Intenta de nuevo.');
+    }
+  };
 
-    Object.entries(respuestas).forEach(([quizInfo, estudiantes]) => {
-      Object.entries(estudiantes).forEach(([, datos]) => {
-        csv += `"${quizInfo}","${datos.email}","${datos.nombre}",${datos.correctas},${datos.total},"${datos.porcentaje}%","${datos.fecha}"\n`;
-      });
+  // Cerrar sesión
+  const cerrarSesion = () => {
+    setEstudianteAutenticado(null);
+    setProfesorAutenticado(false);
+    setModo('seleccionar-rol');
+    setColegioSeleccionado(null);
+    setNivelSeleccionado(null);
+    setAreaSeleccionada(null);
+    setQuizSeleccionado(null);
+    setPreguntasGeneradas([]);
+    setRespuestasEstudiante({});
+    setAreas([]);
+    setQuices([]);
+    setResultadoDetallado(null);
+    setEstudianteSeleccionadoAdmin(null);
+  };
+
+  // Descargar CSV de resultados
+  const descargarCSV = (clave) => {
+    const datos = respuestas[clave];
+    if (!datos) return;
+
+    let csv = 'Nombre,Email,Correctas,Total,Porcentaje,Fecha\n';
+    Object.values(datos).forEach(resp => {
+      csv += `${resp.nombre},${resp.email},${resp.correctas},${resp.total},${resp.porcentaje}%,${resp.fecha}\n`;
     });
 
-    const element = document.createElement('a');
-    element.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv));
-    element.setAttribute('download', `resultados_quices_${new Date().toISOString().split('T')[0]}.csv`);
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `resultados-${clave.replace(/\s+/g, '-')}.csv`;
+    a.click();
   };
 
   // ============ PANTALLA: Seleccionar Rol ============
   if (modo === 'seleccionar-rol') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
-        <div className="flex items-center justify-center min-h-screen">
-          <div className="text-center space-y-8 px-4">
-            <div className="space-y-3">
-              <h1 className="text-6xl font-bold">Quices de Prof Luis</h1>
-              <p className="text-slate-400 text-lg">¿Cuál es tu rol?</p>
-            </div>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+        <div className="bg-white rounded-lg shadow-xl p-8 max-w-md w-full space-y-6">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold text-slate-800 mb-2">Sistema de Quices</h1>
+            <p className="text-slate-600">Selecciona cómo deseas continuar</p>
+          </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
-              <button
-                onClick={() => {
-                  setModo('login-estudiante');
-                  setError(null);
-                }}
-                className="bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-lg font-semibold text-lg transition transform hover:scale-105"
-              >
-                👨‍🎓 Soy Estudiante
-              </button>
-              <button
-                onClick={() => {
-                  setModo('login-profesor');
-                  setError(null);
-                }}
-                className="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-lg font-semibold text-lg transition transform hover:scale-105"
-              >
-                👨‍🏫 Soy Profesor
-              </button>
-            </div>
+          <div className="space-y-3">
+            <button
+              onClick={() => setModo('login-estudiante')}
+              className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 rounded-lg transition text-lg"
+            >
+              👨‍🎓 Soy Estudiante
+            </button>
 
-            <div className="text-slate-500 text-sm">
-              <p>✅ Sin instalación • ✅ Resultados automáticos • ✅ Ilimitado</p>
-            </div>
+            <button
+              onClick={() => setModo('login-profesor')}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg transition text-lg"
+            >
+              👨‍🏫 Soy Profesor
+            </button>
           </div>
         </div>
       </div>
@@ -351,71 +365,68 @@ export default function QuizApp() {
   // ============ PANTALLA: Login Estudiante ============
   if (modo === 'login-estudiante') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
-        <div className="flex items-center justify-center min-h-screen">
-          <div className="text-center space-y-8 px-4">
-            <div className="space-y-3">
-              <h1 className="text-6xl font-bold">Quices Prof Luis</h1>
-              <p className="text-slate-400 text-lg">Ingresa tus credenciales</p>
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-blue-50 flex items-center justify-center p-4">
+        <div className="bg-white rounded-lg shadow-xl p-8 max-w-md w-full space-y-6">
+          <div>
+            <h1 className="text-3xl font-bold text-slate-800 mb-2">Iniciar Sesión</h1>
+            <p className="text-slate-600">Estudiante</p>
+          </div>
+
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-3 border-2 border-slate-300 rounded-lg focus:border-emerald-500 focus:outline-none"
+                placeholder="estudiante@ejemplo.com"
+              />
             </div>
 
-            <div className="bg-slate-800 rounded-lg shadow-xl p-8 max-w-md w-full space-y-6">
-              {error && (
-                <div className="bg-red-500 text-white p-4 rounded-lg text-sm">
-                  {error}
-                </div>
-              )}
-
-              <div className="space-y-2">
-                <label className="block text-left text-slate-300 font-semibold">Email</label>
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">Clave</label>
+              <div className="relative">
                 <input
-                  type="email"
-                  placeholder="tu.email@gmail.com"
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    setError(null);
-                  }}
-                  onKeyPress={(e) => e.key === 'Enter' && validarLoginEstudiante()}
-                  className="w-full px-4 py-3 border-2 border-slate-600 rounded-lg focus:border-emerald-600 focus:outline-none text-slate-900"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label className="block text-left text-slate-300 font-semibold">Clave</label>
-                <input
-                  type="password"
-                  placeholder="Tu clave"
+                  type={mostrarContrasena ? 'text' : 'password'}
                   value={clave}
-                  onChange={(e) => {
-                    setClaveInput(e.target.value);
-                    setError(null);
-                  }}
-                  onKeyPress={(e) => e.key === 'Enter' && validarLoginEstudiante()}
-                  className="w-full px-4 py-3 border-2 border-slate-600 rounded-lg focus:border-emerald-600 focus:outline-none text-slate-900"
+                  onChange={(e) => setClaveInput(e.target.value)}
+                  className="w-full px-4 py-3 border-2 border-slate-300 rounded-lg focus:border-emerald-500 focus:outline-none pr-12"
+                  placeholder="••••••"
                 />
+                <button
+                  type="button"
+                  onClick={() => setMostrarContrasena(!mostrarContrasena)}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-500 hover:text-slate-700"
+                >
+                  {mostrarContrasena ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
               </div>
-
-              <button
-                onClick={validarLoginEstudiante}
-                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg transition"
-              >
-                Ingresar
-              </button>
-
-              <button
-                onClick={() => {
-                  setModo('seleccionar-rol');
-                  setEmail('');
-                  setClaveInput('');
-                  setError(null);
-                }}
-                className="w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-3 rounded-lg transition"
-              >
-                ← Atrás
-              </button>
             </div>
           </div>
+
+          {error && (
+            <div className="bg-red-100 text-red-700 p-4 rounded-lg text-sm">
+              {error}
+            </div>
+          )}
+
+          <button
+            onClick={validarLoginEstudiante}
+            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg transition"
+          >
+            Ingresar
+          </button>
+
+          <button
+            onClick={() => {
+              setModo('seleccionar-rol');
+              setError(null);
+            }}
+            className="w-full bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-3 rounded-lg transition flex items-center justify-center gap-2"
+          >
+            <ChevronLeft size={20} /> Atrás
+          </button>
         </div>
       </div>
     );
@@ -424,63 +435,57 @@ export default function QuizApp() {
   // ============ PANTALLA: Login Profesor ============
   if (modo === 'login-profesor') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
-        <div className="flex items-center justify-center min-h-screen">
-          <div className="text-center space-y-8 px-4">
-            <div className="space-y-3">
-              <h1 className="text-6xl font-bold">Quices Prof Luis</h1>
-              <p className="text-slate-400 text-lg">Panel de Profesor</p>
-            </div>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+        <div className="bg-white rounded-lg shadow-xl p-8 max-w-md w-full space-y-6">
+          <div>
+            <h1 className="text-3xl font-bold text-slate-800 mb-2">Iniciar Sesión</h1>
+            <p className="text-slate-600">Profesor</p>
+          </div>
 
-            <div className="bg-slate-800 rounded-lg shadow-xl p-8 max-w-md w-full space-y-6">
-              {error && (
-                <div className="bg-red-500 text-white p-4 rounded-lg text-sm">
-                  {error}
-                </div>
-              )}
-
-              <div className="space-y-2">
-                <label className="block text-left text-slate-300 font-semibold">Contraseña</label>
-                <div className="relative">
-                  <input
-                    type={mostrarContrasena ? 'text' : 'password'}
-                    placeholder="Contraseña del profesor"
-                    value={contrasenaProfesor}
-                    onChange={(e) => {
-                      setContrasenaProfesor(e.target.value);
-                      setError(null);
-                    }}
-                    onKeyPress={(e) => e.key === 'Enter' && validarLoginProfesor()}
-                    className="w-full px-4 py-3 border-2 border-slate-600 rounded-lg focus:border-blue-600 focus:outline-none text-slate-900"
-                  />
-                  <button
-                    onClick={() => setMostrarContrasena(!mostrarContrasena)}
-                    className="absolute right-3 top-3 text-slate-400 hover:text-slate-200"
-                  >
-                    {mostrarContrasena ? <EyeOff size={20} /> : <Eye size={20} />}
-                  </button>
-                </div>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">Contraseña de Administrador</label>
+              <div className="relative">
+                <input
+                  type={mostrarContrasena ? 'text' : 'password'}
+                  value={contrasenaProfesor}
+                  onChange={(e) => setContrasenaProfesor(e.target.value)}
+                  className="w-full px-4 py-3 border-2 border-slate-300 rounded-lg focus:border-blue-500 focus:outline-none pr-12"
+                  placeholder="••••••"
+                />
+                <button
+                  type="button"
+                  onClick={() => setMostrarContrasena(!mostrarContrasena)}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-500 hover:text-slate-700"
+                >
+                  {mostrarContrasena ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
               </div>
-
-              <button
-                onClick={validarLoginProfesor}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition"
-              >
-                Ingresar
-              </button>
-
-              <button
-                onClick={() => {
-                  setModo('seleccionar-rol');
-                  setContrasenaProfesor('');
-                  setError(null);
-                }}
-                className="w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-3 rounded-lg transition"
-              >
-                ← Atrás
-              </button>
             </div>
           </div>
+
+          {error && (
+            <div className="bg-red-100 text-red-700 p-4 rounded-lg text-sm">
+              {error}
+            </div>
+          )}
+
+          <button
+            onClick={validarLoginProfesor}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition"
+          >
+            Ingresar
+          </button>
+
+          <button
+            onClick={() => {
+              setModo('seleccionar-rol');
+              setError(null);
+            }}
+            className="w-full bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-3 rounded-lg transition flex items-center justify-center gap-2"
+          >
+            <ChevronLeft size={20} /> Atrás
+          </button>
         </div>
       </div>
     );
@@ -488,170 +493,453 @@ export default function QuizApp() {
 
   // ============ PANTALLA: Dashboard Profesor ============
   if (modo === 'dashboard-profesor' && profesorAutenticado) {
-    const quicesUnicos = Object.keys(respuestas);
-    const totalRespuestas = Object.values(respuestas).reduce((sum, quiz) => sum + Object.keys(quiz).length, 0);
-    const promedio = totalRespuestas > 0 
-      ? Math.round(
-          Object.values(respuestas)
-            .flatMap(quiz => Object.values(quiz))
-            .reduce((sum, est) => sum + est.porcentaje, 0) / totalRespuestas
-        )
-      : 0;
-
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
-        <nav className="bg-blue-600 text-white p-4 shadow-lg flex justify-between items-center">
-          <h1 className="text-2xl font-bold">📊 Panel de Profesor</h1>
-          <button
-            onClick={() => {
-              setProfesorAutenticado(false);
-              setModo('seleccionar-rol');
-            }}
-            className="flex items-center gap-2 bg-blue-700 hover:bg-blue-800 px-4 py-2 rounded"
-          >
-            <LogOut size={20} /> Salir
-          </button>
-        </nav>
-
-        <div className="max-w-6xl mx-auto p-6 space-y-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-white rounded-lg shadow p-6">
-              <p className="text-slate-600 text-sm">Quices Realizados</p>
-              <p className="text-4xl font-bold text-blue-600">{quicesUnicos.length}</p>
-            </div>
-            <div className="bg-white rounded-lg shadow p-6">
-              <p className="text-slate-600 text-sm">Total Respuestas</p>
-              <p className="text-4xl font-bold text-emerald-600">{totalRespuestas}</p>
-            </div>
-            <div className="bg-white rounded-lg shadow p-6">
-              <p className="text-slate-600 text-sm">Promedio General</p>
-              <p className="text-4xl font-bold text-purple-600">{promedio}%</p>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <div className="flex justify-between items-center">
+              <div>
+                <h1 className="text-3xl font-bold text-slate-800">Panel de Administración</h1>
+                <p className="text-slate-500">Resultados de los quices</p>
+              </div>
+              <button
+                onClick={cerrarSesion}
+                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition flex items-center gap-2"
+              >
+                <LogOut size={20} /> Cerrar Sesión
+              </button>
             </div>
           </div>
 
-          <button
-            onClick={descargarCSV}
-            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-lg text-lg transition flex items-center justify-center gap-3"
-          >
-            <Download size={24} /> Descargar Todos los Resultados (CSV)
-          </button>
+          {loading ? (
+            <div className="text-center py-12 text-slate-600">Cargando respuestas...</div>
+          ) : Object.keys(respuestas).length === 0 ? (
+            <div className="bg-white rounded-lg shadow-md p-8 text-center text-slate-600">
+              No hay respuestas registradas aún
+            </div>
+          ) : (
+            <div className="space-y-6">
+              {Object.entries(respuestas).map(([clave, datos]) => (
+                <div key={clave} className="bg-white rounded-lg shadow-md p-6">
+                  <div className="flex justify-between items-center mb-4">
+                    <h2 className="text-xl font-bold text-slate-800">{clave}</h2>
+                    <button
+                      onClick={() => descargarCSV(clave)}
+                      className="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-lg transition flex items-center gap-2"
+                    >
+                      <Download size={18} /> Descargar CSV
+                    </button>
+                  </div>
 
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-slate-800">Reportes Detallados</h2>
-
-            {quicesUnicos.length === 0 ? (
-              <div className="bg-white rounded-lg shadow p-8 text-center text-slate-500">
-                <p>No hay datos aún. Los estudiantes comenzarán a responder quices.</p>
-              </div>
-            ) : (
-              <div className="space-y-4">
-                {quicesUnicos.map((quizInfo, idx) => {
-                  const resultadosQuiz = respuestas[quizInfo];
-                  const estudiantes = Object.entries(resultadosQuiz);
-                  const promedioQuiz = Math.round(
-                    estudiantes.reduce((sum, [_, datos]) => sum + datos.porcentaje, 0) / estudiantes.length
-                  );
-
-                  return (
-                    <div key={idx} className="bg-white rounded-lg shadow-md p-6 space-y-4">
-                      <div className="border-b pb-4">
-                        <h3 className="text-xl font-bold text-slate-800">{quizInfo}</h3>
-                        <div className="flex gap-4 mt-2">
-                          <span className="text-sm text-slate-600">
-                            Respuestas: <span className="font-bold">{estudiantes.length}</span>
-                          </span>
-                          <span className="text-sm text-slate-600">
-                            Promedio: <span className="font-bold text-emerald-600">{promedioQuiz}%</span>
-                          </span>
-                        </div>
-                      </div>
-
-                      <div className="space-y-2 max-h-64 overflow-y-auto">
-                        <table className="w-full text-sm">
-                          <thead>
-                            <tr className="bg-slate-100">
-                              <th className="text-left p-2">Email</th>
-                              <th className="text-left p-2">Nombre</th>
-                              <th className="text-center p-2">Respuestas</th>
-                              <th className="text-center p-2">Porcentaje</th>
-                              <th className="text-left p-2">Fecha</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {estudiantes.map(([, datos], eidx) => (
-                              <tr key={eidx} className="border-b hover:bg-slate-50">
-                                <td className="p-2 text-slate-700">{datos.email}</td>
-                                <td className="p-2 text-slate-700">{datos.nombre}</td>
-                                <td className="p-2 text-center text-slate-700">
-                                  {datos.correctas}/{datos.total}
-                                </td>
-                                <td className={`p-2 text-center font-bold ${
-                                  datos.porcentaje >= 70 ? 'text-emerald-600' : 'text-orange-600'
-                                }`}>
-                                  {datos.porcentaje}%
-                                </td>
-                                <td className="p-2 text-slate-500 text-xs">{datos.fecha}</td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
+                  <div className="overflow-x-auto">
+                    <table className="min-w-full divide-y divide-slate-200">
+                      <thead className="bg-slate-50">
+                        <tr>
+                          <th className="px-4 py-3 text-left text-xs font-medium text-slate-700 uppercase">Nombre</th>
+                          <th className="px-4 py-3 text-left text-xs font-medium text-slate-700 uppercase">Email</th>
+                          <th className="px-4 py-3 text-left text-xs font-medium text-slate-700 uppercase">Calificación</th>
+                          <th className="px-4 py-3 text-left text-xs font-medium text-slate-700 uppercase">Fecha</th>
+                          <th className="px-4 py-3 text-left text-xs font-medium text-slate-700 uppercase">Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody className="bg-white divide-y divide-slate-200">
+                        {Object.values(datos).map((respuesta, idx) => (
+                          <tr key={idx}>
+                            <td className="px-4 py-3 text-sm text-slate-800">{respuesta.nombre}</td>
+                            <td className="px-4 py-3 text-sm text-slate-600">{respuesta.email}</td>
+                            <td className="px-4 py-3 text-sm">
+                              <span className={`font-bold ${respuesta.porcentaje >= 70 ? 'text-emerald-600' : 'text-red-600'}`}>
+                                {respuesta.porcentaje}%
+                              </span>
+                              <span className="text-slate-500 text-xs ml-2">
+                                ({respuesta.correctas}/{respuesta.total})
+                              </span>
+                            </td>
+                            <td className="px-4 py-3 text-sm text-slate-600">{respuesta.fecha}</td>
+                            <td className="px-4 py-3 text-sm">
+                              {respuesta.respuestasDetalladas && (
+                                <button
+                                  onClick={() => {
+                                    setResultadoDetallado({
+                                      ...respuesta,
+                                      quizKey: clave
+                                    });
+                                    setModo('ver-desglose-admin');
+                                  }}
+                                  className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-xs transition"
+                                >
+                                  Ver Desglose
+                                </button>
+                              )}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     );
   }
 
-  // ============ PANTALLA: Inicio Estudiante ============
-  if (modo === 'inicio' && estudianteAutenticado) {
+  // ============ PANTALLA: Ver Desglose Admin ============
+  if (modo === 'ver-desglose-admin' && resultadoDetallado) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
-        <nav className="bg-slate-800 p-4 shadow-lg flex justify-between items-center">
-          <div>
-            <h1 className="text-2xl font-bold">Quices Prof Luis</h1>
-            <p className="text-sm text-slate-400">Bienvenido, {estudianteAutenticado.nombre}</p>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white rounded-lg shadow-lg p-6 mb-4">
+            <div className="flex justify-between items-center">
+              <div>
+                <h1 className="text-2xl font-bold text-slate-800">{resultadoDetallado.nombre}</h1>
+                <p className="text-slate-600">{resultadoDetallado.email}</p>
+                <p className="text-sm text-slate-500 mt-1">{resultadoDetallado.quizKey}</p>
+              </div>
+              <div className="text-right">
+                <p className="text-4xl font-bold text-emerald-600">{resultadoDetallado.porcentaje}%</p>
+                <p className="text-sm text-slate-600">{resultadoDetallado.correctas}/{resultadoDetallado.total} correctas</p>
+                <p className="text-xs text-slate-500 mt-1">{resultadoDetallado.fecha}</p>
+              </div>
+            </div>
           </div>
+
+          <div className="space-y-4">
+            {resultadoDetallado.respuestasDetalladas.map((item, idx) => (
+              <div key={idx} className={`bg-white rounded-lg shadow-md p-6 border-l-4 ${
+                item.correcta ? 'border-emerald-500' : 'border-red-500'
+              }`}>
+                <div className="flex items-start gap-3 mb-3">
+                  {item.correcta ? (
+                    <CheckCircle className="text-emerald-500 flex-shrink-0 mt-1" size={24} />
+                  ) : (
+                    <XCircle className="text-red-500 flex-shrink-0 mt-1" size={24} />
+                  )}
+                  <div className="flex-1">
+                    <p className="font-bold text-lg text-slate-800 leading-relaxed">
+                      {idx + 1}. {renderLatexText(item.pregunta)}
+                    </p>
+                  </div>
+                </div>
+
+                {item.imagen && (
+                  <img 
+                    src={`${GITHUB_RAW_URL}${item.imagen}`} 
+                    alt="Imagen de la pregunta"
+                    className="my-4 max-w-full h-auto rounded-lg shadow-sm"
+                  />
+                )}
+
+                <div className="space-y-2 ml-9">
+                  {item.opciones.map((opcion, opIdx) => {
+                    const esRespuestaUsuario = item.respuestaUsuario === opIdx;
+                    const esRespuestaCorrecta = item.respuestaCorrecta === opIdx;
+
+                    return (
+                      <div key={opIdx} className={`p-3 rounded-lg border-2 ${
+                        esRespuestaCorrecta 
+                          ? 'bg-emerald-50 border-emerald-500' 
+                          : esRespuestaUsuario 
+                          ? 'bg-red-50 border-red-500' 
+                          : 'border-slate-200'
+                      }`}>
+                        <div className="flex items-center gap-2">
+                          {esRespuestaCorrecta && <CheckCircle size={18} className="text-emerald-600" />}
+                          {esRespuestaUsuario && !esRespuestaCorrecta && <XCircle size={18} className="text-red-600" />}
+                          <span className={`${
+                            esRespuestaCorrecta 
+                              ? 'text-emerald-800 font-medium' 
+                              : esRespuestaUsuario 
+                              ? 'text-red-800 font-medium' 
+                              : 'text-slate-700'
+                          }`}>
+                            {renderLatexText(opcion)}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {!item.correcta && (
+                  <div className="mt-3 ml-9 bg-red-50 border border-red-200 rounded-lg p-3">
+                    <p className="text-sm text-red-800">
+                      <strong>Respuesta del estudiante:</strong> {renderLatexText(item.opciones[item.respuestaUsuario])}
+                    </p>
+                    <p className="text-sm text-emerald-800 mt-1">
+                      <strong>Respuesta correcta:</strong> {renderLatexText(item.opciones[item.respuestaCorrecta])}
+                    </p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
           <button
             onClick={() => {
-              setEstudianteAutenticado(null);
-              setModo('seleccionar-rol');
-              setColegioSeleccionado(null);
-              setNivelSeleccionado(null);
-              setAreaSeleccionada(null);
-              setQuizSeleccionado(null);
-              setAreas([]);
-              setQuices([]);
+              setModo('dashboard-profesor');
+              setResultadoDetallado(null);
             }}
-            className="flex items-center gap-2 bg-red-600 hover:bg-red-700 px-4 py-2 rounded"
+            className="w-full mt-6 bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-3 rounded-lg transition flex items-center justify-center gap-2"
           >
-            <LogOut size={20} /> Salir
+            <ChevronLeft size={20} /> Volver al Dashboard
           </button>
-        </nav>
+        </div>
+      </div>
+    );
+  }
 
-        <div className="flex items-center justify-center min-h-[calc(100vh-80px)]">
-          <div className="text-center space-y-6 px-4">
-            <p className="text-slate-300 text-lg">Selecciona un colegio para comenzar</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
-              {colegios.map((colegio) => (
+  // ============ PANTALLA: Inicio (Estudiante) ============
+  if (modo === 'inicio' && estudianteAutenticado) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-blue-50 flex items-center justify-center p-4">
+        <div className="bg-white rounded-lg shadow-xl p-8 max-w-md w-full space-y-6">
+          <div>
+            <h1 className="text-3xl font-bold text-slate-800 mb-2">¡Hola, {estudianteAutenticado.nombre}!</h1>
+            <p className="text-slate-600">Selecciona una opción</p>
+          </div>
+
+          <div className="space-y-3">
+            <button
+              onClick={() => setModo('seleccionar-colegio')}
+              className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 rounded-lg transition text-lg"
+            >
+              📝 Realizar Quiz
+            </button>
+
+            <button
+              onClick={async () => {
+                await cargarRespuestasFirebase();
+                setModo('ver-mis-resultados');
+              }}
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 rounded-lg transition text-lg"
+            >
+              📊 Ver Mis Resultados
+            </button>
+          </div>
+
+          <button
+            onClick={cerrarSesion}
+            className="w-full bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-3 rounded-lg transition flex items-center justify-center gap-2"
+          >
+            <LogOut size={20} /> Cerrar Sesión
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // ============ PANTALLA: Ver Mis Resultados ============
+  if (modo === 'ver-mis-resultados' && estudianteAutenticado) {
+    const misRespuestas = Object.entries(respuestas)
+      .filter(([clave, datos]) => datos[estudianteAutenticado.email])
+      .map(([clave, datos]) => ({
+        quiz: clave,
+        datos: datos[estudianteAutenticado.email]
+      }));
+
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-blue-50 p-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <h1 className="text-3xl font-bold text-slate-800 mb-2">Mis Resultados</h1>
+            <p className="text-slate-600">{estudianteAutenticado.nombre}</p>
+          </div>
+
+          {misRespuestas.length === 0 ? (
+            <div className="bg-white rounded-lg shadow-md p-8 text-center text-slate-600">
+              No has realizado ningún quiz aún
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {misRespuestas.map((item, idx) => (
+                <div key={idx} className="bg-white rounded-lg shadow-md p-6">
+                  <div className="flex justify-between items-start mb-3">
+                    <div>
+                      <h2 className="text-lg font-bold text-slate-800">{item.quiz}</h2>
+                      <p className="text-sm text-slate-500">{item.datos.fecha}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className={`text-3xl font-bold ${item.datos.porcentaje >= 70 ? 'text-emerald-600' : 'text-red-600'}`}>
+                        {item.datos.porcentaje}%
+                      </p>
+                      <p className="text-sm text-slate-600">
+                        {item.datos.correctas}/{item.datos.total} correctas
+                      </p>
+                    </div>
+                  </div>
+
+                  {item.datos.respuestasDetalladas && (
+                    <button
+                      onClick={() => {
+                        setResultadoDetallado({
+                          ...item.datos,
+                          quizKey: item.quiz
+                        });
+                        setModo('ver-desglose-estudiante');
+                      }}
+                      className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded-lg transition"
+                    >
+                      Ver Desglose Completo
+                    </button>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+
+          <button
+            onClick={() => setModo('inicio')}
+            className="w-full mt-6 bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-3 rounded-lg transition flex items-center justify-center gap-2"
+          >
+            <ChevronLeft size={20} /> Volver al Inicio
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // ============ PANTALLA: Ver Desglose Estudiante ============
+  if (modo === 'ver-desglose-estudiante' && resultadoDetallado) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-blue-50 p-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white rounded-lg shadow-lg p-6 mb-4">
+            <div className="flex justify-between items-center">
+              <div>
+                <h1 className="text-2xl font-bold text-slate-800">Desglose de Respuestas</h1>
+                <p className="text-sm text-slate-500 mt-1">{resultadoDetallado.quizKey}</p>
+              </div>
+              <div className="text-right">
+                <p className="text-4xl font-bold text-emerald-600">{resultadoDetallado.porcentaje}%</p>
+                <p className="text-sm text-slate-600">{resultadoDetallado.correctas}/{resultadoDetallado.total} correctas</p>
+                <p className="text-xs text-slate-500 mt-1">{resultadoDetallado.fecha}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            {resultadoDetallado.respuestasDetalladas.map((item, idx) => (
+              <div key={idx} className={`bg-white rounded-lg shadow-md p-6 border-l-4 ${
+                item.correcta ? 'border-emerald-500' : 'border-red-500'
+              }`}>
+                <div className="flex items-start gap-3 mb-3">
+                  {item.correcta ? (
+                    <CheckCircle className="text-emerald-500 flex-shrink-0 mt-1" size={24} />
+                  ) : (
+                    <XCircle className="text-red-500 flex-shrink-0 mt-1" size={24} />
+                  )}
+                  <div className="flex-1">
+                    <p className="font-bold text-lg text-slate-800 leading-relaxed">
+                      {idx + 1}. {renderLatexText(item.pregunta)}
+                    </p>
+                  </div>
+                </div>
+
+                {item.imagen && (
+                  <img 
+                    src={`${GITHUB_RAW_URL}${item.imagen}`} 
+                    alt="Imagen de la pregunta"
+                    className="my-4 max-w-full h-auto rounded-lg shadow-sm"
+                  />
+                )}
+
+                <div className="space-y-2 ml-9">
+                  {item.opciones.map((opcion, opIdx) => {
+                    const esRespuestaUsuario = item.respuestaUsuario === opIdx;
+                    const esRespuestaCorrecta = item.respuestaCorrecta === opIdx;
+
+                    return (
+                      <div key={opIdx} className={`p-3 rounded-lg border-2 ${
+                        esRespuestaCorrecta 
+                          ? 'bg-emerald-50 border-emerald-500' 
+                          : esRespuestaUsuario 
+                          ? 'bg-red-50 border-red-500' 
+                          : 'border-slate-200'
+                      }`}>
+                        <div className="flex items-center gap-2">
+                          {esRespuestaCorrecta && <CheckCircle size={18} className="text-emerald-600" />}
+                          {esRespuestaUsuario && !esRespuestaCorrecta && <XCircle size={18} className="text-red-600" />}
+                          <span className={`${
+                            esRespuestaCorrecta 
+                              ? 'text-emerald-800 font-medium' 
+                              : esRespuestaUsuario 
+                              ? 'text-red-800 font-medium' 
+                              : 'text-slate-700'
+                          }`}>
+                            {renderLatexText(opcion)}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {!item.correcta && (
+                  <div className="mt-3 ml-9 bg-red-50 border border-red-200 rounded-lg p-3">
+                    <p className="text-sm text-red-800">
+                      <strong>Tu respuesta:</strong> {renderLatexText(item.opciones[item.respuestaUsuario])}
+                    </p>
+                    <p className="text-sm text-emerald-800 mt-1">
+                      <strong>Respuesta correcta:</strong> {renderLatexText(item.opciones[item.respuestaCorrecta])}
+                    </p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <button
+            onClick={() => {
+              setModo('ver-mis-resultados');
+              setResultadoDetallado(null);
+            }}
+            className="w-full mt-6 bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-3 rounded-lg transition flex items-center justify-center gap-2"
+          >
+            <ChevronLeft size={20} /> Volver a Mis Resultados
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // ============ PANTALLA: Seleccionar Colegio ============
+  if (modo === 'seleccionar-colegio' && estudianteAutenticado) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-blue-50 p-4">
+        <div className="max-w-2xl mx-auto">
+          <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <h1 className="text-3xl font-bold text-slate-800">Selecciona tu Colegio</h1>
+          </div>
+
+          {loading ? (
+            <div className="text-center py-12 text-slate-600">Cargando...</div>
+          ) : (
+            <div className="grid grid-cols-1 gap-3">
+              {colegios.map((colegio, idx) => (
                 <button
-                  key={colegio.id}
-                  onClick={async () => {
+                  key={idx}
+                  onClick={() => {
                     setColegioSeleccionado(colegio);
-                    await cargarConfigColegio(colegio);
+                    cargarConfigColegio(colegio);
                     setModo('seleccionar-nivel');
                   }}
-                  className="bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-lg font-semibold text-lg transition transform hover:scale-105"
+                  className="bg-white hover:bg-emerald-50 border-2 border-slate-200 hover:border-emerald-500 font-bold py-4 rounded-lg transition text-left px-6"
                 >
                   {colegio.nombre}
                 </button>
               ))}
             </div>
-          </div>
+          )}
+
+          <button
+            onClick={() => setModo('inicio')}
+            className="w-full mt-6 bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-3 rounded-lg transition flex items-center justify-center gap-2"
+          >
+            <ChevronLeft size={20} /> Atrás
+          </button>
         </div>
       </div>
     );
@@ -660,25 +948,23 @@ export default function QuizApp() {
   // ============ PANTALLA: Seleccionar Nivel ============
   if (modo === 'seleccionar-nivel' && colegioSeleccionado && estudianteAutenticado) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-emerald-100 flex items-center justify-center p-4">
-        <div className="bg-white rounded-lg shadow-xl p-8 max-w-2xl w-full space-y-6">
-          <div className="text-center space-y-2">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-blue-50 p-4">
+        <div className="max-w-2xl mx-auto">
+          <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
             <h1 className="text-3xl font-bold text-slate-800">{colegioSeleccionado.nombre}</h1>
             <p className="text-slate-500">Selecciona tu Nivel</p>
           </div>
 
-          {loading && <p className="text-center text-slate-600">Cargando...</p>}
-
           <div className="grid grid-cols-1 gap-3">
-            {colegioSeleccionado.niveles.map((nivel) => (
+            {colegioSeleccionado.niveles.map((nivel, idx) => (
               <button
-                key={nivel.id}
+                key={idx}
                 onClick={async () => {
                   setNivelSeleccionado(nivel);
                   await cargarAreas(colegioSeleccionado, nivel);
                   setModo('seleccionar-area');
                 }}
-                className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 rounded-lg transition text-left px-6"
+                className="bg-white hover:bg-emerald-50 border-2 border-slate-200 hover:border-emerald-500 font-bold py-4 rounded-lg transition text-left px-6"
               >
                 {nivel.nombre}
               </button>
@@ -688,9 +974,9 @@ export default function QuizApp() {
           <button
             onClick={() => {
               setColegioSeleccionado(null);
-              setModo('inicio');
+              setModo('seleccionar-colegio');
             }}
-            className="w-full bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-3 rounded-lg transition flex items-center justify-center gap-2"
+            className="w-full mt-6 bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-3 rounded-lg transition flex items-center justify-center gap-2"
           >
             <ChevronLeft size={20} /> Atrás
           </button>
@@ -701,58 +987,44 @@ export default function QuizApp() {
 
   // ============ PANTALLA: Seleccionar Área ============
   if (modo === 'seleccionar-area' && nivelSeleccionado && estudianteAutenticado) {
-    if (areas.length === 0) {
-      return (
-        <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-emerald-100 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg shadow-xl p-8 max-w-2xl w-full text-center space-y-6">
-            <h1 className="text-2xl font-bold text-slate-800">No hay áreas disponibles</h1>
-            <p className="text-slate-600">El profesor está preparando los contenidos.</p>
-            <button
-              onClick={() => {
-                setNivelSeleccionado(null);
-                setAreaSeleccionada(null);
-                setModo('seleccionar-nivel');
-              }}
-              className="w-full bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-3 rounded-lg transition"
-            >
-              Volver
-            </button>
-          </div>
-        </div>
-      );
-    }
-
     return (
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-emerald-100 flex items-center justify-center p-4">
-        <div className="bg-white rounded-lg shadow-xl p-8 max-w-2xl w-full space-y-6">
-          <div className="text-center space-y-2">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-blue-50 p-4">
+        <div className="max-w-2xl mx-auto">
+          <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
             <h1 className="text-3xl font-bold text-slate-800">{nivelSeleccionado.nombre}</h1>
-            <p className="text-slate-500">Selecciona el Área</p>
+            <p className="text-slate-500">Selecciona un Área</p>
           </div>
 
-          <div className="grid grid-cols-1 gap-3">
-            {areas.map((area, idx) => (
-              <button
-                key={idx}
-                onClick={async () => {
-                  setAreaSeleccionada(area);
-                  await cargarQuices(colegioSeleccionado, nivelSeleccionado, area);
-                  setModo('seleccionar-quiz');
-                }}
-                className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 rounded-lg transition text-left px-6"
-              >
-                {area.nombre}
-              </button>
-            ))}
-          </div>
+          {loading ? (
+            <div className="text-center py-12 text-slate-600">Cargando áreas...</div>
+          ) : areas.length === 0 ? (
+            <div className="bg-white rounded-lg shadow-md p-8 text-center text-slate-600">
+              No hay áreas disponibles para este nivel
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 gap-3">
+              {areas.map((area, idx) => (
+                <button
+                  key={idx}
+                  onClick={async () => {
+                    setAreaSeleccionada(area);
+                    await cargarQuices(colegioSeleccionado, nivelSeleccionado, area);
+                    setModo('seleccionar-quiz');
+                  }}
+                  className="bg-white hover:bg-emerald-50 border-2 border-slate-200 hover:border-emerald-500 font-bold py-4 rounded-lg transition text-left px-6"
+                >
+                  {area.nombre}
+                </button>
+              ))}
+            </div>
+          )}
 
           <button
             onClick={() => {
               setNivelSeleccionado(null);
-              setAreaSeleccionada(null);
               setModo('seleccionar-nivel');
             }}
-            className="w-full bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-3 rounded-lg transition flex items-center justify-center gap-2"
+            className="w-full mt-6 bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-3 rounded-lg transition flex items-center justify-center gap-2"
           >
             <ChevronLeft size={20} /> Atrás
           </button>
@@ -763,30 +1035,10 @@ export default function QuizApp() {
 
   // ============ PANTALLA: Seleccionar Quiz ============
   if (modo === 'seleccionar-quiz' && areaSeleccionada && estudianteAutenticado) {
-    if (quices.length === 0) {
-      return (
-        <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-emerald-100 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg shadow-xl p-8 max-w-2xl w-full text-center space-y-6">
-            <h1 className="text-2xl font-bold text-slate-800">No hay quices en esta área</h1>
-            <p className="text-slate-600">El profesor está agregando contenidos.</p>
-            <button
-              onClick={() => {
-                setAreaSeleccionada(null);
-                setModo('seleccionar-area');
-              }}
-              className="w-full bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-3 rounded-lg transition"
-            >
-              Volver
-            </button>
-          </div>
-        </div>
-      );
-    }
-
     return (
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-emerald-100 flex items-center justify-center p-4">
-        <div className="bg-white rounded-lg shadow-xl p-8 max-w-2xl w-full space-y-6">
-          <div className="text-center space-y-2">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-blue-50 p-4">
+        <div className="max-w-2xl mx-auto">
+          <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
             <h1 className="text-3xl font-bold text-slate-800">{areaSeleccionada.nombre}</h1>
             <p className="text-slate-500">Selecciona un Quiz</p>
           </div>
@@ -839,7 +1091,7 @@ export default function QuizApp() {
           </div>
 
           {error && (
-            <div className="bg-red-100 text-red-700 p-4 rounded-lg text-sm">
+            <div className="bg-red-100 text-red-700 p-4 rounded-lg text-sm mt-4">
               {error}
             </div>
           )}
@@ -849,7 +1101,7 @@ export default function QuizApp() {
               setAreaSeleccionada(null);
               setModo('seleccionar-area');
             }}
-            className="w-full bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-3 rounded-lg transition flex items-center justify-center gap-2"
+            className="w-full mt-6 bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-3 rounded-lg transition flex items-center justify-center gap-2"
           >
             <ChevronLeft size={20} /> Atrás
           </button>
@@ -889,6 +1141,18 @@ export default function QuizApp() {
                   {idx + 1}. {renderLatexText(pregunta.pregunta)}
                 </p>
 
+                {pregunta.imagen && (
+                  <img 
+                    src={`${GITHUB_RAW_URL}${pregunta.imagen}`} 
+                    alt="Imagen de la pregunta"
+                    className="my-4 max-w-full h-auto rounded-lg shadow-sm"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      console.error('Error cargando imagen:', pregunta.imagen);
+                    }}
+                  />
+                )}
+
                 <div className="space-y-2">
                   {pregunta.opciones.map((opcion, opIdx) => (
                     <label key={opIdx} className="flex items-center gap-3 p-3 border-2 border-slate-200 rounded-lg hover:border-emerald-600 hover:bg-emerald-50 cursor-pointer transition">
@@ -914,7 +1178,7 @@ export default function QuizApp() {
           </div>
 
           <button
-            onClick={() => {
+            onClick={async () => {
               const respuestasArray = preguntasGeneradas.map((_, idx) =>
                 respuestasEstudiante[idx] !== undefined ? respuestasEstudiante[idx] : -1
               );
@@ -925,26 +1189,47 @@ export default function QuizApp() {
               }
 
               let correctas = 0;
-              respuestasArray.forEach((resp, idx) => {
-                if (resp === preguntasGeneradas[idx].respuesta_correcta) correctas++;
+              const respuestasDetalladas = preguntasGeneradas.map((pregunta, idx) => {
+                const respuestaUsuario = respuestasArray[idx];
+                const correcta = respuestaUsuario === pregunta.respuesta_correcta;
+                if (correcta) correctas++;
+
+                return {
+                  pregunta: pregunta.pregunta,
+                  opciones: pregunta.opciones,
+                  respuestaUsuario: respuestaUsuario,
+                  respuestaCorrecta: pregunta.respuesta_correcta,
+                  correcta: correcta,
+                  imagen: pregunta.imagen
+                };
               });
+
               const porcentaje = Math.round((correctas / preguntasGeneradas.length) * 100);
 
               const clave = `${colegioSeleccionado.nombre} • ${nivelSeleccionado.nombre} • ${areaSeleccionada.nombre} • ${quizSeleccionado.titulo}`;
-              const nuevasRespuestas = { ...respuestas };
-              if (!nuevasRespuestas[clave]) {
-                nuevasRespuestas[clave] = {};
-              }
-              nuevasRespuestas[clave][estudianteAutenticado.email] = {
+              
+              const datosRespuesta = {
                 nombre: estudianteAutenticado.nombre,
                 email: estudianteAutenticado.email,
                 correctas,
                 total: preguntasGeneradas.length,
                 porcentaje,
-                fecha: new Date().toLocaleString()
+                fecha: new Date().toLocaleString(),
+                respuestasDetalladas: respuestasDetalladas
               };
+
+              // Guardar en Firebase
+              await guardarRespuestaFirebase(clave, estudianteAutenticado.email, datosRespuesta);
+
+              // Actualizar estado local
+              const nuevasRespuestas = { ...respuestas };
+              if (!nuevasRespuestas[clave]) {
+                nuevasRespuestas[clave] = {};
+              }
+              nuevasRespuestas[clave][estudianteAutenticado.email] = datosRespuesta;
               setRespuestas(nuevasRespuestas);
 
+              setResultadoDetallado(datosRespuesta);
               setModo('resultado');
             }}
             className="w-full mt-6 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-lg text-lg transition"
@@ -957,17 +1242,10 @@ export default function QuizApp() {
   }
 
   // ============ PANTALLA: Resultado ============
-  if (modo === 'resultado' && estudianteAutenticado) {
-    const respuestasArray = Object.values(respuestasEstudiante);
-    let correctas = 0;
-    respuestasArray.forEach((resp, idx) => {
-      if (resp === preguntasGeneradas[idx].respuesta_correcta) correctas++;
-    });
-    const porcentaje = Math.round((correctas / preguntasGeneradas.length) * 100);
-
+  if (modo === 'resultado' && estudianteAutenticado && resultadoDetallado) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-blue-50 flex items-center justify-center p-4">
-        <div className="bg-white rounded-lg shadow-xl p-8 max-w-md w-full text-center space-y-6">
+        <div className="bg-white rounded-lg shadow-xl p-8 max-w-md w-full space-y-6">
           <div>
             <h1 className="text-4xl font-bold text-emerald-600 mb-2">¡Listo!</h1>
             <p className="text-slate-600">Tu quiz ha sido enviado correctamente</p>
@@ -975,9 +1253,18 @@ export default function QuizApp() {
 
           <div className="bg-gradient-to-r from-emerald-100 to-blue-100 rounded-lg p-6">
             <p className="text-sm text-slate-600 mb-2">Tu calificación</p>
-            <p className="text-5xl font-bold text-emerald-600">{porcentaje}%</p>
-            <p className="text-slate-600 mt-2">{correctas} de {preguntasGeneradas.length} correctas</p>
+            <p className="text-5xl font-bold text-emerald-600">{resultadoDetallado.porcentaje}%</p>
+            <p className="text-slate-600 mt-2">{resultadoDetallado.correctas} de {resultadoDetallado.total} correctas</p>
           </div>
+
+          <button
+            onClick={() => {
+              setModo('ver-desglose-estudiante');
+            }}
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 rounded-lg transition"
+          >
+            📊 Ver Desglose Completo
+          </button>
 
           <button
             onClick={() => {
@@ -990,6 +1277,7 @@ export default function QuizApp() {
               setRespuestasEstudiante({});
               setAreas([]);
               setQuices([]);
+              setResultadoDetallado(null);
             }}
             className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg transition"
           >
