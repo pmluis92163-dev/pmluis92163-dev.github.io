@@ -1,1 +1,20 @@
-
+{
+  "id": 99,
+  "titulo": "Prueba con Imagen - Circunferencia",
+  "habilitado": true,
+  "fecha_inicio": "2026-01-01",
+  "fecha_fin": "2026-12-31",
+  "preguntas": [
+    {
+      "template": "La circunferencia $c$ de centro $P(-2, 3)$ y radio $3$ corresponde a:",
+      "imagen": "/public/images/bachilleratomadurez/bachilelrato/circunferencia1.png",
+      "opciones": [
+        "$A) \\quad (x - 2)^2 + (y + 3)^2 = 9$",
+        "$B) \\quad (x + 2)^2 + (y - 3)^2 = 3$",
+        "$C) \\quad (x + 2)^2 + (y - 3)^2 = 9$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {}
+    }
+  ]
+}
