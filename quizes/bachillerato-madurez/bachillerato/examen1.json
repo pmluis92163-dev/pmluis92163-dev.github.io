@@ -7,7 +7,7 @@
   "preguntas": [
     {
       "template": "La circunferencia $c$ de centro $P(-2, 3)$ y radio $3$ corresponde a:",
-      "imagen": "/public/images/bachilleratomadurez/bachilelrato/circunferencia1.png",
+      "imagen": "/public/images/bachilleratomadurez/bachillerato/circunferencia1.png",
       "opciones": [
         "$A) \\quad (x - 2)^2 + (y + 3)^2 = 9$",
         "$B) \\quad (x + 2)^2 + (y - 3)^2 = 3$",
