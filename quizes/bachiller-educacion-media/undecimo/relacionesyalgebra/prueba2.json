@@ -1,0 +1,273 @@
+{
+  "id": 2,
+  "titulo": "Función Exponencial",
+  "habilitado": false,
+  "fecha_inicio": "2026-01-01",
+  "fecha_fin": "2026-12-31",
+  "preguntas": [
+    {
+      "template": "¿Cuál es el dominio de la función $f(x) = {{a}}^x$?",
+      "opciones": [
+        "$\\left[0, \\infty\\right[$",
+        "$\\mathbb{R}$ (todos los reales)",
+        "$\\left]0, \\infty\\right[$",
+        "$\\left[-1, 1\\right]$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "a": {"min": 2, "max": 9}
+      }
+    },
+    {
+      "template": "¿Cuál es el ámbito (rango) de la función $f(x) = {{a}}^x$?",
+      "opciones": [
+        "$\\mathbb{R}$ (todos los reales)",
+        "$\\left[1, \\infty\\right[$",
+        "$\\left]0, \\infty\\right[$",
+        "$\\left]-\\infty, 0\\right[$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {"min": 2, "max": 9}
+      }
+    },
+    {
+      "template": "¿Cuál es la asíntota horizontal de $f(x) = {{a}}^x$?",
+      "opciones": [
+        "$y = {{a}}$",
+        "$y = 1$",
+        "$x = 0$",
+        "$y = 0$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "a": {"min": 2, "max": 9}
+      }
+    },
+    {
+      "template": "La función $f(x) = {{a}}^x$ con ${{a}} > 1$ es:",
+      "opciones": [
+        "Decreciente en $\\mathbb{R}$",
+        "Creciente en $\\mathbb{R}$",
+        "Constante en $\\mathbb{R}$",
+        "Creciente solo para $x > 0$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "a": {"min": 2, "max": 9}
+      }
+    },
+    {
+      "template": "La función $f(x) = \\left(\\frac{1}{{{a}}}\\right)^x$ es:",
+      "opciones": [
+        "Creciente en $\\mathbb{R}$",
+        "Constante en $\\mathbb{R}$",
+        "Decreciente en $\\mathbb{R}$",
+        "Creciente solo para $x > 0$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {"min": 2, "max": 8}
+      }
+    },
+    {
+      "template": "¿Cuál es el valor de $f(0)$ para $f(x) = {{a}}^x$?",
+      "opciones": [
+        "$0$",
+        "${{a}}$",
+        "$-1$",
+        "$1$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "a": {"min": 2, "max": 9}
+      }
+    },
+    {
+      "template": "¿Cuál es el valor de $f(1)$ para $f(x) = {{a}}^x$?",
+      "opciones": [
+        "$0$",
+        "$1$",
+        "${{a}}$",
+        "${{a}}^2$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {"min": 2, "max": 9}
+      }
+    },
+    {
+      "template": "¿Cuál es la imagen de $x = -1$ en $f(x) = {{a}}^x$?",
+      "opciones": [
+        "$-{{a}}$",
+        "$\\frac{1}{{{a}}}$",
+        "${{a}}$",
+        "$0$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "a": {"min": 2, "max": 8}
+      }
+    },
+    {
+      "template": "¿Cuál es el dominio de $f(x) = {{a}}^x + {{b}}$?",
+      "opciones": [
+        "$\\left[{{b}}, \\infty\\right[$",
+        "$\\mathbb{R}$ (todos los reales)",
+        "$\\left]0, \\infty\\right[$",
+        "$\\left[-{{b}}, \\infty\\right[$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "a": {"min": 2, "max": 6},
+        "b": {"min": 1, "max": 5}
+      }
+    },
+    {
+      "template": "¿Cuál es la asíntota horizontal de $f(x) = {{a}}^x + {{b}}$?",
+      "opciones": [
+        "$y = {{a}}$",
+        "$y = 0$",
+        "$x = {{b}}$",
+        "$y = {{b}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "a": {"min": 2, "max": 6},
+        "b": {"min": 1, "max": 5}
+      }
+    },
+    {
+      "template": "¿Cuál es el ámbito de $f(x) = {{a}}^x + {{b}}$?",
+      "opciones": [
+        "$\\left]{{b}}, \\infty\\right[$",
+        "$\\mathbb{R}$",
+        "$\\left[{{b}}, \\infty\\right[$",
+        "$\\left]0, \\infty\\right[$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 2, "max": 6},
+        "b": {"min": 1, "max": 5}
+      }
+    },
+    {
+      "template": "¿Cuántos puntos de intersección tiene $f(x) = {{a}}^x$ con el eje $x$?",
+      "opciones": [
+        "Uno, en $x = 0$",
+        "Dos puntos",
+        "Ninguno",
+        "Infinitos"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {"min": 2, "max": 9}
+      }
+    },
+    {
+      "template": "¿En qué punto corta la función $f(x) = {{a}}^x$ al eje $y$?",
+      "opciones": [
+        "$(0, {{a}})$",
+        "$(1, 0)$",
+        "$(0, 0)$",
+        "$(0, 1)$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "a": {"min": 2, "max": 9}
+      }
+    },
+    {
+      "template": "¿En qué punto corta $f(x) = {{a}}^x - 1$ al eje $y$?",
+      "opciones": [
+        "$(0, -1)$",
+        "$(0, {{a}}-1)$",
+        "$(0, 0)$",
+        "$(0, 1)$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {"min": 2, "max": 9}
+      }
+    },
+    {
+      "template": "La función $f(x) = e^{x - {{a}}}$ es una traslación horizontal de $e^x$:",
+      "opciones": [
+        "${{a}}$ unidades hacia la izquierda",
+        "${{a}}$ unidades hacia arriba",
+        "${{a}}$ unidades hacia la derecha",
+        "${{a}}$ unidades hacia abajo"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {"min": 1, "max": 7}
+      }
+    },
+    {
+      "template": "La función $f(x) = -{{a}}^x$ tiene ámbito:",
+      "opciones": [
+        "$\\left]0, \\infty\\right[$",
+        "$\\left]-\\infty, 0\\right[$",
+        "$\\mathbb{R}$",
+        "$\\left[-1, 0\\right[$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "a": {"min": 2, "max": 7}
+      }
+    },
+    {
+      "template": "¿Cuál es la función inversa de $f(x) = {{a}}^x$?",
+      "opciones": [
+        "$f^{-1}(x) = x^{{{a}}}$",
+        "$f^{-1}(x) = \\log_{{{a}}}(x)$",
+        "$f^{-1}(x) = {{a}} \\cdot x$",
+        "$f^{-1}(x) = \\sqrt[{{a}}]{x}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "a": {"min": 2, "max": 9}
+      }
+    },
+    {
+      "template": "Si $f(x) = {{a}}^x$, ¿cuál es el valor de $f({{b}})$?",
+      "opciones": [
+        "${{a}} \\cdot {{b}}$",
+        "${{b}}^{{{a}}}$",
+        "${{apow}}$",
+        "${{a}} + {{b}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {"min": 2, "max": 4},
+        "b": {"min": 2, "max": 4}
+      },
+      "nota": "La opción correcta usa la variable computada {{apow}} = a^b"
+    },
+    {
+      "template": "La función $f(x) = {{a}} \\cdot {{b}}^x$ pasa por el punto $(0, \\;?)$:",
+      "opciones": [
+        "$(0, {{b}})$",
+        "$(0, 0)$",
+        "$(0, {{a}} \\cdot {{b}})$",
+        "$(0, {{a}})$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "a": {"min": 2, "max": 8},
+        "b": {"min": 2, "max": 6}
+      }
+    },
+    {
+      "template": "¿Para qué valores de $b$ la función $f(x) = b^x$ es decreciente?",
+      "opciones": [
+        "$b > 1$",
+        "$b = 1$",
+        "$b < 0$",
+        "$0 < b < 1$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {}
+    }
+  ]
+}
