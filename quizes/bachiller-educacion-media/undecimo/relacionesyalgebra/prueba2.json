@@ -50,7 +50,7 @@
         "Decreciente en $\\mathbb{R}$",
         "Creciente en $\\mathbb{R}$",
         "Constante en $\\mathbb{R}$",
-        "Creciente solo para $x > 0$"
+        "Creciente solo para $x < 0$"
       ],
       "respuesta_correcta": 1,
       "variables": {
@@ -124,28 +124,28 @@
       }
     },
     {
-      "template": "¿Cuál es la asíntota horizontal de $f(x) = {{a}}^x + {{b}}$?",
+      "template": "¿Cuál es la asíntota horizontal de $f(x) = {{a}}^x$?",
       "opciones": [
         "$y = {{a}}$",
         "$y = 0$",
         "$x = {{b}}$",
         "$y = {{b}}$"
       ],
-      "respuesta_correcta": 3,
+      "respuesta_correcta": 1,
       "variables": {
         "a": {"min": 2, "max": 6},
         "b": {"min": 1, "max": 5}
       }
     },
     {
-      "template": "¿Cuál es el ámbito de $f(x) = {{a}}^x + {{b}}$?",
+      "template": "¿Cuál es el ámbito de $f(x) = {{a}}^x$?",
       "opciones": [
         "$\\left]{{b}}, \\infty\\right[$",
         "$\\mathbb{R}$",
         "$\\left[{{b}}, \\infty\\right[$",
         "$\\left]0, \\infty\\right[$"
       ],
-      "respuesta_correcta": 0,
+      "respuesta_correcta": 3,
       "variables": {
         "a": {"min": 2, "max": 6},
         "b": {"min": 1, "max": 5}
@@ -178,11 +178,11 @@
       }
     },
     {
-      "template": "¿En qué punto corta $f(x) = {{a}}^x - 1$ al eje $y$?",
+      "template": "¿En qué punto corta $f(x) = {{a}}^x + 1$ al eje $x$?",
       "opciones": [
         "$(0, -1)$",
         "$(0, {{a}}-1)$",
-        "$(0, 0)$",
+        "Ninguno",
         "$(0, 1)$"
       ],
       "respuesta_correcta": 2,
@@ -204,14 +204,14 @@
       }
     },
     {
-      "template": "La función $f(x) = -{{a}}^x$ tiene ámbito:",
+      "template": "La función $f(x) = {{a}}^x$ tiene ámbito:",
       "opciones": [
         "$\\left]0, \\infty\\right[$",
         "$\\left]-\\infty, 0\\right[$",
         "$\\mathbb{R}$",
         "$\\left[-1, 0\\right[$"
       ],
-      "respuesta_correcta": 1,
+      "respuesta_correcta": 0,
       "variables": {
         "a": {"min": 2, "max": 7}
       }
@@ -233,7 +233,7 @@
       "template": "Si $f(x) = {{a}}^x$, ¿cuál es el valor de $f({{b}})$?",
       "opciones": [
         "${{a}} \\cdot {{b}}$",
-        "${{b}}^{{{a}}}$",
+        "$0^{{{a}}}$",
         "${{a}}^{{{b}}}$",
         "${{a}} + {{b}}$"
       ],
@@ -241,8 +241,8 @@
       "variables": {
         "a": {"min": 2, "max": 4},
         "b": {"min": 2, "max": 4}
-      },
-      "nota": "La opción correcta usa la variable computada {{apow}} = a^b"
+      }
+
     },
     {
       "template": "La función $f(x) = {{a}} \\cdot {{b}}^x$ pasa por el punto $(0, \\;?)$:",
