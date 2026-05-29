@@ -1,3 +1,3 @@
 {
-  "max_intentos": 1,
+  "max_intentos": -1,
 }
