@@ -1,0 +1,339 @@
+{
+  "id": 4,
+  "titulo": "Suma y Resta de Polinomios",
+  "habilitado": true,
+  "fecha_inicio": "2026-01-01",
+  "fecha_fin": "2026-12-31",
+  "preguntas": [
+    {
+      "template": "Resuelva: $({{a}}x + {{b}}) + ({{c}}x + {{d}})$",
+      "opciones": [
+        "$({{a}}+{{c}})x + ({{b}}+{{d}})$",
+        "$({{a}} \\cdot {{c}})x + ({{b}} \\cdot {{d}})$",
+        "$({{a}}-{{c}})x + ({{b}}-{{d}})$",
+        "$({{a}}+{{c}})x - ({{b}}+{{d}})$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 2, "max": 7},
+        "b": {"min": 1, "max": 6},
+        "c": {"min": 2, "max": 7},
+        "d": {"min": 1, "max": 6}
+      }
+    },
+    {
+      "template": "Resuelva: $({{a}}x + {{b}}) - ({{c}}x + {{d}})$",
+      "opciones": [
+        "$({{a}}+{{c}})x + ({{b}}+{{d}})$",
+        "$({{a}}+{{c}})x - ({{b}}-{{d}})$",
+        "$({{a}} \\cdot {{c}})x + {{b}}$",
+        "$({{a}}-{{c}})x + ({{b}}-{{d}})$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "a": {"min": 5, "max": 9},
+        "b": {"min": 4, "max": 8},
+        "c": {"min": 1, "max": 4},
+        "d": {"min": 1, "max": 3}
+      }
+    },
+    {
+      "template": "Resuelva: $({{a}}x^2 + {{b}}x) + ({{c}}x^2 + {{d}}x)$",
+      "opciones": [
+        "$({{a}} \\cdot {{c}})x^2 + ({{b}} \\cdot {{d}})x$",
+        "$({{a}}+{{c}})x^2 + ({{b}}+{{d}})x$",
+        "$({{a}}-{{c}})x^2 + ({{b}}-{{d}})x$",
+        "$({{a}}+{{c}})x^4 + ({{b}}+{{d}})x^2$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "a": {"min": 2, "max": 6},
+        "b": {"min": 1, "max": 5},
+        "c": {"min": 2, "max": 6},
+        "d": {"min": 1, "max": 5}
+      }
+    },
+    {
+      "template": "Resuelva: $({{a}}x^2 + {{b}}) - ({{c}}x^2 + {{d}})$",
+      "opciones": [
+        "$({{a}}+{{c}})x^2 + ({{b}}+{{d}})$",
+        "$({{a}} \\cdot {{c}})x^2 - {{d}}$",
+        "$({{a}}-{{c}})x^2 + ({{b}}-{{d}})$",
+        "$({{a}}-{{c}})x^2 - ({{b}}+{{d}})$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {"min": 5, "max": 9},
+        "b": {"min": 4, "max": 8},
+        "c": {"min": 1, "max": 4},
+        "d": {"min": 1, "max": 3}
+      }
+    },
+    {
+      "template": "Resuelva: $({{a}}x^2 + {{b}}x + {{c}}) + ({{d}}x^2 + {{e}}x + {{f}})$",
+      "opciones": [
+        "$({{a}}+{{d}})x^2 + ({{b}}-{{e}})x + ({{c}}+{{f}})$",
+        "$({{a}}+{{d}})x^2 + ({{b}}+{{e}})x + ({{c}}+{{f}})$",
+        "$({{a}} \\cdot {{d}})x^2 + ({{b}} \\cdot {{e}})x + ({{c}} \\cdot {{f}})$",
+        "$({{a}}+{{d}})x^4 + ({{b}}+{{e}})x^2 + ({{c}}+{{f}})$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "a": {"min": 1, "max": 5},
+        "b": {"min": 1, "max": 5},
+        "c": {"min": 1, "max": 5},
+        "d": {"min": 1, "max": 5},
+        "e": {"min": 1, "max": 5},
+        "f": {"min": 1, "max": 5}
+      }
+    },
+    {
+      "template": "Resuelva: $({{a}}x^2 + {{b}}x + {{c}}) - ({{d}}x^2 + {{e}}x + {{f}})$",
+      "opciones": [
+        "$({{a}}+{{d}})x^2 + ({{b}}+{{e}})x + ({{c}}+{{f}})$",
+        "$({{a}}-{{d}})x^2 + ({{b}}+{{e}})x + ({{c}}-{{f}})$",
+        "$({{a}}-{{d}})x^2 - ({{b}}-{{e}})x + ({{c}}-{{f}})$",
+        "$({{a}}-{{d}})x^2 + ({{b}}-{{e}})x + ({{c}}-{{f}})$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "a": {"min": 5, "max": 9},
+        "b": {"min": 5, "max": 9},
+        "c": {"min": 5, "max": 9},
+        "d": {"min": 1, "max": 4},
+        "e": {"min": 1, "max": 4},
+        "f": {"min": 1, "max": 4}
+      }
+    },
+    {
+      "template": "Resuelva: $({{a}}x^3 + {{b}}x) + ({{c}}x^3 + {{d}}x)$",
+      "opciones": [
+        "$({{a}}+{{c}})x^3 + ({{b}}+{{d}})x$",
+        "$({{a}} \\cdot {{c}})x^3 + ({{b}} \\cdot {{d}})x$",
+        "$({{a}}+{{c}})x^6 + ({{b}}+{{d}})x^2$",
+        "$({{a}}-{{c}})x^3 + ({{b}}-{{d}})x$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 2, "max": 6},
+        "b": {"min": 1, "max": 5},
+        "c": {"min": 2, "max": 6},
+        "d": {"min": 1, "max": 5}
+      }
+    },
+    {
+      "template": "Resuelva: $({{a}}x^2 + {{b}}x + {{c}}) + ({{d}}x - {{e}})$",
+      "opciones": [
+        "$({{a}}+{{d}})x^2 + {{b}}x + ({{c}}-{{e}})$",
+        "${{a}}x^2 + ({{b}} \\cdot {{d}})x + ({{c}}-{{e}})$",
+        "${{a}}x^2 + ({{b}}+{{d}})x + ({{c}}-{{e}})$",
+        "${{a}}x^2 + ({{b}}-{{d}})x + ({{c}}+{{e}})$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {"min": 2, "max": 6},
+        "b": {"min": 2, "max": 7},
+        "c": {"min": 4, "max": 9},
+        "d": {"min": 1, "max": 5},
+        "e": {"min": 1, "max": 3}
+      }
+    },
+    {
+      "template": "Resuelva: $({{a}}x^2 - {{b}}x) - ({{c}}x^2 - {{d}}x)$",
+      "opciones": [
+        "$({{a}}-{{c}})x^2 - ({{b}}-{{d}})x$",
+        "$({{a}}-{{c}})x^2 - ({{b}}+{{d}})x$",
+        "$({{a}}+{{c}})x^2 - ({{b}}-{{d}})x$",
+        "$({{a}}-{{c}})x^2 + ({{d}}-{{b}})x$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "a": {"min": 5, "max": 9},
+        "b": {"min": 5, "max": 9},
+        "c": {"min": 1, "max": 4},
+        "d": {"min": 1, "max": 4}
+      }
+    },
+    {
+      "template": "¿Cuál es el grado del polinomio resultante de $({{a}}x^3 + {{b}}x^2) + ({{c}}x^2 + {{d}}x)$?",
+      "opciones": [
+        "Grado $2$",
+        "Grado $5$",
+        "Grado $3$",
+        "Grado $4$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {"min": 1, "max": 5},
+        "b": {"min": 1, "max": 5},
+        "c": {"min": 1, "max": 5},
+        "d": {"min": 1, "max": 5}
+      }
+    },
+    {
+      "template": "Resuelva: $({{a}}x + {{b}}) + ({{c}}x - {{b}})$",
+      "opciones": [
+        "$({{a}}+{{c}})x + 2 \\cdot {{b}}$",
+        "$({{a}}+{{c}})x$",
+        "$({{a}} \\cdot {{c}})x$",
+        "$({{a}}-{{c}})x + 2 \\cdot {{b}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "a": {"min": 2, "max": 7},
+        "b": {"min": 1, "max": 6},
+        "c": {"min": 2, "max": 7}
+      }
+    },
+    {
+      "template": "Resuelva: ${{a}}x^2 - ({{b}}x^2 - {{c}}x + {{d}})$",
+      "opciones": [
+        "$({{a}}-{{b}})x^2 - {{c}}x + {{d}}$",
+        "$({{a}}-{{b}})x^2 + {{c}}x - {{d}}$",
+        "$({{a}}+{{b}})x^2 - {{c}}x - {{d}}$",
+        "$({{a}}-{{b}})x^2 + {{c}}x + {{d}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "a": {"min": 5, "max": 9},
+        "b": {"min": 1, "max": 4},
+        "c": {"min": 2, "max": 6},
+        "d": {"min": 1, "max": 5}
+      }
+    },
+    {
+      "template": "Si $P(x) = {{a}}x + {{b}}$ y $Q(x) = {{c}}x + {{d}}$, ¿cuánto es $P(x) + Q(x)$?",
+      "opciones": [
+        "$({{a}} \\cdot {{c}})x + ({{b}} \\cdot {{d}})$",
+        "$({{a}}-{{c}})x + ({{b}}-{{d}})$",
+        "$({{a}}+{{c}})x^2 + ({{b}}+{{d}})$",
+        "$({{a}}+{{c}})x + ({{b}}+{{d}})$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "a": {"min": 2, "max": 6},
+        "b": {"min": 1, "max": 5},
+        "c": {"min": 2, "max": 6},
+        "d": {"min": 1, "max": 5}
+      }
+    },
+    {
+      "template": "Si $P(x) = {{a}}x^2 + {{b}}$ y $Q(x) = {{c}}x^2 + {{d}}$, ¿cuánto es $P(x) - Q(x)$?",
+      "opciones": [
+        "$({{a}}-{{c}})x^2 + ({{b}}-{{d}})$",
+        "$({{a}}+{{c}})x^2 + ({{b}}-{{d}})$",
+        "$({{a}}-{{c}})x^2 + ({{b}}+{{d}})$",
+        "$({{a}}-{{c}})x^4 + ({{b}}-{{d}})$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 5, "max": 9},
+        "b": {"min": 5, "max": 9},
+        "c": {"min": 1, "max": 4},
+        "d": {"min": 1, "max": 4}
+      }
+    },
+    {
+      "template": "¿Cuál es el coeficiente del término $x^2$ en el resultado de $({{a}}x^2 + {{b}}x) + ({{c}}x^2 - {{d}}x)$?",
+      "opciones": [
+        "${{a}} \\cdot {{c}}$",
+        "${{a}} - {{c}}$",
+        "${{a}} + {{c}}$",
+        "${{b}} + {{d}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {"min": 2, "max": 7},
+        "b": {"min": 1, "max": 5},
+        "c": {"min": 2, "max": 7},
+        "d": {"min": 1, "max": 5}
+      }
+    },
+    {
+      "template": "¿Cuál es el término independiente del resultado de $({{a}}x^2 + {{b}}x + {{c}}) + ({{d}}x^2 - {{e}}x + {{f}})$?",
+      "opciones": [
+        "${{c}} - {{f}}$",
+        "${{c}} \\cdot {{f}}$",
+        "${{c}} + {{f}}$",
+        "${{a}} + {{d}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {"min": 1, "max": 5},
+        "b": {"min": 1, "max": 5},
+        "c": {"min": 2, "max": 7},
+        "d": {"min": 1, "max": 5},
+        "e": {"min": 1, "max": 5},
+        "f": {"min": 2, "max": 7}
+      }
+    },
+    {
+      "template": "Resuelva: $({{a}}x^2 + {{b}}x + {{c}}) - ({{a}}x^2 + {{d}}x + {{e}})$",
+      "opciones": [
+        "$2 \\cdot {{a}}x^2 + ({{b}}-{{d}})x + ({{c}}-{{e}})$",
+        "$({{b}}+{{d}})x + ({{c}}+{{e}})$",
+        "$({{b}}-{{d}})x + ({{c}}-{{e}})$",
+        "${{a}}x^2 + ({{b}}-{{d}})x$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {"min": 2, "max": 6},
+        "b": {"min": 5, "max": 9},
+        "c": {"min": 5, "max": 9},
+        "d": {"min": 1, "max": 4},
+        "e": {"min": 1, "max": 4}
+      }
+    },
+    {
+      "template": "Resuelva: $-({{a}}x^2 - {{b}}x) + ({{c}}x^2 + {{d}}x)$",
+      "opciones": [
+        "$({{c}}-{{a}})x^2 + ({{d}}+{{b}})x$",
+        "$({{a}}+{{c}})x^2 + ({{b}}+{{d}})x$",
+        "$({{c}}-{{a}})x^2 + ({{d}}-{{b}})x$",
+        "$-({{a}}+{{c}})x^2 + ({{b}}-{{d}})x$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 1, "max": 4},
+        "b": {"min": 2, "max": 6},
+        "c": {"min": 5, "max": 9},
+        "d": {"min": 1, "max": 5}
+      }
+    },
+    {
+      "template": "Si $P(x) = {{a}}x^2 + {{b}}x + {{c}}$ y $Q(x) = {{d}}x + {{e}}$, ¿cuál es el grado de $P(x) + Q(x)$?",
+      "opciones": [
+        "Grado $3$",
+        "Grado $1$",
+        "Grado $2$",
+        "Grado $4$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {"min": 1, "max": 5},
+        "b": {"min": 1, "max": 5},
+        "c": {"min": 1, "max": 5},
+        "d": {"min": 1, "max": 5},
+        "e": {"min": 1, "max": 5}
+      }
+    },
+    {
+      "template": "Resuelva: $({{a}}x^3 + {{b}}x^2 + {{c}}) - ({{d}}x^3 - {{e}}x^2 + {{f}})$",
+      "opciones": [
+        "$({{a}}-{{d}})x^3 + ({{b}}-{{e}})x^2 + ({{c}}-{{f}})$",
+        "$({{a}}-{{d}})x^3 + ({{b}}+{{e}})x^2 + ({{c}}-{{f}})$",
+        "$({{a}}+{{d}})x^3 + ({{b}}+{{e}})x^2 + ({{c}}+{{f}})$",
+        "$({{a}}-{{d}})x^3 - ({{b}}+{{e}})x^2 + ({{c}}-{{f}})$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "a": {"min": 5, "max": 9},
+        "b": {"min": 2, "max": 6},
+        "c": {"min": 4, "max": 9},
+        "d": {"min": 1, "max": 4},
+        "e": {"min": 1, "max": 4},
+        "f": {"min": 1, "max": 3}
+      }
+    }
+  ]
+}

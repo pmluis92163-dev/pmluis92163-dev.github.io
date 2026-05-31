@@ -1,1 +1,272 @@
-
+{
+  "id": 2,
+  "titulo": "Introducción a Funciones",
+  "habilitado": true,
+  "fecha_inicio": "2026-01-01",
+  "fecha_fin": "2026-12-31",
+  "preguntas": [
+    {
+      "template": "Sea $f(x) = {{a}}x + {{b}}$. ¿Cuál es la imagen de $x = {{c}}$?",
+      "opciones": [
+        "$f({{c}}) = {{a}} \\cdot {{c}} - {{b}}$",
+        "$f({{c}}) = {{a}} \\cdot {{c}} + {{b}}$",
+        "$f({{c}}) = {{c}} + {{b}}$",
+        "$f({{c}}) = {{a}} + {{b}} + {{c}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "a": {"min": 2, "max": 5},
+        "b": {"min": 1, "max": 8},
+        "c": {"min": 1, "max": 6}
+      }
+    },
+    {
+      "template": "Sea $f(x) = x^2 + {{a}}$. ¿Cuál es el valor de $f({{b}})$?",
+      "opciones": [
+        "$f({{b}}) = {{b}}^2 - {{a}}$",
+        "$f({{b}}) = 2 \\cdot {{b}} + {{a}}$",
+        "$f({{b}}) = {{b}} + {{a}}$",
+        "$f({{b}}) = {{b}}^2 + {{a}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "a": {"min": 1, "max": 7},
+        "b": {"min": 2, "max": 5}
+      }
+    },
+    {
+      "template": "Sea $f(x) = {{a}}x - {{b}}$. ¿Cuál es la preimagen de $y = {{a}} \\cdot {{c}} - {{b}}$?",
+      "opciones": [
+        "$x = {{c}}$",
+        "$x = {{a}} \\cdot {{c}}$",
+        "$x = {{c}} + {{b}}$",
+        "$x = {{c}} - {{a}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 2, "max": 5},
+        "b": {"min": 1, "max": 6},
+        "c": {"min": 2, "max": 7}
+      }
+    },
+    {
+      "template": "Sea $f(x) = {{a}} - x$. ¿Cuál es la imagen de $x = {{b}}$?",
+      "opciones": [
+        "$f({{b}}) = {{b}} - {{a}}$",
+        "$f({{b}}) = {{a}} - {{b}}$",
+        "$f({{b}}) = {{a}} + {{b}}$",
+        "$f({{b}}) = {{a}} \\cdot {{b}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "a": {"min": 5, "max": 12},
+        "b": {"min": 1, "max": 4}
+      }
+    },
+    {
+      "template": "Sea $f(x) = x^2 - {{a}}$. ¿Cuál es el valor de $f(-{{b}})$?",
+      "opciones": [
+        "$f(-{{b}}) = -{{b}}^2 - {{a}}$",
+        "$f(-{{b}}) = {{b}}^2 + {{a}}$",
+        "$f(-{{b}}) = {{b}}^2 - {{a}}$",
+        "$f(-{{b}}) = -{{b}}^2 + {{a}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {"min": 1, "max": 8},
+        "b": {"min": 2, "max": 5}
+      }
+    },
+    {
+      "template": "Sea $f(x) = {{a}}x + {{b}}$. Si $f(x) = {{b}}$, ¿cuál es el valor de $x$?",
+      "opciones": [
+        "$x = {{b}}$",
+        "$x = {{a}}$",
+        "$x = 1$",
+        "$x = 0$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "a": {"min": 2, "max": 6},
+        "b": {"min": 3, "max": 9}
+      }
+    },
+    {
+      "template": "Sea $f(x) = {{a}}x^2$. ¿Cuál es el valor de $f({{b}})$?",
+      "opciones": [
+        "$f({{b}}) = {{a}} \\cdot {{b}}^2$",
+        "$f({{b}}) = {{a}} \\cdot {{b}}$",
+        "$f({{b}}) = {{a}}^2 \\cdot {{b}}$",
+        "$f({{b}}) = ({{a}} \\cdot {{b}})^2$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 2, "max": 4},
+        "b": {"min": 2, "max": 5}
+      }
+    },
+    {
+      "template": "Sea $f(x) = {{a}}x + {{b}}$. Si $f(x) = {{a}} \\cdot {{c}} + {{b}}$, ¿cuál es la preimagen?",
+      "opciones": [
+        "$x = {{a}} + {{c}}$",
+        "$x = {{b}} + {{c}}$",
+        "$x = {{c}}$",
+        "$x = {{a}} \\cdot {{c}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {"min": 3, "max": 6},
+        "b": {"min": 2, "max": 7},
+        "c": {"min": 1, "max": 5}
+      }
+    },
+    {
+      "template": "Sea $f(x) = x + {{a}}$, con dominio $\\{1, 2, 3, 4\\}$ y codominio $\\mathbb{R}$. ¿Cuál es el ámbito (rango) de $f$?",
+      "opciones": [
+        "$\\{1, 2, 3, 4\\}$",
+        "$\\{{{a}}, {{a}}+1, {{a}}+2, {{a}}+3\\}$",
+        "$\\{1+{{a}}, 2+{{a}}, 3+{{a}}, 4+{{a}}\\}$",
+        "$\\mathbb{R}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {"min": 2, "max": 8}
+      }
+    },
+    {
+      "template": "Sea $f(x) = {{a}}x$, con dominio $\\{1, 2, 3\\}$ y codominio $\\mathbb{R}$. ¿Cuál es el ámbito de $f$?",
+      "opciones": [
+        "$\\{1, 2, 3\\}$",
+        "$\\{{{a}}, 2 \\cdot {{a}}, 3 \\cdot {{a}}\\}$",
+        "$\\{{{a}}+1, {{a}}+2, {{a}}+3\\}$",
+        "$\\mathbb{R}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "a": {"min": 2, "max": 6}
+      }
+    },
+    {
+      "template": "Sea $f(x) = x^2$, con dominio $\\{-{{a}}, 0, {{a}}\\}$ y codominio $\\mathbb{R}$. ¿Cuál es el ámbito de $f$?",
+      "opciones": [
+        "$\\{-{{a}}^2, 0, {{a}}^2\\}$",
+        "$\\{0, {{a}}\\}$",
+        "$\\{0, {{a}}^2\\}$",
+        "$\\{-{{a}}, 0, {{a}}\\}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {"min": 2, "max": 5}
+      }
+    },
+    {
+      "template": "Sea $f(x) = x - {{a}}$, con dominio $\\{{{a}}, {{a}}+1, {{a}}+2\\}$ y codominio $\\mathbb{R}$. ¿Cuál es el ámbito de $f$?",
+      "opciones": [
+        "$\\{0, 1, 2\\}$",
+        "$\\{-{{a}}, -{{a}}+1, -{{a}}+2\\}$",
+        "$\\{{{a}}, {{a}}+1, {{a}}+2\\}$",
+        "$\\{2 \\cdot {{a}}, 2 \\cdot {{a}}+1, 2 \\cdot {{a}}+2\\}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 3, "max": 8}
+      }
+    },
+    {
+      "template": "Sea $f(x) = x^2 + {{a}}$, con dominio $\\{-1, 0, 1, 2\\}$ y codominio $\\mathbb{R}$. ¿Cuál es el ámbito de $f$?",
+      "opciones": [
+        "$\\{-1+{{a}}, {{a}}, 1+{{a}}, 4+{{a}}\\}$",
+        "$\\{-1, 0, 1, 4\\}$",
+        "$\\{{{a}}, 1+{{a}}, 4+{{a}}\\}$",
+        "$\\{{{a}}-1, {{a}}, {{a}}+1, {{a}}+2\\}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {"min": 1, "max": 6}
+      }
+    },
+    {
+      "template": "Sea $f(x) = {{a}} - x$, con dominio $\\{0, 1, 2, 3\\}$ y codominio $\\mathbb{R}$. ¿Cuál es el ámbito de $f$?",
+      "opciones": [
+        "$\\{{{a}}, {{a}}-1, {{a}}-2, {{a}}-3\\}$",
+        "$\\{{{a}}, {{a}}+1, {{a}}+2, {{a}}+3\\}$",
+        "$\\{0, 1, 2, 3\\}$",
+        "$\\{-{{a}}, -{{a}}+1, -{{a}}+2, -{{a}}+3\\}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 5, "max": 10}
+      }
+    },
+    {
+      "template": "Sea $f(x) = {{a}}x + {{b}}$, con dominio $\\mathbb{R}$ y codominio $\\mathbb{R}$. ¿Cuál es el ámbito de $f$?",
+      "opciones": [
+        "$\\left[{{b}}, \\infty\\right[$",
+        "$\\left[0, \\infty\\right[$",
+        "$\\left[{{a}}, \\infty\\right[$",
+        "$\\mathbb{R}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "a": {"min": 1, "max": 5},
+        "b": {"min": 1, "max": 8}
+      }
+    },
+    {
+      "template": "Sea $f: \\mathbb{R} \\to \\mathbb{R}$, donde $f(x) = {{a}}x + {{b}}$. ¿La función $f$ es inyectiva?",
+      "opciones": [
+        "Sí",
+        "No"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 2, "max": 7},
+        "b": {"min": 1, "max": 9}
+      }
+    },
+    {
+      "template": "Sea $f: \\mathbb{R} \\to \\mathbb{R}$, donde $f(x) = x^2 + {{a}}$. ¿La función $f$ es inyectiva?",
+      "opciones": [
+        "Sí",
+        "No"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "a": {"min": 1, "max": 8}
+      }
+    },
+    {
+      "template": "Sea $f: \\mathbb{R} \\to \\mathbb{R}$, donde $f(x) = x^3 + {{a}}$. ¿La función $f$ es inyectiva?",
+      "opciones": [
+        "Sí",
+        "No"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {"min": 1, "max": 6}
+      }
+    },
+    {
+      "template": "Sea $f: \\mathbb{R} \\to \\mathbb{R}$, donde $f(x) = {{a}}$. ¿La función constante $f$ es inyectiva?",
+      "opciones": [
+        "Sí",
+        "No"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "a": {"min": 1, "max": 10}
+      }
+    },
+    {
+      "template": "Sea $f: \\mathbb{R} \\to \\mathbb{R}$, donde $f(x) = |x| + {{a}}$. ¿La función $f$ es inyectiva?",
+      "opciones": [
+        "Sí",
+        "No"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "a": {"min": 1, "max": 7}
+      }
+    }
+  ]
+}

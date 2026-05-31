@@ -134,6 +134,381 @@
       "email": "daniel.zuniga@sekcostarica.com",
       "clave": "53849271",
       "nombre": "Zúñiga Alfaro Daniel"
+    },
+    {
+      "email": "fabian.arias@sekcostarica.com",
+      "clave": "92736418",
+      "nombre": "Arias Sanchez Fabián"
+    },
+    {
+      "email": "natalia.bermudez@sekcostarica.com",
+      "clave": "84729163",
+      "nombre": "Bermúdez Ortiz Natalia"
+    },
+    {
+      "email": "asher.blake@sekcostarica.com",
+      "clave": "19537482",
+      "nombre": "Blake Stewart Asher"
+    },
+    {
+      "email": "francisco.briceno@sekcostarica.com",
+      "clave": "14609827",
+      "nombre": "Briceño Vado Francisco Josue"
+    },
+    {
+      "email": "alejandro.calderon@sekcostarica.com",
+      "clave": "75109313",
+      "nombre": "Calderon Torres Alejandro"
+    },
+    {
+      "email": "mia.campos@sekcostarica.com",
+      "clave": "95298844",
+      "nombre": "Campos Madrigal Mia"
+    },
+    {
+      "email": "gabriel.campos@sekcostarica.com",
+      "clave": "14250740",
+      "nombre": "Campos Sanabria Gabriel"
+    },
+    {
+      "email": "erick.chen@sekcostarica.com",
+      "clave": "83380292",
+      "nombre": "Chen Wu Erick"
+    },
+    {
+      "email": "tevi.feng@sekcostarica.com",
+      "clave": "73137225",
+      "nombre": "Feng Wu Tevi"
+    },
+    {
+      "email": "emma.jimenez@sekcostarica.com",
+      "clave": "44007294",
+      "nombre": "Jimenez Obaldia Emma"
+    },
+    {
+      "email": "isabella.morales@sekcostarica.com",
+      "clave": "57537105",
+      "nombre": "Morales Sanchez Isabella"
+    },
+    {
+      "email": "santiago.munguia@sekcostarica.com",
+      "clave": "95787261",
+      "nombre": "Munguia Murillo Santiago"
+    },
+    {
+      "email": "clarissa.ortiz@sekcostarica.com",
+      "clave": "29824963",
+      "nombre": "Ortiz Garita Clarissa"
+    },
+    {
+      "email": "cristian.ramirez@sekcostarica.com",
+      "clave": "10766911",
+      "nombre": "Ramirez Quintero Cristian"
+    },
+    {
+      "email": "abigail.recinos@sekcostarica.com",
+      "clave": "77809416",
+      "nombre": "Recinos Arce Abigail"
+    },
+    {
+      "email": "aitana.rodriguez@sekcostarica.com",
+      "clave": "48955982",
+      "nombre": "Rodriguez Solano Aitana"
+    },
+    {
+      "email": "meilin.wu@sekcostarica.com",
+      "clave": "98295394",
+      "nombre": "Wu Wu Meilin"
+    },
+    {
+      "email": "tomas.zuniga@sekcostarica.com",
+      "clave": "61550190",
+      "nombre": "Zuñiga Miranda Tomas"
+    },
+    {
+      "email": "florencia.armendariz@sekcostarica.com",
+      "clave": "26568592",
+      "nombre": "Armendariz Espindola Florencia"
+    },
+    {
+      "email": "luis.chaves@sekcostarica.com",
+      "clave": "46123664",
+      "nombre": "Chaves Villalobos Luis Mario"
+    },
+    {
+      "email": "bryan.coneo@sekcostarica.com",
+      "clave": "73128882",
+      "nombre": "Coneo Parra Bryan"
+    },
+    {
+      "email": "nicolas.coutin@sekcostarica.com",
+      "clave": "86528723",
+      "nombre": "Coutin Rivera Nicolas"
+    },
+    {
+      "email": "bianca.cruz@sekcostarica.com",
+      "clave": "81505787",
+      "nombre": "Cruz Fallas Bianca"
+    },
+    {
+      "email": "mariangel.delgado@sekcostarica.com",
+      "clave": "48905740",
+      "nombre": "Delgado Padilla Mariangel"
+    },
+    {
+      "email": "constanza.fallas@sekcostarica.com",
+      "clave": "47318338",
+      "nombre": "Fallas Jimenez Constanza De Jesus"
+    },
+    {
+      "email": "miranda.gomez@sekcostarica.com",
+      "clave": "50372720",
+      "nombre": "Gomez Lachner Miranda"
+    },
+    {
+      "email": "marco.hernandez@sekcostarica.com",
+      "clave": "64637335",
+      "nombre": "Hernandez Morales Marco Luis"
+    },
+    {
+      "email": "juan.juarez@sekcostarica.com",
+      "clave": "33000817",
+      "nombre": "Juarez Mendez Juan Pablo"
+    },
+    {
+      "email": "andres.mora@sekcostarica.com",
+      "clave": "64132696",
+      "nombre": "Mora Pakers Andres"
+    },
+    {
+      "email": "sara.murillo@sekcostarica.com",
+      "clave": "59543016",
+      "nombre": "Murillo Flores Sara"
+    },
+    {
+      "email": "laura.navarro@sekcostarica.com",
+      "clave": "95925278",
+      "nombre": "Navarro Rojas Laura"
+    },
+    {
+      "email": "christopher.oconitrillo@sekcostarica.com",
+      "clave": "29463523",
+      "nombre": "Oconitrillo Cruz Christopher Saul"
+    },
+    {
+      "email": "samantha.seas@sekcostarica.com",
+      "clave": "44419231",
+      "nombre": "Seas Gonzalez Samantha"
+    },
+    {
+      "email": "joey.situ@sekcostarica.com",
+      "clave": "51691285",
+      "nombre": "Situ Wu Joey"
+    },
+    {
+      "email": "danisa.urena@sekcostarica.com",
+      "clave": "17524430",
+      "nombre": "Ureña Castro Danisa"
+    },
+    {
+      "email": "isabella.zhou@sekcostarica.com",
+      "clave": "22595820",
+      "nombre": "Zhou Fernandez Isabella"
+    },
+    {
+      "email": "sofia.zuniga@sekcostarica.com",
+      "clave": "34503368",
+      "nombre": "Zuñiga Miranda Sofia"
+    },
+    {
+      "email": "emma.alvarado@sekcostarica.com",
+      "clave": "51776135",
+      "nombre": "Alvarado Garcia Emma"
+    },
+    {
+      "email": "fernanda.avalos@sekcostarica.com",
+      "clave": "90770184",
+      "nombre": "Avalos Espinoza Fernanda"
+    },
+    {
+      "email": "abby.calderon@sekcostarica.com",
+      "clave": "14246286",
+      "nombre": "Calderon Zuñiga Abby"
+    },
+    {
+      "email": "sofia.carvajal@sekcostarica.com",
+      "clave": "96242997",
+      "nombre": "Carvajal Gonzalez Sofía Victoria"
+    },
+    {
+      "email": "miranda.castro@sekcostarica.com",
+      "clave": "66862735",
+      "nombre": "Castro Esquivel Miranda"
+    },
+    {
+      "email": "luis.collado@sekcostarica.com",
+      "clave": "65621575",
+      "nombre": "Collado Perez Luis Adrian"
+    },
+    {
+      "email": "isabella.coto@sekcostarica.com",
+      "clave": "19860649",
+      "nombre": "Coto Boza Isabella Lucia"
+    },
+    {
+      "email": "andres.duarte@sekcostarica.com",
+      "clave": "33587756",
+      "nombre": "Duarte Villalobos Andres Roberto"
+    },
+    {
+      "email": "jimena.gonzalez@sekcostarica.com",
+      "clave": "48540950",
+      "nombre": "Gonzalez Vargas Jimena"
+    },
+    {
+      "email": "valeria.mora@sekcostarica.com",
+      "clave": "60828624",
+      "nombre": "Mora Salazar Valeria"
+    },
+    {
+      "email": "luciana.murillo@sekcostarica.com",
+      "clave": "25916911",
+      "nombre": "Murillo Cubero Luciana"
+    },
+    {
+      "email": "jean.pierre@sekcostarica.com",
+      "clave": "74297129",
+      "nombre": "Pierre Hidalgo Jean Philliph"
+    },
+    {
+      "email": "gloriana.ramirez@sekcostarica.com",
+      "clave": "29728907",
+      "nombre": "Ramirez Quintero Gloriana"
+    },
+    {
+      "email": "jose.sanchez@sekcostarica.com",
+      "clave": "21899421",
+      "nombre": "Sanchez Olaves Jose Andres"
+    },
+    {
+      "email": "maria.solano@sekcostarica.com",
+      "clave": "70469359",
+      "nombre": "Solano España Maria Fernanda"
+    },
+    {
+      "email": "carlos.solano@sekcostarica.com",
+      "clave": "17166469",
+      "nombre": "Solano Hernandez Carlos Joaquin"
+    },
+    {
+      "email": "emily.von@sekcostarica.com",
+      "clave": "30146620",
+      "nombre": "Von Herold Cornejo Emily"
+    },
+    {
+      "email": "felix.wu@sekcostarica.com",
+      "clave": "99687446",
+      "nombre": "Wu Liang Felix"
+    },
+    {
+      "email": "abdussattar.abdus@sekcostarica.com",
+      "clave": "40692245",
+      "nombre": "Abdus Alvarez Abdussattar"
+    },
+    {
+      "email": "maria.alpizar@sekcostarica.com",
+      "clave": "52044913",
+      "nombre": "Alpizar Vega Maria Laura"
+    },
+    {
+      "email": "teresita.araya@sekcostarica.com",
+      "clave": "92672015",
+      "nombre": "Araya Chaves Teresita"
+    },
+    {
+      "email": "daniela.cedeno@sekcostarica.com",
+      "clave": "91095400",
+      "nombre": "Cedeño Ventura Daniela"
+    },
+    {
+      "email": "isabella.cossani@sekcostarica.com",
+      "clave": "29855616",
+      "nombre": "Cossani Alfaro Isabella"
+    },
+    {
+      "email": "isabella.espinoza@sekcostarica.com",
+      "clave": "95002156",
+      "nombre": "Espinoza Carranza Isabella"
+    },
+    {
+      "email": "isabella.favareto@sekcostarica.com",
+      "clave": "95999813",
+      "nombre": "Favareto Chacon Isabella"
+    },
+    {
+      "email": "emma.gutierrez@sekcostarica.com",
+      "clave": "48096713",
+      "nombre": "Gutierrez Asch Emma"
+    },
+    {
+      "email": "diego.guzman@sekcostarica.com",
+      "clave": "42651280",
+      "nombre": "Guzman Jimenez Diego Ignacio"
+    },
+    {
+      "email": "iara.limongi@sekcostarica.com",
+      "clave": "16087710",
+      "nombre": "Limongi Guadamuz Iara Sophia"
+    },
+    {
+      "email": "larissa.rodriguez@sekcostarica.com",
+      "clave": "63866500",
+      "nombre": "Rodriguez Cubero Larissa"
+    },
+    {
+      "email": "santiago.saborio@sekcostarica.com",
+      "clave": "76992499",
+      "nombre": "Saborio Alvarez Santiago Antonio"
+    },
+    {
+      "email": "kevin.zheng@sekcostarica.com",
+      "clave": "93597057",
+      "nombre": "Zheng Wu Kevin Jiaying"
+    },
+    {
+      "email": "camila.sarquis@sekcostarica.com",
+      "clave": "41152575",
+      "nombre": "Sarquis Castro Camila"
+    },
+    {
+      "email": "hendrick.akon@sekcostarica.com",
+      "clave": "51361260",
+      "nombre": "Akon Reid Hendrick Miles"
+    },
+    {
+      "email": "isabella.bolanos@sekcostarica.com",
+      "clave": "50299122",
+      "nombre": "Bolaños Gomez Isabella"
+    },
+    {
+      "email": "fabricio.espinoza@sekcostarica.com",
+      "clave": "25197578",
+      "nombre": "Espinoza Jimenez Fabricio"
+    },
+    {
+      "email": "selina.feng@sekcostarica.com",
+      "clave": "58379186",
+      "nombre": "Feng Wu Selina"
+    },
+    {
+      "email": "victoria.solorzano@sekcostarica.com",
+      "clave": "45673561",
+      "nombre": "Solorzano Duran Victoria"
+    },
+    {
+      "email": "sebastian.tam@sekcostarica.com",
+      "clave": "85029946",
+      "nombre": "Tam Sebastian"
     }
   ]
 }
