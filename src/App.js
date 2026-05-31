@@ -230,25 +230,30 @@ export default function QuizApp() {
     setContrasenaProfesor('');
   };
 
-  // Evaluar template
-  const evaluarTemplate = (template, variables) => {
+// Evaluar template
+const evaluarTemplate = (template, variables) => {
     let resultado = template;
-    Object.keys(variables).forEach(key => {
-      const value = variables[key];
-      resultado = resultado.replace(new RegExp(`{{${key}}}`, 'g'), value);
-    });
 
+    // Reemplazar todas las expresiones {{...}} (simples y compuestas)
     resultado = resultado.replace(/{{(.+?)}}/g, (match, expr) => {
+      // Sustituir cada variable dentro de la expresión por su valor
+      let expresionEvaluada = expr;
+      Object.keys(variables).forEach(key => {
+        expresionEvaluada = expresionEvaluada.replace(
+          new RegExp(`\\b${key}\\b`, 'g'), variables[key]
+        );
+      });
       try {
         // eslint-disable-next-line no-eval
-        return eval(expr);
+        const result = eval(expresionEvaluada);
+        return result;
       } catch {
         return match;
       }
     });
 
     return resultado;
-  };
+};
 
   // Generar valores aleatorios
   const generarVariables = (variables) => {

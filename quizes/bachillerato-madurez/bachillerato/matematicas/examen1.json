@@ -1,7 +1,7 @@
 {
   "id": 99,
   "titulo": "Prueba con Imagen - Circunferencia",
-  "habilitado": true,
+  "habilitado": false,
   "fecha_inicio": "2026-01-01",
   "fecha_fin": "2026-12-31",
   "preguntas": [
