@@ -6,7 +6,7 @@
   "fecha_fin": "2026-12-31",
   "preguntas": [
     {
-      "template": "Resuelva: $2^x = 2^{{{a}}}$",
+      "template": "Resuelva: $2^x = 2^{ {{a}} }$",
       "opciones": [
         "$x = {{a}}$",
         "$x = {{2*a}}$",
@@ -19,7 +19,7 @@
       }
     },
     {
-      "template": "Resuelva: $3^{x+1} = 3^{{{a}}}$",
+      "template": "Resuelva: $3^{x+1} = 3^{ {{a}} }$",
       "opciones": [
         "$x = {{a}}$",
         "$x = {{a+1}}$",
@@ -97,7 +97,7 @@
       }
     },
     {
-      "template": "Resuelva: $2^{x+{{a}}} = 2^{{{b}}}$",
+      "template": "Resuelva: $2^{x+{{a}}} = 2^{ {{b}} }$",
       "opciones": [
         "$x = {{b+a}}$",
         "$x = {{b-a}}$",
@@ -151,7 +151,7 @@
       }
     },
     {
-      "template": "Resuelva: $3^{x-{{a}}} = 3^{{{b}}}$",
+      "template": "Resuelva: $3^{x-{{a}}} = 3^{ {{b}} }$",
       "opciones": [
         "$x = {{b-a}}$",
         "$x = {{a+b}}$",
@@ -193,7 +193,7 @@
       }
     },
     {
-      "template": "Resuelva: $\\left(\\frac{1}{2}\\right)^x = 2^{{{a}}}$",
+      "template": "Resuelva: $\\left(\\frac{1}{2}\\right)^x = 2^{ {{a}} }$",
       "opciones": [
         "$x = {{a}}$",
         "$x = {{3*a}}$",
@@ -206,7 +206,7 @@
       }
     },
     {
-      "template": "Resuelva: $\\left(\\frac{1}{3}\\right)^x = 3^{{{a}}}$",
+      "template": "Resuelva: $\\left(\\frac{1}{3}\\right)^x = 3^{ {{a}} }$",
       "opciones": [
         "$x = {{a}}$",
         "$x = -{{a}}$",
@@ -246,7 +246,7 @@
       }
     },
     {
-      "template": "Si $2^x = 2^{{{a}}}$ y $2^y = 2^{{{b}}}$, ¿cuánto vale $2^{x+y}$?",
+      "template": "Si $2^x = 2^{ {{a}} }$ y $2^y = 2^{ {{b}} }$, ¿cuánto vale $2^{x+y}$?",
       "opciones": [
         "$2^{ {{a*b}} }$",
         "$2^{ {{a-b}} }$",
@@ -260,7 +260,7 @@
       }
     },
     {
-      "template": "Resuelva: $\\left(\\frac{1}{{{a}}}\\right)^x = {{a}}^{{{b}}}$",
+      "template": "Resuelva: $\\left(\\frac{1}{ {{a}} }\\right)^x = {{a}}^{ {{b}} }$",
       "opciones": [
         "$x = {{b}}$",
         "$x = {{a*b}}$",
