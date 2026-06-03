@@ -8,10 +8,10 @@
     {
       "template": "Sea $f(x) = {{a}}x + {{b}}$. ¿Cuál es la imagen de $x = {{c}}$?",
       "opciones": [
-        "$f({{c}}) = {{a}} \\cdot {{c}} - {{b}}$",
-        "$f({{c}}) = {{a}} \\cdot {{c}} + {{b}}$",
-        "$f({{c}}) = {{c}} + {{b}}$",
-        "$f({{c}}) = {{a}} + {{b}} + {{c}}$"
+        "$f({{c}}) = {{a*c-b}}$",
+        "$f({{c}}) = {{a*c+b}}$",
+        "$f({{c}}) = {{c+b}}$",
+        "$f({{c}}) = {{a+b+c}}$"
       ],
       "respuesta_correcta": 1,
       "variables": {
@@ -23,10 +23,10 @@
     {
       "template": "Sea $f(x) = x^2 + {{a}}$. ¿Cuál es el valor de $f({{b}})$?",
       "opciones": [
-        "$f({{b}}) = {{b}}^2 - {{a}}$",
-        "$f({{b}}) = 2 \\cdot {{b}} + {{a}}$",
-        "$f({{b}}) = {{b}} + {{a}}$",
-        "$f({{b}}) = {{b}}^2 + {{a}}$"
+        "$f({{b}}) = {{b*b-a}}$",
+        "$f({{b}}) = {{2*b+a}}$",
+        "$f({{b}}) = {{b+a}}$",
+        "$f({{b}}) = {{b*b+a}}$"
       ],
       "respuesta_correcta": 3,
       "variables": {
@@ -35,12 +35,12 @@
       }
     },
     {
-      "template": "Sea $f(x) = {{a}}x - {{b}}$. ¿Cuál es la preimagen de $y = {{a}} \\cdot {{c}} - {{b}}$?",
+      "template": "Sea $f(x) = {{a}}x - {{b}}$. ¿Cuál es la preimagen de $y = {{a*c-b}}$?",
       "opciones": [
         "$x = {{c}}$",
-        "$x = {{a}} \\cdot {{c}}$",
-        "$x = {{c}} + {{b}}$",
-        "$x = {{c}} - {{a}}$"
+        "$x = {{a*c}}$",
+        "$x = {{c+b}}$",
+        "$x = {{c-a}}$"
       ],
       "respuesta_correcta": 0,
       "variables": {
@@ -52,10 +52,10 @@
     {
       "template": "Sea $f(x) = {{a}} - x$. ¿Cuál es la imagen de $x = {{b}}$?",
       "opciones": [
-        "$f({{b}}) = {{b}} - {{a}}$",
-        "$f({{b}}) = {{a}} - {{b}}$",
-        "$f({{b}}) = {{a}} + {{b}}$",
-        "$f({{b}}) = {{a}} \\cdot {{b}}$"
+        "$f({{b}}) = {{b-a}}$",
+        "$f({{b}}) = {{a-b}}$",
+        "$f({{b}}) = {{a+b}}$",
+        "$f({{b}}) = {{a*b}}$"
       ],
       "respuesta_correcta": 1,
       "variables": {
@@ -66,10 +66,10 @@
     {
       "template": "Sea $f(x) = x^2 - {{a}}$. ¿Cuál es el valor de $f(-{{b}})$?",
       "opciones": [
-        "$f(-{{b}}) = -{{b}}^2 - {{a}}$",
-        "$f(-{{b}}) = {{b}}^2 + {{a}}$",
-        "$f(-{{b}}) = {{b}}^2 - {{a}}$",
-        "$f(-{{b}}) = -{{b}}^2 + {{a}}$"
+        "$f(-{{b}}) = {{-b*b-a}}$",
+        "$f(-{{b}}) = {{b*b+a}}$",
+        "$f(-{{b}}) = {{b*b-a}}$",
+        "$f(-{{b}}) = {{-b*b+a}}$"
       ],
       "respuesta_correcta": 2,
       "variables": {
@@ -94,10 +94,10 @@
     {
       "template": "Sea $f(x) = {{a}}x^2$. ¿Cuál es el valor de $f({{b}})$?",
       "opciones": [
-        "$f({{b}}) = {{a}} \\cdot {{b}}^2$",
-        "$f({{b}}) = {{a}} \\cdot {{b}}$",
-        "$f({{b}}) = {{a}}^2 \\cdot {{b}}$",
-        "$f({{b}}) = ({{a}} \\cdot {{b}})^2$"
+        "$f({{b}}) = {{a*b*b}}$",
+        "$f({{b}}) = {{a*b}}$",
+        "$f({{b}}) = {{a*a*b}}$",
+        "$f({{b}}) = {{a*b*a*b}}$"
       ],
       "respuesta_correcta": 0,
       "variables": {
@@ -106,12 +106,12 @@
       }
     },
     {
-      "template": "Sea $f(x) = {{a}}x + {{b}}$. Si $f(x) = {{a}} \\cdot {{c}} + {{b}}$, ¿cuál es la preimagen?",
+      "template": "Sea $f(x) = {{a}}x + {{b}}$. Si $f(x) = {{a*c+b}}$, ¿cuál es la preimagen?",
       "opciones": [
-        "$x = {{a}} + {{c}}$",
-        "$x = {{b}} + {{c}}$",
+        "$x = {{a+c}}$",
+        "$x = {{b+c}}$",
         "$x = {{c}}$",
-        "$x = {{a}} \\cdot {{c}}$"
+        "$x = {{a*c}}$"
       ],
       "respuesta_correcta": 2,
       "variables": {
@@ -124,8 +124,8 @@
       "template": "Sea $f(x) = x + {{a}}$, con dominio $\\{1, 2, 3, 4\\}$ y codominio $\\mathbb{R}$. ¿Cuál es el ámbito (rango) de $f$?",
       "opciones": [
         "$\\{1, 2, 3, 4\\}$",
-        "$\\{{{a}}, {{a}}+1, {{a}}+2, {{a}}+3\\}$",
-        "$\\{1+{{a}}, 2+{{a}}, 3+{{a}}, 4+{{a}}\\}$",
+        "$\\{ {{a}}, {{a+1}}, {{a+2}}, {{a+3}}\\}$",
+        "$\\{ {{1+a}}, {{2+a}}, {{3+a}}, {{4+a}}\\}$",
         "$\\mathbb{R}$"
       ],
       "respuesta_correcta": 2,
@@ -137,8 +137,8 @@
       "template": "Sea $f(x) = {{a}}x$, con dominio $\\{1, 2, 3\\}$ y codominio $\\mathbb{R}$. ¿Cuál es el ámbito de $f$?",
       "opciones": [
         "$\\{1, 2, 3\\}$",
-        "$\\{{{a}}, 2 \\cdot {{a}}, 3 \\cdot {{a}}\\}$",
-        "$\\{{{a}}+1, {{a}}+2, {{a}}+3\\}$",
+        "$\\{ {{a}}, {{2*a}}, {{3*a}}\\}$",
+        "$\\{ {{a+1}}, {{a+2}}, {{a+3}}\\}$",
         "$\\mathbb{R}$"
       ],
       "respuesta_correcta": 1,
@@ -149,9 +149,9 @@
     {
       "template": "Sea $f(x) = x^2$, con dominio $\\{-{{a}}, 0, {{a}}\\}$ y codominio $\\mathbb{R}$. ¿Cuál es el ámbito de $f$?",
       "opciones": [
-        "$\\{-{{a}}^2, 0, {{a}}^2\\}$",
+        "$\\{ {{-a*a}}, 0, {{a*a}}\\}$",
         "$\\{0, {{a}}\\}$",
-        "$\\{0, {{a}}^2\\}$",
+        "$\\{0, {{a*a}}\\}$",
         "$\\{-{{a}}, 0, {{a}}\\}$"
       ],
       "respuesta_correcta": 2,
@@ -160,12 +160,12 @@
       }
     },
     {
-      "template": "Sea $f(x) = x - {{a}}$, con dominio $\\{{{a}}, {{a}}+1, {{a}}+2\\}$ y codominio $\\mathbb{R}$. ¿Cuál es el ámbito de $f$?",
+      "template": "Sea $f(x) = x - {{a}}$, con dominio $\\{ {{a}}, {{a+1}}, {{a+2}}\\}$ y codominio $\\mathbb{R}$. ¿Cuál es el ámbito de $f$?",
       "opciones": [
         "$\\{0, 1, 2\\}$",
-        "$\\{-{{a}}, -{{a}}+1, -{{a}}+2\\}$",
-        "$\\{{{a}}, {{a}}+1, {{a}}+2\\}$",
-        "$\\{2 \\cdot {{a}}, 2 \\cdot {{a}}+1, 2 \\cdot {{a}}+2\\}$"
+        "$\\{ {{-a}}, {{-a+1}}, {{-a+2}}\\}$",
+        "$\\{ {{a}}, {{a+1}}, {{a+2}}\\}$",
+        "$\\{ {{2*a}}, {{2*a+1}}, {{2*a+2}}\\}$"
       ],
       "respuesta_correcta": 0,
       "variables": {
@@ -175,10 +175,10 @@
     {
       "template": "Sea $f(x) = x^2 + {{a}}$, con dominio $\\{-1, 0, 1, 2\\}$ y codominio $\\mathbb{R}$. ¿Cuál es el ámbito de $f$?",
       "opciones": [
-        "$\\{-1+{{a}}, {{a}}, 1+{{a}}, 4+{{a}}\\}$",
+        "$\\{ {{-1+a}}, {{a}}, {{1+a}}, {{4+a}}\\}$",
         "$\\{-1, 0, 1, 4\\}$",
-        "$\\{{{a}}, 1+{{a}}, 4+{{a}}\\}$",
-        "$\\{{{a}}-1, {{a}}, {{a}}+1, {{a}}+2\\}$"
+        "$\\{ {{a}}, {{1+a}}, {{4+a}}\\}$",
+        "$\\{ {{a-1}}, {{a}}, {{a+1}}, {{a+2}}\\}$"
       ],
       "respuesta_correcta": 2,
       "variables": {
@@ -188,10 +188,10 @@
     {
       "template": "Sea $f(x) = {{a}} - x$, con dominio $\\{0, 1, 2, 3\\}$ y codominio $\\mathbb{R}$. ¿Cuál es el ámbito de $f$?",
       "opciones": [
-        "$\\{{{a}}, {{a}}-1, {{a}}-2, {{a}}-3\\}$",
-        "$\\{{{a}}, {{a}}+1, {{a}}+2, {{a}}+3\\}$",
+        "$\\{ {{a}}, {{a-1}}, {{a-2}}, {{a-3}}\\}$",
+        "$\\{ {{a}}, {{a+1}}, {{a+2}}, {{a+3}}\\}$",
         "$\\{0, 1, 2, 3\\}$",
-        "$\\{-{{a}}, -{{a}}+1, -{{a}}+2, -{{a}}+3\\}$"
+        "$\\{ {{-a}}, {{-a+1}}, {{-a+2}}, {{-a+3}}\\}$"
       ],
       "respuesta_correcta": 0,
       "variables": {

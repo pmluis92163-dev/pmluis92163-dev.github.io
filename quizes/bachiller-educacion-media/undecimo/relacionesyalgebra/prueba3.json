@@ -9,9 +9,9 @@
       "template": "Resuelva: $2^x = 2^{{{a}}}$",
       "opciones": [
         "$x = {{a}}$",
-        "$x = 2^{{{a}}}$",
-        "$x = \\frac{{{a}}}{2}$",
-        "$x = {{2*a}}$"
+        "$x = {{2*a}}$",
+        "$x = {{a+1}}$",
+        "$x = {{a-1}}$"
       ],
       "respuesta_correcta": 0,
       "variables": {
@@ -24,7 +24,7 @@
         "$x = {{a}}$",
         "$x = {{a+1}}$",
         "$x = {{a-1}}$",
-        "$x = \\frac{{{a}}}{3}$"
+        "$x = {{3*a}}$"
       ],
       "respuesta_correcta": 2,
       "variables": {
@@ -32,42 +32,42 @@
       }
     },
     {
-      "template": "Resuelva: $5^{2x} = 5^{{{a}}}$",
+      "template": "Resuelva: $5^{2x} = 5^{ {{2*r}} }$",
       "opciones": [
-        "$x = {{2*a}}$",
-        "$x = {{a-2}}$",
-        "$x = {{a*a}}$",
-        "$x = \\frac{{{a}}}{2}$"
+        "$x = {{2*r}}$",
+        "$x = {{r+1}}$",
+        "$x = {{4*r}}$",
+        "$x = {{r}}$"
       ],
       "respuesta_correcta": 3,
       "variables": {
-        "a": {"min": 2, "max": 8}
+        "r": {"min": 2, "max": 6}
       }
     },
     {
-      "template": "Resuelva: $4^x = 2^{{{a}}}$",
+      "template": "Resuelva: $4^x = 2^{ {{2*r}} }$",
       "opciones": [
-        "$x = {{a}}$",
-        "$x = \\frac{{{a}}}{2}$",
-        "$x = {{2*a}}$",
-        "$x = {{a-2}}$"
+        "$x = {{2*r}}$",
+        "$x = {{r}}$",
+        "$x = {{4*r}}$",
+        "$x = {{r+1}}$"
       ],
       "respuesta_correcta": 1,
       "variables": {
-        "a": {"min": 2, "max": 8}
+        "r": {"min": 2, "max": 6}
       }
     },
     {
-      "template": "Resuelva: $9^x = 3^{{{a}}}$",
+      "template": "Resuelva: $9^x = 3^{ {{2*r}} }$",
       "opciones": [
-        "$x = {{3*a}}$",
-        "$x = {{a-3}}$",
-        "$x = {{a}}$",
-        "$x = \\frac{{{a}}}{2}$"
+        "$x = {{4*r}}$",
+        "$x = {{2*r}}$",
+        "$x = {{r}}$",
+        "$x = {{r+1}}$"
       ],
-      "respuesta_correcta": 3,
+      "respuesta_correcta": 2,
       "variables": {
-        "a": {"min": 2, "max": 8}
+        "r": {"min": 2, "max": 6}
       }
     },
     {
@@ -102,7 +102,7 @@
         "$x = {{b+a}}$",
         "$x = {{b-a}}$",
         "$x = {{a-b}}$",
-        "$x = {{a*b}}$"
+        "$x = {{2*a+b}}$"
       ],
       "respuesta_correcta": 1,
       "variables": {
@@ -111,43 +111,43 @@
       }
     },
     {
-      "template": "Resuelva: $8^x = 2^{{{a}}}$",
+      "template": "Resuelva: $8^x = 2^{ {{3*r}} }$",
       "opciones": [
-        "$x = \\frac{{{a}}}{3}$",
-        "$x = {{3*a}}$",
-        "$x = {{a-3}}$",
-        "$x = {{a}}$"
+        "$x = {{r}}$",
+        "$x = {{3*r}}$",
+        "$x = {{r+1}}$",
+        "$x = {{9*r}}$"
       ],
       "respuesta_correcta": 0,
       "variables": {
-        "a": {"min": 3, "max": 9}
+        "r": {"min": 2, "max": 4}
       }
     },
     {
-      "template": "Resuelva: $27^x = 3^{{{a}}}$",
+      "template": "Resuelva: $27^x = 3^{ {{3*r}} }$",
       "opciones": [
-        "$x = {{3*a}}$",
-        "$x = {{a}}$",
-        "$x = {{a-3}}$",
-        "$x = \\frac{{{a}}}{3}$"
+        "$x = {{3*r}}$",
+        "$x = {{9*r}}$",
+        "$x = {{r+1}}$",
+        "$x = {{r}}$"
       ],
       "respuesta_correcta": 3,
       "variables": {
-        "a": {"min": 3, "max": 9}
+        "r": {"min": 2, "max": 4}
       }
     },
     {
-      "template": "Resuelva: $5^{ {{a}}x} = 5^{{{b}}}$",
+      "template": "Resuelva: $5^{ {{a}}x} = 5^{ {{a*r}} }$",
       "opciones": [
-        "$x = {{a*b}}$",
-        "$x = {{b-a}}$",
-        "$x = \\frac{{{b}}}{{{a}}}$",
-        "$x = {{a+b}}$"
+        "$x = {{a*r}}$",
+        "$x = {{a*a*r}}$",
+        "$x = {{r}}$",
+        "$x = {{r+1}}$"
       ],
       "respuesta_correcta": 2,
       "variables": {
         "a": {"min": 2, "max": 4},
-        "b": {"min": 4, "max": 8}
+        "r": {"min": 2, "max": 5}
       }
     },
     {
@@ -156,34 +156,34 @@
         "$x = {{b-a}}$",
         "$x = {{a+b}}$",
         "$x = {{a-b}}$",
-        "$x = {{a*b}}$"
+        "$x = {{2*a+b}}$"
       ],
       "respuesta_correcta": 1,
       "variables": {
-        "a": {"min": 1, "max": 5},
-        "b": {"min": 2, "max": 6}
+        "a": {"min": 1, "max": 4},
+        "b": {"min": 5, "max": 8}
       }
     },
     {
-      "template": "Resuelva: $16^x = 4^{{{a}}}$",
+      "template": "Resuelva: $16^x = 4^{ {{2*r}} }$",
       "opciones": [
-        "$x = {{4*a}}$",
-        "$x = {{a}}$",
-        "$x = \\frac{{{a}}}{2}$",
-        "$x = {{a-4}}$"
+        "$x = {{4*r}}$",
+        "$x = {{2*r}}$",
+        "$x = {{r}}$",
+        "$x = {{r+1}}$"
       ],
       "respuesta_correcta": 2,
       "variables": {
-        "a": {"min": 2, "max": 8}
+        "r": {"min": 2, "max": 6}
       }
     },
     {
       "template": "Resuelva: $2^{ {{a}}x+{{b}} } = 2^{ {{a*r+b}} }$",
       "opciones": [
-        "$x = {{r+b}}$",
-        "$x = {{r}}$",
         "$x = {{a*r}}$",
-        "$x = {{r-1}}$"
+        "$x = {{r}}$",
+        "$x = {{r-1}}$",
+        "$x = {{r+1}}$"
       ],
       "respuesta_correcta": 1,
       "variables": {
@@ -196,9 +196,9 @@
       "template": "Resuelva: $\\left(\\frac{1}{2}\\right)^x = 2^{{{a}}}$",
       "opciones": [
         "$x = {{a}}$",
-        "$x = \\frac{1}{{{a}}}$",
+        "$x = {{3*a}}$",
         "$x = -{{a}}$",
-        "$x = \\frac{{{a}}}{2}$"
+        "$x = {{a+1}}$"
       ],
       "respuesta_correcta": 2,
       "variables": {
@@ -210,8 +210,8 @@
       "opciones": [
         "$x = {{a}}$",
         "$x = -{{a}}$",
-        "$x = \\frac{1}{{{a}}}$",
-        "$x = {{3*a}}$"
+        "$x = {{3*a}}$",
+        "$x = {{a+1}}$"
       ],
       "respuesta_correcta": 1,
       "variables": {
@@ -219,24 +219,24 @@
       }
     },
     {
-      "template": "Resuelva: $25^x = 5^{{{a}}}$",
+      "template": "Resuelva: $25^x = 5^{ {{2*r}} }$",
       "opciones": [
-        "$x = {{a}}$",
-        "$x = {{5*a}}$",
-        "$x = {{a-2}}$",
-        "$x = \\frac{{{a}}}{2}$"
+        "$x = {{2*r}}$",
+        "$x = {{4*r}}$",
+        "$x = {{r+1}}$",
+        "$x = {{r}}$"
       ],
       "respuesta_correcta": 3,
       "variables": {
-        "a": {"min": 2, "max": 8}
+        "r": {"min": 2, "max": 6}
       }
     },
     {
       "template": "Resuelva: $4^{x+{{a}}} = 2^{ {{2*r+2*a}} }$",
       "opciones": [
         "$x = {{r}}$",
-        "$x = {{r+a}}$",
-        "$x = {{r*2}}$",
+        "$x = {{2*r+2*a}}$",
+        "$x = {{2*r}}$",
         "$x = {{2*r+a}}$"
       ],
       "respuesta_correcta": 0,
@@ -263,8 +263,8 @@
       "template": "Resuelva: $\\left(\\frac{1}{{{a}}}\\right)^x = {{a}}^{{{b}}}$",
       "opciones": [
         "$x = {{b}}$",
-        "$x = \\frac{{{b}}}{{{a}}}$",
         "$x = {{a*b}}$",
+        "$x = {{a*b+1}}$",
         "$x = -{{b}}$"
       ],
       "respuesta_correcta": 3,
