@@ -32,7 +32,7 @@
       }
     },
     {
-      "template": "¿Cuál es el dominio de la función $f(x) = \\sqrt{{{a}}-x}$?",
+      "template": "¿Cuál es el dominio de la función $f(x) = \\sqrt{ {{a}} -x}$?",
       "opciones": [
         "$\\left[{{a}}, \\infty\\right[$",
         "$\\left]-\\infty, {{a}}\\right]$",
@@ -45,7 +45,7 @@
       }
     },
     {
-      "template": "¿Cuál es el dominio de la función $f(x) = \\sqrt{{{a}}+x}$?",
+      "template": "¿Cuál es el dominio de la función $f(x) = \\sqrt{ {{a} } +x}$?",
       "opciones": [
         "$\\left]-{{a}}, \\infty\\right[$",
         "$\\mathbb{R}$ (todos los reales)",
@@ -97,7 +97,7 @@
       }
     },
     {
-      "template": "¿Cuál es el ámbito de la función $f(x) = \\sqrt{{{a}}-x}$?",
+      "template": "¿Cuál es el ámbito de la función $f(x) = \\sqrt{ {{a}} -x}$?",
       "opciones": [
         "$\\left]-\\infty, {{a}}\\right]$",
         "$\\left[{{a}}, \\infty\\right[$",
@@ -113,7 +113,7 @@
       "template": "¿Cuál es el ámbito de la función $f(x) = \\sqrt{3x+{{a}}}$?",
       "opciones": [
         "$\\left[0, \\infty\\right[$",
-        "$\\left[\\frac{{{a}}}{3}, \\infty\\right[$",
+        "$\\left[\\frac{ {{a}} }{3}, \\infty\\right[$",
         "$\\left[-{{a}}, \\infty\\right[$",
         "$\\mathbb{R}$ (todos los reales)"
       ],
@@ -123,7 +123,7 @@
       }
     },
     {
-      "template": "¿Cuál es el ámbito de la función $f(x) = \\sqrt{x+{{a}}-{{a}}}$?",
+      "template": "¿Cuál es el ámbito de la función $f(x) = \\sqrt{x+{{a}}-{{b}}}$?",
       "opciones": [
         "$\\mathbb{R}$ (todos los reales)",
         "$\\left[0, \\infty\\right[$",
@@ -132,7 +132,8 @@
       ],
       "respuesta_correcta": 1,
       "variables": {
-        "a": {"min": 1, "max": 10}
+        "a": {"min": 1, "max": 8},
+        "b": {"min": 1, "max": 5}
       }
     },
     {
@@ -254,12 +255,12 @@
       }
     },
     {
-      "template": "Si $f(x) = \\sqrt{{{a}}x} + {{b}}$, ¿cuál es su función inversa $f^{-1}(x)$?",
+      "template": "Si $f(x) = \\sqrt{ {{a}} x} + {{b}}$, ¿cuál es su función inversa $f^{-1}(x)$?",
       "opciones": [
-        "$f^{-1}(x) = \\frac{x^2 - {{b}}}{{{a}}}$",
-        "$f^{-1}(x) = \\frac{(x-{{b}})^2}{{{a}}}$",
+        "$f^{-1}(x) = \\frac{x^2 - {{b}}}{ {{a}} }$",
+        "$f^{-1}(x) = \\frac{(x-{{b}})^2}{ {{a}} }$",
         "$f^{-1}(x) = (x-{{b}})^2 - {{a}}$",
-        "$f^{-1}(x) = \\sqrt{\\frac{x-{{b}}}{{{a}}}}$"
+        "$f^{-1}(x) = \\sqrt{\\frac{x-{{b}}}{ {{a}} }}$"
       ],
       "respuesta_correcta": 1,
       "variables": {
