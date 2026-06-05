@@ -1,7 +1,7 @@
 {
   "id": 4,
   "titulo": "Suma y Resta de Polinomios",
-  "habilitado": false,
+  "habilitado": true,
   "fecha_inicio": "2026-01-01",
   "fecha_fin": "2026-12-31",
   "preguntas": [
