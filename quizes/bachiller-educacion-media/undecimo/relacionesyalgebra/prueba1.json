@@ -1,7 +1,7 @@
 {
   "id": 1,
   "titulo": "Función Raíz Cuadrada",
-  "habilitado": true,
+  "habilitado": false,
   "fecha_inicio": "2026-01-01",
   "fecha_fin": "2026-12-31",
   "preguntas": [
@@ -45,7 +45,7 @@
       }
     },
     {
-      "template": "¿Cuál es el dominio de la función $f(x) = \\sqrt{ {{a} } +x}$?",
+      "template": "¿Cuál es el dominio de la función $f(x) = \\sqrt{ {{a}} +x}$?",
       "opciones": [
         "$\\left]-{{a}}, \\infty\\right[$",
         "$\\mathbb{R}$ (todos los reales)",
@@ -60,9 +60,9 @@
     {
       "template": "¿Cuál es el dominio de la función $f(x) = \\sqrt{2x-{{a}}}$?",
       "opciones": [
-        "$\\left[\\frac{{{a}}}{2}, \\infty\\right[$",
+        "$\\left[\\frac{ {{a}} }{2}, \\infty\\right[$",
         "$\\left[{{a}}, \\infty\\right[$",
-        "$\\left]-\\frac{{{a}}}{2}, \\infty\\right[$",
+        "$\\left]-\\frac{ {{a}} }{2}, \\infty\\right[$",
         "$\\mathbb{R}$ (todos los reales)"
       ],
       "respuesta_correcta": 0,
