@@ -24,7 +24,7 @@
       "template": "Sea $f(x) = x^2 + {{a}}$. ¿Cuál es el valor de $f({{b}})$?",
       "opciones": [
         "$f({{b}}) = {{b*b-a}}$",
-        "$f({{b}}) = {{2*b+a}}$",
+        "$f({{b}}) = {{3*b+a}}$",
         "$f({{b}}) = {{b+a}}$",
         "$f({{b}}) = {{b*b+a}}$"
       ],
@@ -108,7 +108,7 @@
     {
       "template": "Sea $f(x) = {{a}}x + {{b}}$. Si $f(x) = {{a*c+b}}$, ¿cuál es la preimagen?",
       "opciones": [
-        "$x = {{a+c}}$",
+        "$x = {{2*a+c}}$",
         "$x = {{b+c}}$",
         "$x = {{c}}$",
         "$x = {{a*c}}$"
