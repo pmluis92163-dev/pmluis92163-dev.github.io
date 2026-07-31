@@ -1,0 +1,417 @@
+{
+  "id": 9,
+  "titulo": "Logaritmos",
+  "habilitado": true,
+  "fecha_inicio": "2026-01-01",
+  "fecha_fin": "2026-12-31",
+  "preguntas": [
+    {
+      "template": "Exprese en forma logarítmica: $ {{b}}^{ {{n}} } = {{b**n}} $",
+      "opciones": [
+        "$\\log_{ {{b}} }({{b**n}}) = {{n}}$",
+        "$\\log_{ {{n}} }({{b**n}}) = {{b}}$",
+        "$\\log_{ {{b}} }({{n}}) = {{b**n}}$",
+        "$\\log_{ {{b**n}} }({{b}}) = {{n}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 3
+        },
+        "n": {
+          "min": 4,
+          "max": 6
+        }
+      }
+    },
+    {
+      "template": "Exprese en forma exponencial: $\\log_{ {{b}} }({{b**n}}) = {{n}}$",
+      "opciones": [
+        "$ {{n}}^{ {{b}} } = {{b**n}} $",
+        "$ {{b}}^{ {{n}} } = {{b**n}} $",
+        "$ {{b}}^{ {{b**n}} } = {{n}} $",
+        "$ {{b**n}}^{ {{n}} } = {{b}} $"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 3
+        },
+        "n": {
+          "min": 4,
+          "max": 6
+        }
+      }
+    },
+    {
+      "template": "Calcule: $\\log_{ {{b}} }({{b**n}})$",
+      "opciones": [
+        "$ {{b}} $",
+        "$ {{b**n}} $",
+        "$ {{n}} $",
+        "$ {{b*n}} $"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 3
+        },
+        "n": {
+          "min": 4,
+          "max": 5
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }(x) = {{n}}$",
+      "opciones": [
+        "$ x = {{b*n}} $",
+        "$ x = {{b+n}} $",
+        "$ x = {{n}} $",
+        "$ x = {{b**n}} $"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 3
+        },
+        "n": {
+          "min": 3,
+          "max": 5
+        }
+      }
+    },
+    {
+      "template": "Calcule: $\\log_{ {{b}} }(1)$",
+      "opciones": [
+        "$ 1 $",
+        "$ 0 $",
+        "$ {{b}} $",
+        "$ -1 $"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Si $\\log_{b}(x) = {{p}}$ y $\\log_{b}(y) = {{q}}$, calcule $\\log_{b}(xy)$",
+      "opciones": [
+        "$ {{p+q}} $",
+        "$ {{p*q}} $",
+        "$ {{p-q}} $",
+        "$ {{p}} $"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "p": {
+          "min": 2,
+          "max": 6
+        },
+        "q": {
+          "min": 3,
+          "max": 7
+        }
+      }
+    },
+    {
+      "template": "Si $\\log_{b}(x) = {{p}}$ y $\\log_{b}(y) = {{q}}$, calcule $\\log_{b}(xy)$",
+      "opciones": [
+        "$ {{p*q}} $",
+        "$ {{p+q}} $",
+        "$ {{p-q}} $",
+        "$ {{p}} $"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "p": {
+          "min": 2,
+          "max": 6
+        },
+        "q": {
+          "min": 3,
+          "max": 7
+        }
+      }
+    },
+    {
+      "template": "Si $\\log_{b}(x) = {{p}}$ y $\\log_{b}(y) = {{q}}$, calcule $\\log_{b}(xy)$",
+      "opciones": [
+        "$ {{p*q}} $",
+        "$ {{p-q}} $",
+        "$ {{p+q}} $",
+        "$ {{p}} $"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "p": {
+          "min": 2,
+          "max": 6
+        },
+        "q": {
+          "min": 3,
+          "max": 7
+        }
+      }
+    },
+    {
+      "template": "Si $\\log_{b}(x) = {{p}}$ y $\\log_{b}(y) = {{q}}$, calcule $\\log_{b}(xy)$",
+      "opciones": [
+        "$ {{p*q}} $",
+        "$ {{p-q}} $",
+        "$ {{p}} $",
+        "$ {{p+q}} $"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "p": {
+          "min": 2,
+          "max": 6
+        },
+        "q": {
+          "min": 3,
+          "max": 7
+        }
+      }
+    },
+    {
+      "template": "Si $\\log_{b}(x) = {{p}}$ y $\\log_{b}(y) = {{q}}$, calcule $\\log_{b}\\left(\\dfrac{x}{y}\\right)$",
+      "opciones": [
+        "$ {{p+q}} $",
+        "$ {{p-q}} $",
+        "$ {{p*q}} $",
+        "$ {{q-p}} $"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "p": {
+          "min": 5,
+          "max": 9
+        },
+        "q": {
+          "min": 1,
+          "max": 4
+        }
+      }
+    },
+    {
+      "template": "Si $\\log_{b}(x) = {{p}}$ y $\\log_{b}(y) = {{q}}$, calcule $\\log_{b}\\left(\\dfrac{x}{y}\\right)$",
+      "opciones": [
+        "$ {{p+q}} $",
+        "$ {{p*q}} $",
+        "$ {{p-q}} $",
+        "$ {{q-p}} $"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "p": {
+          "min": 5,
+          "max": 9
+        },
+        "q": {
+          "min": 1,
+          "max": 4
+        }
+      }
+    },
+    {
+      "template": "Si $\\log_{b}(x) = {{p}}$ y $\\log_{b}(y) = {{q}}$, calcule $\\log_{b}\\left(\\dfrac{x}{y}\\right)$",
+      "opciones": [
+        "$ {{p+q}} $",
+        "$ {{p*q}} $",
+        "$ {{q-p}} $",
+        "$ {{p-q}} $"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "p": {
+          "min": 5,
+          "max": 9
+        },
+        "q": {
+          "min": 1,
+          "max": 4
+        }
+      }
+    },
+    {
+      "template": "Si $\\log_{b}(x) = {{p}}$ y $\\log_{b}(y) = {{q}}$, calcule $\\log_{b}\\left(\\dfrac{x}{y}\\right)$",
+      "opciones": [
+        "$ {{p-q}} $",
+        "$ {{p+q}} $",
+        "$ {{p*q}} $",
+        "$ {{q-p}} $"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "p": {
+          "min": 5,
+          "max": 9
+        },
+        "q": {
+          "min": 1,
+          "max": 4
+        }
+      }
+    },
+    {
+      "template": "Si $\\log_{b}(x) = {{p}}$, calcule $\\log_{b}(x^{ {{k}} })$",
+      "opciones": [
+        "$ {{p+k}} $",
+        "$ {{p}} $",
+        "$ {{k*p}} $",
+        "$ {{k}} $"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "p": {
+          "min": 2,
+          "max": 4
+        },
+        "k": {
+          "min": 5,
+          "max": 7
+        }
+      }
+    },
+    {
+      "template": "Si $\\log_{b}(x) = {{p}}$, calcule $\\log_{b}(x^{ {{k}} })$",
+      "opciones": [
+        "$ {{p+k}} $",
+        "$ {{p}} $",
+        "$ {{k}} $",
+        "$ {{k*p}} $"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "p": {
+          "min": 2,
+          "max": 4
+        },
+        "k": {
+          "min": 5,
+          "max": 7
+        }
+      }
+    },
+    {
+      "template": "Si $\\log_{b}(x) = {{p}}$, calcule $\\log_{b}(x^{ {{k}} })$",
+      "opciones": [
+        "$ {{k*p}} $",
+        "$ {{p+k}} $",
+        "$ {{p}} $",
+        "$ {{k}} $"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "p": {
+          "min": 2,
+          "max": 4
+        },
+        "k": {
+          "min": 5,
+          "max": 7
+        }
+      }
+    },
+    {
+      "template": "Si $\\log_{b}(x) = {{p}}$, calcule $\\log_{b}(x^{ {{k}} })$",
+      "opciones": [
+        "$ {{p+k}} $",
+        "$ {{k*p}} $",
+        "$ {{p}} $",
+        "$ {{k}} $"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "p": {
+          "min": 2,
+          "max": 4
+        },
+        "k": {
+          "min": 5,
+          "max": 7
+        }
+      }
+    },
+    {
+      "template": "Si $\\log_{b}(x) = {{p}}$ y $\\log_{b}(y) = {{q}}$, calcule $\\log_{b}(x^{ {{k}} } y)$",
+      "opciones": [
+        "$ {{k*(p+q)}} $",
+        "$ {{p+q}} $",
+        "$ {{k+p+q}} $",
+        "$ {{k*p+q}} $"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "p": {
+          "min": 2,
+          "max": 4
+        },
+        "q": {
+          "min": 2,
+          "max": 6
+        },
+        "k": {
+          "min": 3,
+          "max": 4
+        }
+      }
+    },
+    {
+      "template": "Si $\\log_{b}(x) = {{p}}$ y $\\log_{b}(y) = {{q}}$, calcule $\\log_{b}(x^{ {{k}} } y)$",
+      "opciones": [
+        "$ {{k*p+q}} $",
+        "$ {{k*(p+q)}} $",
+        "$ {{p+q}} $",
+        "$ {{k+p+q}} $"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "p": {
+          "min": 2,
+          "max": 4
+        },
+        "q": {
+          "min": 2,
+          "max": 6
+        },
+        "k": {
+          "min": 3,
+          "max": 4
+        }
+      }
+    },
+    {
+      "template": "Si $\\log_{b}(x) = {{p}}$ y $\\log_{b}(y) = {{q}}$, calcule $\\log_{b}(x^{ {{k}} } y)$",
+      "opciones": [
+        "$ {{k*(p+q)}} $",
+        "$ {{k*p+q}} $",
+        "$ {{p+q}} $",
+        "$ {{k+p+q}} $"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "p": {
+          "min": 2,
+          "max": 4
+        },
+        "q": {
+          "min": 2,
+          "max": 6
+        },
+        "k": {
+          "min": 3,
+          "max": 4
+        }
+      }
+    }
+  ]
+}

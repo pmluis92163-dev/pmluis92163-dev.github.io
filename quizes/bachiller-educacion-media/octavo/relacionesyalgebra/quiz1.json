@@ -1,0 +1,409 @@
+{
+  "id": 6,
+  "titulo": "Ecuaciones de Un Paso",
+  "habilitado": true,
+  "fecha_inicio": "2026-01-01",
+  "fecha_fin": "2026-12-31",
+  "preguntas": [
+    {
+      "template": "Resuelva: $x + {{a}} = {{s+a}}$",
+      "opciones": [
+        "$x = {{s}}$",
+        "$x = {{s+a}}$",
+        "$x = {{s+2*a}}$",
+        "$x = {{s-a}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "s": {
+          "min": 1,
+          "max": 15
+        },
+        "a": {
+          "min": 1,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva: $x + {{a}} = {{s+a}}$",
+      "opciones": [
+        "$x = {{s+a}}$",
+        "$x = {{s}}$",
+        "$x = {{s+2*a}}$",
+        "$x = {{s-a}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "s": {
+          "min": 1,
+          "max": 15
+        },
+        "a": {
+          "min": 1,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva: $x + {{a}} = {{s+a}}$",
+      "opciones": [
+        "$x = {{s+a}}$",
+        "$x = {{s+2*a}}$",
+        "$x = {{s}}$",
+        "$x = {{s-a}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "s": {
+          "min": 1,
+          "max": 15
+        },
+        "a": {
+          "min": 1,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva: $x + {{a}} = {{s+a}}$",
+      "opciones": [
+        "$x = {{s+a}}$",
+        "$x = {{s+2*a}}$",
+        "$x = {{s-a}}$",
+        "$x = {{s}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "s": {
+          "min": 1,
+          "max": 15
+        },
+        "a": {
+          "min": 1,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva: $x + {{a}} = {{s+a}}$",
+      "opciones": [
+        "$x = {{s}}$",
+        "$x = {{s+a}}$",
+        "$x = {{s+2*a}}$",
+        "$x = {{s-a}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "s": {
+          "min": 1,
+          "max": 15
+        },
+        "a": {
+          "min": 1,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva: $x - {{a}} = {{s-a}}$",
+      "opciones": [
+        "$x = {{s-a}}$",
+        "$x = {{s}}$",
+        "$x = {{s-2*a}}$",
+        "$x = {{s+a}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "s": {
+          "min": 2,
+          "max": 15
+        },
+        "a": {
+          "min": 1,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva: $x - {{a}} = {{s-a}}$",
+      "opciones": [
+        "$x = {{s-a}}$",
+        "$x = {{s-2*a}}$",
+        "$x = {{s}}$",
+        "$x = {{s+a}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "s": {
+          "min": 2,
+          "max": 15
+        },
+        "a": {
+          "min": 1,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva: $x - {{a}} = {{s-a}}$",
+      "opciones": [
+        "$x = {{s-a}}$",
+        "$x = {{s-2*a}}$",
+        "$x = {{s+a}}$",
+        "$x = {{s}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "s": {
+          "min": 2,
+          "max": 15
+        },
+        "a": {
+          "min": 1,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva: $x - {{a}} = {{s-a}}$",
+      "opciones": [
+        "$x = {{s}}$",
+        "$x = {{s-a}}$",
+        "$x = {{s-2*a}}$",
+        "$x = {{s+a}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "s": {
+          "min": 2,
+          "max": 15
+        },
+        "a": {
+          "min": 1,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva: $x - {{a}} = {{s-a}}$",
+      "opciones": [
+        "$x = {{s-a}}$",
+        "$x = {{s}}$",
+        "$x = {{s-2*a}}$",
+        "$x = {{s+a}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "s": {
+          "min": 2,
+          "max": 15
+        },
+        "a": {
+          "min": 1,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva: ${{a}}x = {{a*s}}$",
+      "opciones": [
+        "$x = {{a*s}}$",
+        "$x = {{a+s}}$",
+        "$x = {{s}}$",
+        "$x = {{s+1}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {
+          "min": 3,
+          "max": 6
+        },
+        "s": {
+          "min": 2,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva: ${{a}}x = {{a*s}}$",
+      "opciones": [
+        "$x = {{a*s}}$",
+        "$x = {{a+s}}$",
+        "$x = {{s+1}}$",
+        "$x = {{s}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "a": {
+          "min": 3,
+          "max": 6
+        },
+        "s": {
+          "min": 2,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva: ${{a}}x = {{a*s}}$",
+      "opciones": [
+        "$x = {{s}}$",
+        "$x = {{a*s}}$",
+        "$x = {{a+s}}$",
+        "$x = {{s+1}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {
+          "min": 3,
+          "max": 6
+        },
+        "s": {
+          "min": 2,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva: ${{a}}x = {{a*s}}$",
+      "opciones": [
+        "$x = {{a*s}}$",
+        "$x = {{s}}$",
+        "$x = {{a+s}}$",
+        "$x = {{s+1}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "a": {
+          "min": 3,
+          "max": 6
+        },
+        "s": {
+          "min": 2,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva: ${{a}}x = {{a*s}}$",
+      "opciones": [
+        "$x = {{a*s}}$",
+        "$x = {{a+s}}$",
+        "$x = {{s}}$",
+        "$x = {{s+1}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {
+          "min": 3,
+          "max": 6
+        },
+        "s": {
+          "min": 2,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva: $\\dfrac{x}{ {{a}} } = {{c}}$",
+      "opciones": [
+        "$x = {{c}}$",
+        "$x = {{a+c}}$",
+        "$x = {{c-a}}$",
+        "$x = {{a*c}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "a": {
+          "min": 2,
+          "max": 5
+        },
+        "c": {
+          "min": 3,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "Resuelva: $\\dfrac{x}{ {{a}} } = {{c}}$",
+      "opciones": [
+        "$x = {{a*c}}$",
+        "$x = {{c}}$",
+        "$x = {{a+c}}$",
+        "$x = {{c-a}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {
+          "min": 2,
+          "max": 5
+        },
+        "c": {
+          "min": 3,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "Resuelva: $\\dfrac{x}{ {{a}} } = {{c}}$",
+      "opciones": [
+        "$x = {{c}}$",
+        "$x = {{a*c}}$",
+        "$x = {{a+c}}$",
+        "$x = {{c-a}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "a": {
+          "min": 2,
+          "max": 5
+        },
+        "c": {
+          "min": 3,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "Resuelva: $\\dfrac{x}{ {{a}} } = {{c}}$",
+      "opciones": [
+        "$x = {{c}}$",
+        "$x = {{a+c}}$",
+        "$x = {{a*c}}$",
+        "$x = {{c-a}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {
+          "min": 2,
+          "max": 5
+        },
+        "c": {
+          "min": 3,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "Resuelva: $\\dfrac{x}{ {{a}} } = {{c}}$",
+      "opciones": [
+        "$x = {{c}}$",
+        "$x = {{a+c}}$",
+        "$x = {{c-a}}$",
+        "$x = {{a*c}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "a": {
+          "min": 2,
+          "max": 5
+        },
+        "c": {
+          "min": 3,
+          "max": 8
+        }
+      }
+    }
+  ]
+}

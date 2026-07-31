@@ -1,0 +1,821 @@
+{
+  "id": 5,
+  "titulo": "Ecuación de la Recta (y = mx + b)",
+  "habilitado": true,
+  "fecha_inicio": "2026-01-01",
+  "fecha_fin": "2026-12-31",
+  "preguntas": [
+    {
+      "template": "La recta pasa por los puntos $A({{p}}, {{m*p+b}})$ y $B({{q}}, {{m*q+b}})$. ¿Cuál es la pendiente $m$?",
+      "opciones": [
+        "$m = {{m}}$",
+        "$m = {{-m}}$",
+        "$m = {{m*q-m*p}}$",
+        "$m = {{m+1}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 6
+        },
+        "b": {
+          "min": 1,
+          "max": 9
+        },
+        "p": {
+          "min": 1,
+          "max": 3
+        },
+        "q": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "La recta pasa por los puntos $A({{p}}, {{m*p+b}})$ y $B({{q}}, {{m*q+b}})$. ¿Cuál es la pendiente $m$?",
+      "opciones": [
+        "$m = {{-m}}$",
+        "$m = {{m*q-m*p}}$",
+        "$m = {{m}}$",
+        "$m = {{m+1}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 6
+        },
+        "b": {
+          "min": 1,
+          "max": 9
+        },
+        "p": {
+          "min": 1,
+          "max": 3
+        },
+        "q": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "La recta pasa por los puntos $A({{p}}, {{m*p+b}})$ y $B({{q}}, {{m*q+b}})$. ¿Cuál es la pendiente $m$?",
+      "opciones": [
+        "$m = {{-m}}$",
+        "$m = {{m}}$",
+        "$m = {{m*q-m*p}}$",
+        "$m = {{m+1}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 6
+        },
+        "b": {
+          "min": 1,
+          "max": 9
+        },
+        "p": {
+          "min": 1,
+          "max": 3
+        },
+        "q": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "La recta pasa por los puntos $A({{p}}, {{m*p+b}})$ y $B({{q}}, {{m*q+b}})$. ¿Cuál es la pendiente $m$?",
+      "opciones": [
+        "$m = {{-m}}$",
+        "$m = {{m*q-m*p}}$",
+        "$m = {{m+1}}$",
+        "$m = {{m}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 6
+        },
+        "b": {
+          "min": 1,
+          "max": 9
+        },
+        "p": {
+          "min": 1,
+          "max": 3
+        },
+        "q": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "La recta pasa por los puntos $A({{p}}, {{m*p+b}})$ y $B({{q}}, {{m*q+b}})$. ¿Cuál es la pendiente $m$?",
+      "opciones": [
+        "$m = {{-m}}$",
+        "$m = {{m}}$",
+        "$m = {{m*q-m*p}}$",
+        "$m = {{m+1}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "m": {
+          "min": -6,
+          "max": -2
+        },
+        "b": {
+          "min": 1,
+          "max": 9
+        },
+        "p": {
+          "min": 1,
+          "max": 3
+        },
+        "q": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "La recta pasa por los puntos $A({{p}}, {{m*p+b}})$ y $B({{q}}, {{m*q+b}})$. ¿Cuál es la pendiente $m$?",
+      "opciones": [
+        "$m = {{m}}$",
+        "$m = {{-m}}$",
+        "$m = {{m*q-m*p}}$",
+        "$m = {{m+1}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "m": {
+          "min": -6,
+          "max": -2
+        },
+        "b": {
+          "min": 1,
+          "max": 9
+        },
+        "p": {
+          "min": 1,
+          "max": 3
+        },
+        "q": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "La recta pasa por los puntos $A({{p}}, {{m*p+b}})$ y $B({{q}}, {{m*q+b}})$. ¿Cuál es la pendiente $m$?",
+      "opciones": [
+        "$m = {{-m}}$",
+        "$m = {{m*q-m*p}}$",
+        "$m = {{m+1}}$",
+        "$m = {{m}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "m": {
+          "min": -6,
+          "max": -2
+        },
+        "b": {
+          "min": 1,
+          "max": 9
+        },
+        "p": {
+          "min": 1,
+          "max": 3
+        },
+        "q": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "La recta pasa por los puntos $A({{p}}, {{m*p+b}})$ y $B({{q}}, {{m*q+b}})$. ¿Cuál es la pendiente $m$?",
+      "opciones": [
+        "$m = {{-m}}$",
+        "$m = {{m*q-m*p}}$",
+        "$m = {{m}}$",
+        "$m = {{m+1}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "m": {
+          "min": -6,
+          "max": -2
+        },
+        "b": {
+          "min": 1,
+          "max": 9
+        },
+        "p": {
+          "min": 1,
+          "max": 3
+        },
+        "q": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "La recta pasa por los puntos $A({{p}}, {{m*p+b}})$ y $B({{q}}, {{m*q+b}})$. ¿Cuál es el intercepto $b$ con el eje $y$?",
+      "opciones": [
+        "$b = {{b}}$",
+        "$b = {{-b}}$",
+        "$b = {{m*p+b}}$",
+        "$b = {{b+m}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 5
+        },
+        "b": {
+          "min": 2,
+          "max": 9
+        },
+        "p": {
+          "min": 2,
+          "max": 3
+        },
+        "q": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "La recta pasa por los puntos $A({{p}}, {{m*p+b}})$ y $B({{q}}, {{m*q+b}})$. ¿Cuál es el intercepto $b$ con el eje $y$?",
+      "opciones": [
+        "$b = {{-b}}$",
+        "$b = {{m*p+b}}$",
+        "$b = {{b}}$",
+        "$b = {{b+m}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 5
+        },
+        "b": {
+          "min": 2,
+          "max": 9
+        },
+        "p": {
+          "min": 2,
+          "max": 3
+        },
+        "q": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "La recta pasa por los puntos $A({{p}}, {{m*p+b}})$ y $B({{q}}, {{m*q+b}})$. ¿Cuál es el intercepto $b$ con el eje $y$?",
+      "opciones": [
+        "$b = {{-b}}$",
+        "$b = {{b}}$",
+        "$b = {{m*p+b}}$",
+        "$b = {{b+m}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 5
+        },
+        "b": {
+          "min": 2,
+          "max": 9
+        },
+        "p": {
+          "min": 2,
+          "max": 3
+        },
+        "q": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "La recta pasa por los puntos $A({{p}}, {{m*p+b}})$ y $B({{q}}, {{m*q+b}})$. ¿Cuál es el intercepto $b$ con el eje $y$?",
+      "opciones": [
+        "$b = {{-b}}$",
+        "$b = {{m*p+b}}$",
+        "$b = {{b+m}}$",
+        "$b = {{b}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 5
+        },
+        "b": {
+          "min": 2,
+          "max": 9
+        },
+        "p": {
+          "min": 2,
+          "max": 3
+        },
+        "q": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "La recta pasa por los puntos $A({{p}}, {{m*p+b}})$ y $B({{q}}, {{m*q+b}})$. ¿Cuál es el intercepto $b$ con el eje $y$?",
+      "opciones": [
+        "$b = {{b}}$",
+        "$b = {{-b}}$",
+        "$b = {{m*p+b}}$",
+        "$b = {{b+m}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 5
+        },
+        "b": {
+          "min": 2,
+          "max": 9
+        },
+        "p": {
+          "min": 2,
+          "max": 3
+        },
+        "q": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "La recta pasa por los puntos $A({{p}}, {{m*p+b}})$ y $B({{q}}, {{m*q+b}})$. ¿Cuál es el intercepto $b$ con el eje $y$?",
+      "opciones": [
+        "$b = {{-b}}$",
+        "$b = {{m*p+b}}$",
+        "$b = {{b}}$",
+        "$b = {{b+m}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 5
+        },
+        "b": {
+          "min": 2,
+          "max": 9
+        },
+        "p": {
+          "min": 2,
+          "max": 3
+        },
+        "q": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "La recta pasa por los puntos $A({{p}}, {{m*p+b}})$ y $B({{q}}, {{m*q+b}})$. ¿Cuál es el intercepto $b$ con el eje $y$?",
+      "opciones": [
+        "$b = {{-b}}$",
+        "$b = {{b}}$",
+        "$b = {{m*p+b}}$",
+        "$b = {{b+m}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 5
+        },
+        "b": {
+          "min": 2,
+          "max": 9
+        },
+        "p": {
+          "min": 2,
+          "max": 3
+        },
+        "q": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "¿Cuál es la ecuación de la recta que pasa por $A({{p}}, {{m*p+b}})$ y $B({{q}}, {{m*q+b}})$?",
+      "opciones": [
+        "$y = {{m}}x + {{b}}$",
+        "$y = {{b}}x + {{m}}$",
+        "$y = {{m}}x - {{b}}$",
+        "$y = {{-m}}x + {{b}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 5
+        },
+        "b": {
+          "min": 6,
+          "max": 9
+        },
+        "p": {
+          "min": 1,
+          "max": 3
+        },
+        "q": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "¿Cuál es la ecuación de la recta que pasa por $A({{p}}, {{m*p+b}})$ y $B({{q}}, {{m*q+b}})$?",
+      "opciones": [
+        "$y = {{b}}x + {{m}}$",
+        "$y = {{m}}x + {{b}}$",
+        "$y = {{m}}x - {{b}}$",
+        "$y = {{-m}}x + {{b}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 5
+        },
+        "b": {
+          "min": 6,
+          "max": 9
+        },
+        "p": {
+          "min": 1,
+          "max": 3
+        },
+        "q": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "¿Cuál es la ecuación de la recta que pasa por $A({{p}}, {{m*p+b}})$ y $B({{q}}, {{m*q+b}})$?",
+      "opciones": [
+        "$y = {{b}}x + {{m}}$",
+        "$y = {{m}}x - {{b}}$",
+        "$y = {{m}}x + {{b}}$",
+        "$y = {{-m}}x + {{b}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 5
+        },
+        "b": {
+          "min": 6,
+          "max": 9
+        },
+        "p": {
+          "min": 1,
+          "max": 3
+        },
+        "q": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "¿Cuál es la ecuación de la recta que pasa por $A({{p}}, {{m*p+b}})$ y $B({{q}}, {{m*q+b}})$?",
+      "opciones": [
+        "$y = {{b}}x + {{m}}$",
+        "$y = {{m}}x - {{b}}$",
+        "$y = {{-m}}x + {{b}}$",
+        "$y = {{m}}x + {{b}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 5
+        },
+        "b": {
+          "min": 6,
+          "max": 9
+        },
+        "p": {
+          "min": 1,
+          "max": 3
+        },
+        "q": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "¿Cuál es la ecuación de la recta que pasa por $A({{p}}, {{m*p+b}})$ y $B({{q}}, {{m*q+b}})$?",
+      "opciones": [
+        "$y = {{m}}x + {{b}}$",
+        "$y = {{b}}x + {{m}}$",
+        "$y = {{m}}x - {{b}}$",
+        "$y = {{-m}}x + {{b}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 5
+        },
+        "b": {
+          "min": 6,
+          "max": 9
+        },
+        "p": {
+          "min": 1,
+          "max": 3
+        },
+        "q": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "¿Cuál es la ecuación de la recta que pasa por $A({{p}}, {{m*p+b}})$ y $B({{q}}, {{m*q+b}})$?",
+      "opciones": [
+        "$y = {{b}}x + {{m}}$",
+        "$y = {{m}}x - {{b}}$",
+        "$y = {{m}}x + {{b}}$",
+        "$y = {{-m}}x + {{b}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 5
+        },
+        "b": {
+          "min": 6,
+          "max": 9
+        },
+        "p": {
+          "min": 1,
+          "max": 3
+        },
+        "q": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "¿Cuál es la ecuación de la recta que pasa por $A({{p}}, {{m*p+b}})$ y $B({{q}}, {{m*q+b}})$?",
+      "opciones": [
+        "$y = {{b}}x + {{m}}$",
+        "$y = {{m}}x + {{b}}$",
+        "$y = {{m}}x - {{b}}$",
+        "$y = {{-m}}x + {{b}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 5
+        },
+        "b": {
+          "min": 6,
+          "max": 9
+        },
+        "p": {
+          "min": 1,
+          "max": 3
+        },
+        "q": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "¿Cuál es la ecuación de la recta que pasa por $A({{p}}, {{m*p+b}})$ y $B({{q}}, {{m*q+b}})$?",
+      "opciones": [
+        "$y = {{b}}x + {{m}}$",
+        "$y = {{m}}x - {{b}}$",
+        "$y = {{-m}}x + {{b}}$",
+        "$y = {{m}}x + {{b}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 5
+        },
+        "b": {
+          "min": 6,
+          "max": 9
+        },
+        "p": {
+          "min": 1,
+          "max": 3
+        },
+        "q": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "Una recta tiene pendiente $m = {{m}}$ y pasa por el punto $({{p}}, {{m*p+b}})$. ¿Cuál es su ecuación?",
+      "opciones": [
+        "$y = {{m}}x + {{b}}$",
+        "$y = {{m}}x + {{m*p+b}}$",
+        "$y = {{m}}x - {{b}}$",
+        "$y = {{b}}x + {{m}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 5
+        },
+        "b": {
+          "min": 6,
+          "max": 9
+        },
+        "p": {
+          "min": 1,
+          "max": 3
+        }
+      }
+    },
+    {
+      "template": "Una recta tiene pendiente $m = {{m}}$ y pasa por el punto $({{p}}, {{m*p+b}})$. ¿Cuál es su ecuación?",
+      "opciones": [
+        "$y = {{m}}x + {{m*p+b}}$",
+        "$y = {{m}}x + {{b}}$",
+        "$y = {{m}}x - {{b}}$",
+        "$y = {{b}}x + {{m}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 5
+        },
+        "b": {
+          "min": 6,
+          "max": 9
+        },
+        "p": {
+          "min": 1,
+          "max": 3
+        }
+      }
+    },
+    {
+      "template": "Una recta tiene pendiente $m = {{m}}$ y pasa por el punto $({{p}}, {{m*p+b}})$. ¿Cuál es su ecuación?",
+      "opciones": [
+        "$y = {{m}}x + {{m*p+b}}$",
+        "$y = {{m}}x - {{b}}$",
+        "$y = {{m}}x + {{b}}$",
+        "$y = {{b}}x + {{m}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 5
+        },
+        "b": {
+          "min": 6,
+          "max": 9
+        },
+        "p": {
+          "min": 1,
+          "max": 3
+        }
+      }
+    },
+    {
+      "template": "Una recta tiene pendiente $m = {{m}}$ y pasa por el punto $({{p}}, {{m*p+b}})$. ¿Cuál es su ecuación?",
+      "opciones": [
+        "$y = {{m}}x + {{m*p+b}}$",
+        "$y = {{m}}x - {{b}}$",
+        "$y = {{b}}x + {{m}}$",
+        "$y = {{m}}x + {{b}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 5
+        },
+        "b": {
+          "min": 6,
+          "max": 9
+        },
+        "p": {
+          "min": 1,
+          "max": 3
+        }
+      }
+    },
+    {
+      "template": "Una recta tiene pendiente $m = {{m}}$ y pasa por el punto $({{p}}, {{m*p+b}})$. ¿Cuál es su ecuación?",
+      "opciones": [
+        "$y = {{m}}x + {{b}}$",
+        "$y = {{m}}x + {{m*p+b}}$",
+        "$y = {{m}}x - {{b}}$",
+        "$y = {{b}}x + {{m}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 5
+        },
+        "b": {
+          "min": 6,
+          "max": 9
+        },
+        "p": {
+          "min": 1,
+          "max": 3
+        }
+      }
+    },
+    {
+      "template": "Una recta tiene pendiente $m = {{m}}$ y pasa por el punto $({{p}}, {{m*p+b}})$. ¿Cuál es su ecuación?",
+      "opciones": [
+        "$y = {{m}}x + {{m*p+b}}$",
+        "$y = {{m}}x - {{b}}$",
+        "$y = {{m}}x + {{b}}$",
+        "$y = {{b}}x + {{m}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 5
+        },
+        "b": {
+          "min": 6,
+          "max": 9
+        },
+        "p": {
+          "min": 1,
+          "max": 3
+        }
+      }
+    },
+    {
+      "template": "Una recta tiene pendiente $m = {{m}}$ y pasa por el punto $({{p}}, {{m*p+b}})$. ¿Cuál es su ecuación?",
+      "opciones": [
+        "$y = {{m}}x + {{m*p+b}}$",
+        "$y = {{m}}x + {{b}}$",
+        "$y = {{m}}x - {{b}}$",
+        "$y = {{b}}x + {{m}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "m": {
+          "min": 2,
+          "max": 5
+        },
+        "b": {
+          "min": 6,
+          "max": 9
+        },
+        "p": {
+          "min": 1,
+          "max": 3
+        }
+      }
+    }
+  ]
+}
