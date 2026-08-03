@@ -509,6 +509,21 @@
       "email": "sebastian.tam@sekcostarica.com",
       "clave": "85029946",
       "nombre": "Tam Sebastian"
+    },
+    {
+      "email": "ian.chavarria@sekcostarica.com",
+      "clave": "51361260",
+      "nombre": "Chavarria Jimenez Ian"
+    },
+    {
+      "email": "jimena.cardenas@sekcostarica.com",
+      "clave": "51361260",
+      "nombre": "Cardenas Jimenez Jimena"
+    },
+    {
+      "email": "jimena.villatoroo@sekcostarica.com",
+      "clave": "51361260",
+      "nombre": "Villatoro Jimenez Jimena"
     }
   ]
 }
