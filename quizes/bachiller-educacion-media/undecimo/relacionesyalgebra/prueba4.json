@@ -1,0 +1,673 @@
+{
+  "id": 10,
+  "titulo": "Ecuaciones Logarítmicas",
+  "habilitado": true,
+  "fecha_inicio": "2026-01-01",
+  "fecha_fin": "2026-12-31",
+  "preguntas": [
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }(x) = {{n}}$",
+      "opciones": [
+        "$x = {{b**n}}$",
+        "$x = {{b*n}}$",
+        "$x = {{b+n}}$",
+        "$x = {{n}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 3
+        },
+        "n": {
+          "min": 3,
+          "max": 5
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }(x) = {{n}}$",
+      "opciones": [
+        "$x = {{b+n}}$",
+        "$x = {{b**n}}$",
+        "$x = {{n}}$",
+        "$x = {{b*n}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "b": {
+          "min": 4,
+          "max": 6
+        },
+        "n": {
+          "min": 2,
+          "max": 3
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }(x) = {{n}}$",
+      "opciones": [
+        "$x = {{n}}$",
+        "$x = {{b*n}}$",
+        "$x = {{b**n}}$",
+        "$x = {{b+n}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 4
+        },
+        "n": {
+          "min": 4,
+          "max": 5
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }(x) = 1$",
+      "opciones": [
+        "$x = 1$",
+        "$x = {{b*b}}$",
+        "$x = {{b}}$",
+        "$x = {{b+1}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }(x + {{a}}) = {{n}}$",
+      "opciones": [
+        "$x = {{b**n-a}}$",
+        "$x = {{b**n}}$",
+        "$x = {{b*n-a}}$",
+        "$x = {{b**n+a}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 3
+        },
+        "n": {
+          "min": 3,
+          "max": 4
+        },
+        "a": {
+          "min": 1,
+          "max": 5
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }(x + {{a}}) = {{n}}$",
+      "opciones": [
+        "$x = {{b*n-a}}$",
+        "$x = {{b**n+a}}$",
+        "$x = {{b**n}}$",
+        "$x = {{b**n-a}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 3
+        },
+        "n": {
+          "min": 3,
+          "max": 4
+        },
+        "a": {
+          "min": 2,
+          "max": 5
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }(x - {{a}}) = {{n}}$",
+      "opciones": [
+        "$x = {{b*n+a}}$",
+        "$x = {{b**n+a}}$",
+        "$x = {{b+n+a}}$",
+        "$x = {{n+a}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 3
+        },
+        "n": {
+          "min": 3,
+          "max": 4
+        },
+        "a": {
+          "min": 1,
+          "max": 6
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }(x - {{a}}) = {{n}}$",
+      "opciones": [
+        "$x = {{b+n+a}}$",
+        "$x = {{n+a}}$",
+        "$x = {{b*n+a}}$",
+        "$x = {{b**n+a}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "b": {
+          "min": 4,
+          "max": 5
+        },
+        "n": {
+          "min": 2,
+          "max": 3
+        },
+        "a": {
+          "min": 1,
+          "max": 4
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{x}({{b**n}}) = {{n}}$",
+      "opciones": [
+        "$x = {{b*n}}$",
+        "$x = {{b}}$",
+        "$x = {{n}}$",
+        "$x = {{b**n}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "b": {
+          "min": 4,
+          "max": 6
+        },
+        "n": {
+          "min": 2,
+          "max": 3
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{x}({{b**n}}) = {{n}}$",
+      "opciones": [
+        "$x = {{b}}$",
+        "$x = {{n}}$",
+        "$x = {{b**n}}$",
+        "$x = {{b*n}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 3
+        },
+        "n": {
+          "min": 4,
+          "max": 5
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }(x^{ {{2*j+1}} }) = {{(2*j+1)*m}}$",
+      "opciones": [
+        "$x = {{b+m}}$",
+        "$x = {{b**m}}$",
+        "$x = {{m}}$",
+        "$x = {{b*m}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 3
+        },
+        "j": {
+          "min": 1,
+          "max": 2
+        },
+        "m": {
+          "min": 3,
+          "max": 4
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: ${{k}}\\log_{ {{b}} }(x) = {{k*m}}$",
+      "opciones": [
+        "$x = {{b**m}}$",
+        "$x = {{k+m}}$",
+        "$x = {{k*m}}$",
+        "$x = {{m}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 3
+        },
+        "k": {
+          "min": 2,
+          "max": 3
+        },
+        "m": {
+          "min": 4,
+          "max": 5
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: ${{k}}\\log_{ {{b}} }(x) = {{k*m}}$",
+      "opciones": [
+        "$x = {{k*m}}$",
+        "$x = {{m}}$",
+        "$x = {{b**m}}$",
+        "$x = {{k+m}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 3
+        },
+        "k": {
+          "min": 2,
+          "max": 3
+        },
+        "m": {
+          "min": 3,
+          "max": 4
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log(x) = {{n}}$",
+      "opciones": [
+        "$x = {{10+n}}$",
+        "$x = {{n}}$",
+        "$x = {{10*n}}$",
+        "$x = {{10**n}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "n": {
+          "min": 2,
+          "max": 4
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }(x) + \\log_{ {{b}} }({{a}}) = \\log_{ {{b}} }({{a*m}})$",
+      "opciones": [
+        "$x = {{m}}$",
+        "$x = {{a}}$",
+        "$x = {{a*m}}$",
+        "$x = {{a+m}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 5
+        },
+        "a": {
+          "min": 2,
+          "max": 4
+        },
+        "m": {
+          "min": 5,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }(x) + \\log_{ {{b}} }({{a}}) = \\log_{ {{b}} }({{a*m}})$",
+      "opciones": [
+        "$x = {{a*m}}$",
+        "$x = {{a+m}}$",
+        "$x = {{m}}$",
+        "$x = {{a}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 3
+        },
+        "a": {
+          "min": 5,
+          "max": 7
+        },
+        "m": {
+          "min": 2,
+          "max": 4
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }({{a}}) + \\log_{ {{b}} }(x) = \\log_{ {{b}} }({{a*m}})$",
+      "opciones": [
+        "$x = {{a+m}}$",
+        "$x = {{a}}$",
+        "$x = {{a*m}}$",
+        "$x = {{m}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "b": {
+          "min": 3,
+          "max": 6
+        },
+        "a": {
+          "min": 3,
+          "max": 5
+        },
+        "m": {
+          "min": 6,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }(x) + \\log_{ {{b}} }({{b}}) = {{m+1}}$",
+      "opciones": [
+        "$x = {{b**m}}$",
+        "$x = {{m}}$",
+        "$x = {{m+1}}$",
+        "$x = {{b*m}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 3
+        },
+        "m": {
+          "min": 3,
+          "max": 5
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }(x) + \\log_{ {{b}} }({{b*b}}) = {{m+2}}$",
+      "opciones": [
+        "$x = {{m+2}}$",
+        "$x = {{b**m}}$",
+        "$x = {{b*m}}$",
+        "$x = {{m}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 3
+        },
+        "m": {
+          "min": 3,
+          "max": 5
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }({{b}}x) = {{m+1}}$",
+      "opciones": [
+        "$x = {{b*m}}$",
+        "$x = {{m}}$",
+        "$x = {{m+1}}$",
+        "$x = {{b**m}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 4
+        },
+        "m": {
+          "min": 3,
+          "max": 4
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }(x) - \\log_{ {{b}} }({{a}}) = \\log_{ {{b}} }({{m}})$",
+      "opciones": [
+        "$x = {{m-a}}$",
+        "$x = {{m}}$",
+        "$x = {{a+m}}$",
+        "$x = {{a*m}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 5
+        },
+        "a": {
+          "min": 2,
+          "max": 4
+        },
+        "m": {
+          "min": 6,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }(x) - \\log_{ {{b}} }({{a}}) = \\log_{ {{b}} }({{m}})$",
+      "opciones": [
+        "$x = {{m}}$",
+        "$x = {{a*m}}$",
+        "$x = {{a+m}}$",
+        "$x = {{m-a}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 3
+        },
+        "a": {
+          "min": 3,
+          "max": 5
+        },
+        "m": {
+          "min": 7,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }(x) - \\log_{ {{b}} }({{a}}) = \\log_{ {{b}} }({{m}})$",
+      "opciones": [
+        "$x = {{a+m}}$",
+        "$x = {{m-a}}$",
+        "$x = {{a*m}}$",
+        "$x = {{m}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "b": {
+          "min": 4,
+          "max": 7
+        },
+        "a": {
+          "min": 2,
+          "max": 3
+        },
+        "m": {
+          "min": 5,
+          "max": 8
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }({{m*t}}) - \\log_{ {{b}} }(x) = \\log_{ {{b}} }({{m}})$",
+      "opciones": [
+        "$x = {{m+t}}$",
+        "$x = {{m*t}}$",
+        "$x = {{t}}$",
+        "$x = {{m}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 5
+        },
+        "m": {
+          "min": 2,
+          "max": 4
+        },
+        "t": {
+          "min": 5,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }({{m*t}}) - \\log_{ {{b}} }(x) = \\log_{ {{b}} }({{m}})$",
+      "opciones": [
+        "$x = {{m*t}}$",
+        "$x = {{m}}$",
+        "$x = {{m+t}}$",
+        "$x = {{t}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "b": {
+          "min": 3,
+          "max": 6
+        },
+        "m": {
+          "min": 3,
+          "max": 5
+        },
+        "t": {
+          "min": 6,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }(x) - \\log_{ {{b}} }({{b}}) = {{m-1}}$",
+      "opciones": [
+        "$x = {{b*m}}$",
+        "$x = {{m}}$",
+        "$x = {{b**m}}$",
+        "$x = {{m-1}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 3
+        },
+        "m": {
+          "min": 3,
+          "max": 5
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }\\left(\\dfrac{x}{ {{b}} }\\right) = {{m-1}}$",
+      "opciones": [
+        "$x = {{m}}$",
+        "$x = {{b**m}}$",
+        "$x = {{m-1}}$",
+        "$x = {{b*m}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 4
+        },
+        "m": {
+          "min": 3,
+          "max": 4
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }(x + {{a}}) = \\log_{ {{b}} }({{a+t}})$",
+      "opciones": [
+        "$x = {{a+t}}$",
+        "$x = {{t}}$",
+        "$x = {{a}}$",
+        "$x = {{a*t}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 5
+        },
+        "a": {
+          "min": 2,
+          "max": 5
+        },
+        "t": {
+          "min": 6,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }(x - {{a}}) = \\log_{ {{b}} }({{t}})$",
+      "opciones": [
+        "$x = {{t-a}}$",
+        "$x = {{a*t}}$",
+        "$x = {{a+t}}$",
+        "$x = {{t}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 5
+        },
+        "a": {
+          "min": 2,
+          "max": 4
+        },
+        "t": {
+          "min": 6,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Resuelva para $x$: $\\log_{ {{b}} }({{a}}x) = \\log_{ {{b}} }({{a*m}})$",
+      "opciones": [
+        "$x = {{a+m}}$",
+        "$x = {{a}}$",
+        "$x = {{m}}$",
+        "$x = {{a*m}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "b": {
+          "min": 2,
+          "max": 5
+        },
+        "a": {
+          "min": 2,
+          "max": 4
+        },
+        "m": {
+          "min": 5,
+          "max": 9
+        }
+      }
+    }
+  ]
+}
