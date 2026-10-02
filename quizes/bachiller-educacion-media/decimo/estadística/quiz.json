@@ -1,7 +1,7 @@
 {
   "id": 6,
   "titulo": "Estadística: representaciones y medidas de posición",
-  "habilitado": false,
+  "habilitado": true,
   "fecha_inicio": "2026-01-01",
   "fecha_fin": "2026-12-31",
   "preguntas": [
