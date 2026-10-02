@@ -1,1 +1,725 @@
-
+{
+  "id": 6,
+  "titulo": "Estadística: representaciones y medidas de posición",
+  "habilitado": false,
+  "fecha_inicio": "2026-01-01",
+  "fecha_fin": "2026-12-31",
+  "preguntas": [
+    {
+      "template": "En una tabla de personas pensionadas, el grupo de 50 a 84 años tiene {{h}} hombres y {{w}} mujeres. Si se elige al azar una persona de ese grupo, ¿cuál es la probabilidad de que sea mujer?",
+      "opciones": [
+        "$P = \\frac{ {{w}} }{ {{h+w}} }$",
+        "$P = \\frac{ {{h}} }{ {{h+w}} }$",
+        "$P = \\frac{ {{w}} }{ {{h}} }$",
+        "$P = \\frac{ {{h}} }{ {{w}} }$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "h": {
+          "min": 100,
+          "max": 200
+        },
+        "w": {
+          "min": 250,
+          "max": 400
+        }
+      }
+    },
+    {
+      "template": "En una tabla de personas pensionadas, el grupo de 50 a 84 años tiene {{h}} hombres y {{w}} mujeres. Si se elige al azar una persona de ese grupo, ¿cuál es la probabilidad de que sea mujer?",
+      "opciones": [
+        "$P = \\frac{ {{h}} }{ {{h+w}} }$",
+        "$P = \\frac{ {{w}} }{ {{h}} }$",
+        "$P = \\frac{ {{w}} }{ {{h+w}} }$",
+        "$P = \\frac{ {{h}} }{ {{w}} }$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "h": {
+          "min": 100,
+          "max": 200
+        },
+        "w": {
+          "min": 250,
+          "max": 400
+        }
+      }
+    },
+    {
+      "template": "De un total de {{20*t}} títulos otorgados, {{k*t}} corresponden a Maestría. ¿Qué porcentaje del total representan los títulos de Maestría?",
+      "opciones": [
+        "${{k*t}}\\%$",
+        "${{5*k}}\\%$",
+        "${{100-5*k}}\\%$",
+        "${{20*t-k*t}}\\%$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "k": {
+          "min": 2,
+          "max": 9
+        },
+        "t": {
+          "min": 6,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "De un total de {{20*t}} títulos otorgados, {{k*t}} corresponden a Maestría. ¿Qué porcentaje del total representan los títulos de Maestría?",
+      "opciones": [
+        "${{k*t}}\\%$",
+        "${{100-5*k}}\\%$",
+        "${{20*t-k*t}}\\%$",
+        "${{5*k}}\\%$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "k": {
+          "min": 2,
+          "max": 9
+        },
+        "t": {
+          "min": 6,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Los puntajes de un grupo de estudiantes fueron: {{a+5}}, {{a}}, {{a+k}}, {{a+2}}, {{a+9}}. ¿Cuál es el recorrido (rango) de los datos?",
+      "opciones": [
+        "$R = {{k}}$",
+        "$R = {{a+k}}$",
+        "$R = {{a}}$",
+        "$R = {{2*a+k}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {
+          "min": 20,
+          "max": 40
+        },
+        "k": {
+          "min": 10,
+          "max": 15
+        }
+      }
+    },
+    {
+      "template": "Los puntajes de un grupo de estudiantes fueron: {{a+5}}, {{a}}, {{a+k}}, {{a+2}}, {{a+9}}. ¿Cuál es el recorrido (rango) de los datos?",
+      "opciones": [
+        "$R = {{a+k}}$",
+        "$R = {{a}}$",
+        "$R = {{k}}$",
+        "$R = {{2*a+k}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {
+          "min": 20,
+          "max": 40
+        },
+        "k": {
+          "min": 10,
+          "max": 15
+        }
+      }
+    },
+    {
+      "template": "Considere los datos: {{c+2*d}}, {{c-4*d}}, {{c+d}}, {{c+2*d}}, {{c-d}}. ¿Cuál es la media aritmética $\\bar{x}$?",
+      "opciones": [
+        "$\\bar{x} = {{c+d}}$",
+        "$\\bar{x} = {{c}}$",
+        "$\\bar{x} = {{c+2*d}}$",
+        "$\\bar{x} = {{c-d}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "c": {
+          "min": 40,
+          "max": 80
+        },
+        "d": {
+          "min": 2,
+          "max": 6
+        }
+      }
+    },
+    {
+      "template": "Considere los datos: {{c+2*d}}, {{c-4*d}}, {{c+d}}, {{c+2*d}}, {{c-d}}. ¿Cuál es la media aritmética $\\bar{x}$?",
+      "opciones": [
+        "$\\bar{x} = {{c+d}}$",
+        "$\\bar{x} = {{c+2*d}}$",
+        "$\\bar{x} = {{c-d}}$",
+        "$\\bar{x} = {{c}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "c": {
+          "min": 40,
+          "max": 80
+        },
+        "d": {
+          "min": 2,
+          "max": 6
+        }
+      }
+    },
+    {
+      "template": "Considere los datos: {{c+2*d}}, {{c-4*d}}, {{c+d}}, {{c+2*d}}, {{c-d}}. ¿Cuál es la mediana $Me$?",
+      "opciones": [
+        "$Me = {{c+d}}$",
+        "$Me = {{c}}$",
+        "$Me = {{c+2*d}}$",
+        "$Me = {{c-4*d}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "c": {
+          "min": 40,
+          "max": 80
+        },
+        "d": {
+          "min": 2,
+          "max": 6
+        }
+      }
+    },
+    {
+      "template": "Considere los datos: {{c+2*d}}, {{c-4*d}}, {{c+d}}, {{c+2*d}}, {{c-d}}. ¿Cuál es la mediana $Me$?",
+      "opciones": [
+        "$Me = {{c}}$",
+        "$Me = {{c+2*d}}$",
+        "$Me = {{c+d}}$",
+        "$Me = {{c-4*d}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "c": {
+          "min": 40,
+          "max": 80
+        },
+        "d": {
+          "min": 2,
+          "max": 6
+        }
+      }
+    },
+    {
+      "template": "Considere los datos: {{c+2*d}}, {{c-4*d}}, {{c+d}}, {{c+2*d}}, {{c-d}}. ¿Cuál es la moda $Mo$?",
+      "opciones": [
+        "$Mo = {{c}}$",
+        "$Mo = {{c+2*d}}$",
+        "$Mo = {{c+d}}$",
+        "$Mo = {{c-d}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "c": {
+          "min": 40,
+          "max": 80
+        },
+        "d": {
+          "min": 2,
+          "max": 6
+        }
+      }
+    },
+    {
+      "template": "Considere los datos: {{c+2*d}}, {{c-4*d}}, {{c+d}}, {{c+2*d}}, {{c-d}}. ¿Cuál es la moda $Mo$?",
+      "opciones": [
+        "$Mo = {{c}}$",
+        "$Mo = {{c+d}}$",
+        "$Mo = {{c-d}}$",
+        "$Mo = {{c+2*d}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "c": {
+          "min": 40,
+          "max": 80
+        },
+        "d": {
+          "min": 2,
+          "max": 6
+        }
+      }
+    },
+    {
+      "template": "Considere los datos: {{c+3*d}}, {{c}}, {{c-5*d}}, {{c+4*d}}, {{c+2*d}}, {{c-2*d}}. ¿Cuál es la mediana $Me$?",
+      "opciones": [
+        "$Me = {{c+d}}$",
+        "$Me = {{c}}$",
+        "$Me = {{c+2*d}}$",
+        "$Me = {{c-2*d}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "c": {
+          "min": 40,
+          "max": 80
+        },
+        "d": {
+          "min": 2,
+          "max": 6
+        }
+      }
+    },
+    {
+      "template": "Considere los datos: {{c+3*d}}, {{c}}, {{c-5*d}}, {{c+4*d}}, {{c+2*d}}, {{c-2*d}}. ¿Cuál es la mediana $Me$?",
+      "opciones": [
+        "$Me = {{c}}$",
+        "$Me = {{c+2*d}}$",
+        "$Me = {{c+d}}$",
+        "$Me = {{c-2*d}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "c": {
+          "min": 40,
+          "max": 80
+        },
+        "d": {
+          "min": 2,
+          "max": 6
+        }
+      }
+    },
+    {
+      "template": "Un conjunto tiene $n = {{4*k-1}}$ datos ordenados de menor a mayor. Usando $P = \\frac{n+1}{4}$, ¿en qué posición se ubica el primer cuartil $Q_1$?",
+      "opciones": [
+        "Posición ${{k+1}}$",
+        "Posición ${{k}}$",
+        "Posición ${{2*k}}$",
+        "Posición ${{3*k}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "k": {
+          "min": 5,
+          "max": 12
+        }
+      }
+    },
+    {
+      "template": "Un conjunto tiene $n = {{4*k-1}}$ datos ordenados de menor a mayor. Usando $P = \\frac{n+1}{4}$, ¿en qué posición se ubica el primer cuartil $Q_1$?",
+      "opciones": [
+        "Posición ${{k+1}}$",
+        "Posición ${{2*k}}$",
+        "Posición ${{3*k}}$",
+        "Posición ${{k}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "k": {
+          "min": 5,
+          "max": 12
+        }
+      }
+    },
+    {
+      "template": "Un conjunto tiene $n = {{4*k-1}}$ datos ordenados de menor a mayor. Usando $P = \\frac{3(n+1)}{4}$, ¿en qué posición se ubica el tercer cuartil $Q_3$?",
+      "opciones": [
+        "Posición ${{3*k}}$",
+        "Posición ${{k}}$",
+        "Posición ${{2*k}}$",
+        "Posición ${{3*k+3}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "k": {
+          "min": 5,
+          "max": 12
+        }
+      }
+    },
+    {
+      "template": "Un conjunto tiene $n = {{4*k-1}}$ datos ordenados de menor a mayor. Usando $P = \\frac{3(n+1)}{4}$, ¿en qué posición se ubica el tercer cuartil $Q_3$?",
+      "opciones": [
+        "Posición ${{k}}$",
+        "Posición ${{2*k}}$",
+        "Posición ${{3*k}}$",
+        "Posición ${{3*k+3}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "k": {
+          "min": 5,
+          "max": 12
+        }
+      }
+    },
+    {
+      "template": "En un estudio se obtuvo $Q_1 = {{q}}$, $Q_2 = {{q+d}}$ y $Q_3 = {{q+d+e}}$. ¿Por debajo de qué valor se encuentra el 75% de los datos?",
+      "opciones": [
+        "${{q}}$",
+        "${{q+d+e}}$",
+        "${{q+d}}$",
+        "${{e}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "q": {
+          "min": 20,
+          "max": 40
+        },
+        "d": {
+          "min": 5,
+          "max": 10
+        },
+        "e": {
+          "min": 11,
+          "max": 18
+        }
+      }
+    },
+    {
+      "template": "En un estudio se obtuvo $Q_1 = {{q}}$, $Q_2 = {{q+d}}$ y $Q_3 = {{q+d+e}}$. ¿Por debajo de qué valor se encuentra el 75% de los datos?",
+      "opciones": [
+        "${{q}}$",
+        "${{q+d}}$",
+        "${{e}}$",
+        "${{q+d+e}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "q": {
+          "min": 20,
+          "max": 40
+        },
+        "d": {
+          "min": 5,
+          "max": 10
+        },
+        "e": {
+          "min": 11,
+          "max": 18
+        }
+      }
+    },
+    {
+      "template": "En una distribución de frecuencias, una clase es el intervalo $[{{a}}, {{a+2*w}}[$. ¿Cuál es su marca de clase?",
+      "opciones": [
+        "$m = {{a+w}}$",
+        "$m = {{a}}$",
+        "$m = {{a+2*w}}$",
+        "$m = {{2*a+2*w}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {
+          "min": 10,
+          "max": 40
+        },
+        "w": {
+          "min": 2,
+          "max": 6
+        }
+      }
+    },
+    {
+      "template": "En una distribución de frecuencias, una clase es el intervalo $[{{a}}, {{a+2*w}}[$. ¿Cuál es su marca de clase?",
+      "opciones": [
+        "$m = {{a}}$",
+        "$m = {{a+2*w}}$",
+        "$m = {{a+w}}$",
+        "$m = {{2*a+2*w}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {
+          "min": 10,
+          "max": 40
+        },
+        "w": {
+          "min": 2,
+          "max": 6
+        }
+      }
+    },
+    {
+      "template": "En una tabla de datos agrupados, las marcas de clase son ${{m}}$, ${{m+4*u}}$ y ${{m+8*u}}$, con frecuencias ${{2*f}}$, ${{f}}$ y ${{f}}$ respectivamente. ¿Cuál es la media aritmética?",
+      "opciones": [
+        "$\\bar{x} = {{m+4*u}}$",
+        "$\\bar{x} = {{m+3*u}}$",
+        "$\\bar{x} = {{m+2*u}}$",
+        "$\\bar{x} = {{3*m+12*u}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "m": {
+          "min": 10,
+          "max": 20
+        },
+        "u": {
+          "min": 1,
+          "max": 4
+        },
+        "f": {
+          "min": 5,
+          "max": 10
+        }
+      }
+    },
+    {
+      "template": "En una tabla de datos agrupados, las marcas de clase son ${{m}}$, ${{m+4*u}}$ y ${{m+8*u}}$, con frecuencias ${{2*f}}$, ${{f}}$ y ${{f}}$ respectivamente. ¿Cuál es la media aritmética?",
+      "opciones": [
+        "$\\bar{x} = {{m+4*u}}$",
+        "$\\bar{x} = {{m+2*u}}$",
+        "$\\bar{x} = {{3*m+12*u}}$",
+        "$\\bar{x} = {{m+3*u}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "m": {
+          "min": 10,
+          "max": 20
+        },
+        "u": {
+          "min": 1,
+          "max": 4
+        },
+        "f": {
+          "min": 5,
+          "max": 10
+        }
+      }
+    },
+    {
+      "template": "Una tabla tiene las clases $[0, {{2*w}}[$, $[{{2*w}}, {{4*w}}[$ y $[{{4*w}}, {{6*w}}]$ con frecuencias ${{a}}$, ${{a+g}}$ y ${{a-g}}$. ¿Cuál es la moda?",
+      "opciones": [
+        "$Mo = {{3*w}}$",
+        "$Mo = {{w}}$",
+        "$Mo = {{5*w}}$",
+        "$Mo = {{a+g}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "w": {
+          "min": 2,
+          "max": 5
+        },
+        "a": {
+          "min": 21,
+          "max": 30
+        },
+        "g": {
+          "min": 5,
+          "max": 10
+        }
+      }
+    },
+    {
+      "template": "Una tabla tiene las clases $[0, {{2*w}}[$, $[{{2*w}}, {{4*w}}[$ y $[{{4*w}}, {{6*w}}]$ con frecuencias ${{a}}$, ${{a+g}}$ y ${{a-g}}$. ¿Cuál es la moda?",
+      "opciones": [
+        "$Mo = {{w}}$",
+        "$Mo = {{5*w}}$",
+        "$Mo = {{3*w}}$",
+        "$Mo = {{a+g}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "w": {
+          "min": 2,
+          "max": 5
+        },
+        "a": {
+          "min": 21,
+          "max": 30
+        },
+        "g": {
+          "min": 5,
+          "max": 10
+        }
+      }
+    },
+    {
+      "template": "Una tabla tiene las clases $[0, {{2*w}}[$, $[{{2*w}}, {{4*w}}[$ y $[{{4*w}}, {{6*w}}]$ con frecuencias ${{a}}$, ${{a}}$ y ${{3*a}}$. Usando la posición $P = \\frac{n+1}{2}$, ¿cuál es la mediana?",
+      "opciones": [
+        "$Me = {{w}}$",
+        "$Me = {{5*w}}$",
+        "$Me = {{3*w}}$",
+        "$Me = {{6*w}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "w": {
+          "min": 2,
+          "max": 5
+        },
+        "a": {
+          "min": 4,
+          "max": 12
+        }
+      }
+    },
+    {
+      "template": "Una tabla tiene las clases $[0, {{2*w}}[$, $[{{2*w}}, {{4*w}}[$ y $[{{4*w}}, {{6*w}}]$ con frecuencias ${{a}}$, ${{a}}$ y ${{3*a}}$. Usando la posición $P = \\frac{n+1}{2}$, ¿cuál es la mediana?",
+      "opciones": [
+        "$Me = {{w}}$",
+        "$Me = {{3*w}}$",
+        "$Me = {{6*w}}$",
+        "$Me = {{5*w}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "w": {
+          "min": 2,
+          "max": 5
+        },
+        "a": {
+          "min": 4,
+          "max": 12
+        }
+      }
+    },
+    {
+      "template": "Una tabla de datos agrupados tiene 4 clases de igual amplitud: la primera es $[{{l}}, {{l+w}}[$ y la última es $[{{l+3*w}}, {{l+4*w}}]$. ¿Cuál es el recorrido?",
+      "opciones": [
+        "$R = {{4*w}}$",
+        "$R = {{l+4*w}}$",
+        "$R = {{w}}$",
+        "$R = {{3*w}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "l": {
+          "min": 10,
+          "max": 30
+        },
+        "w": {
+          "min": 2,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Una tabla de datos agrupados tiene 4 clases de igual amplitud: la primera es $[{{l}}, {{l+w}}[$ y la última es $[{{l+3*w}}, {{l+4*w}}]$. ¿Cuál es el recorrido?",
+      "opciones": [
+        "$R = {{l+4*w}}$",
+        "$R = {{w}}$",
+        "$R = {{4*w}}$",
+        "$R = {{3*w}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "l": {
+          "min": 10,
+          "max": 30
+        },
+        "w": {
+          "min": 2,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "Un conjunto tiene $n = {{2*k-1}}$ datos ordenados de menor a mayor. Usando $P = \\frac{n+1}{2}$, ¿en qué posición se ubica la mediana?",
+      "opciones": [
+        "Posición ${{k}}$",
+        "Posición ${{k-1}}$",
+        "Posición ${{2*k}}$",
+        "Posición ${{k+1}}$"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "k": {
+          "min": 6,
+          "max": 20
+        }
+      }
+    },
+    {
+      "template": "En un estudio se obtuvo $Q_1 = {{q}}$, $Q_2 = {{q+d}}$ y $Q_3 = {{q+d+e}}$. ¿Por debajo de qué valor se encuentra el 25% de los datos?",
+      "opciones": [
+        "${{q+d}}$",
+        "${{q}}$",
+        "${{q+d+e}}$",
+        "${{d}}$"
+      ],
+      "respuesta_correcta": 1,
+      "variables": {
+        "q": {
+          "min": 20,
+          "max": 40
+        },
+        "d": {
+          "min": 5,
+          "max": 10
+        },
+        "e": {
+          "min": 11,
+          "max": 18
+        }
+      }
+    },
+    {
+      "template": "Una tabla de frecuencias tiene 4 clases con frecuencias absolutas ${{a}}$, ${{b}}$, ${{c}}$ y ${{f}}$. ¿Cuál es el total de datos $n$?",
+      "opciones": [
+        "$n = {{a+b+c}}$",
+        "$n = {{a+b+c+f-1}}$",
+        "$n = {{a+b+c+f}}$",
+        "$n = {{a+b+c+f+10}}$"
+      ],
+      "respuesta_correcta": 2,
+      "variables": {
+        "a": {
+          "min": 5,
+          "max": 15
+        },
+        "b": {
+          "min": 16,
+          "max": 30
+        },
+        "c": {
+          "min": 20,
+          "max": 40
+        },
+        "f": {
+          "min": 3,
+          "max": 12
+        }
+      }
+    },
+    {
+      "template": "Una tabla de datos agrupados tiene las clases $[{{l}}, {{l+w}}[$, $[{{l+w}}, {{l+2*w}}[$ y $[{{l+2*w}}, {{l+3*w}}]$. ¿Cuál es el valor mínimo?",
+      "opciones": [
+        "$min = {{l+w}}$",
+        "$min = {{l+3*w}}$",
+        "$min = {{3*w}}$",
+        "$min = {{l}}$"
+      ],
+      "respuesta_correcta": 3,
+      "variables": {
+        "l": {
+          "min": 30,
+          "max": 50
+        },
+        "w": {
+          "min": 2,
+          "max": 9
+        }
+      }
+    },
+    {
+      "template": "En una gráfica de exportaciones de café, el país con mayor cantidad exportó ${{a}}$ miles de sacos y el de menor cantidad exportó ${{b}}$ miles de sacos. ¿Cuál es la diferencia entre ambas cantidades?",
+      "opciones": [
+        "${{a-b}}$ miles de sacos",
+        "${{a+b}}$ miles de sacos",
+        "${{a}}$ miles de sacos",
+        "${{a-2*b}}$ miles de sacos"
+      ],
+      "respuesta_correcta": 0,
+      "variables": {
+        "a": {
+          "min": 30000,
+          "max": 40000
+        },
+        "b": {
+          "min": 30,
+          "max": 150
+        }
+      }
+    }
+  ]
+}
